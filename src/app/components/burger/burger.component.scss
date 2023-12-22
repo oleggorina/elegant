@@ -1,0 +1,90 @@
+@import '../../../scss/common';
+
+.burger {
+  width: 24px;
+  height: 24px;
+}
+
+.menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 90%;
+  height: 100%;
+  padding: $gap;
+  background-color: $color-neutral-01;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  &__top {
+    display: flex;
+    flex-direction: column;
+    gap: $gap;
+    &-logo {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .exit {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+    &-menu {
+      display: flex;
+      flex-direction: column;
+      .link {
+        color: $color-neutral-04;
+        padding: 10px 0;
+        border-bottom: 1px solid $color-neutral-03;
+        &.active {
+          color: $color-neutral-07;
+          font-weight: 700;
+        }
+      }
+    }
+  }
+  &__bottom {
+    display: flex;
+    flex-direction: column;
+    gap: $gap;
+    &-menu {
+      display: flex;
+      flex-direction: column;
+      gap: $gap;
+      .item {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px solid $color-neutral-03;
+        &__title {
+          font-family: $font-main;
+          color: $color-neutral-04;
+          font-size: 18px;
+          font-weight: 500;
+        }
+        &__icon {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+        }
+      }
+    }
+    &-btn {
+      display: flex;
+      .btn {
+        width: 100%;
+      }
+    }
+    &-socials {
+      display: flex;
+      gap: $gap;
+    }
+  }
+}
+
+.wrapper {
+  @extend %wrapper;
+  background-color: black;
+  opacity: 0.32;
+}

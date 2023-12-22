@@ -1,0 +1,36 @@
+@import '../../../scss/common';
+
+.container {
+  @extend %container;
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $gap 0;
+    &__logo {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    &__menu {
+      display: flex;
+      gap: $gap;
+      &-item {
+        color: $color-neutral-04;
+        &.active {
+          color: $color-neutral-07;
+          font-weight: 700;
+        }
+      }
+    }
+    &__controls {
+      display: flex;
+      gap: $gap;
+      &-item {
+        display: flex;
+        gap: 5px;
+        align-items: center;
+      }
+    }
+  }
+}
