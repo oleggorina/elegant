@@ -1,0 +1,26 @@
+@import '../../../../scss/common';
+
+.arrow {
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  padding: 10px;
+  border-radius: 100px;
+  background-color: $color-neutral-01;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.04);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s ease-in;
+  .svg {
+    stroke: $color-neutral-04;
+  }
+  &.right {
+    transform: rotate(180deg);
+  }
+  &:hover {
+    .svg {
+      stroke: $color-primary;
+    }
+  }
+}

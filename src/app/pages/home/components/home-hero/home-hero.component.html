@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="hero">
+    <div class="slider" [ngStyle]="{'background-image': getCurrentSlideUrl()}">
+      <div class="slider__controls">
+        <div class="slider__controls-arrow" (click)="prev()">
+          <app-btn-arrow></app-btn-arrow>
+        </div>
+        <div class="slider__controls-arrow" (click)="next()">
+          <app-btn-arrow [sideClass]="'right'"></app-btn-arrow>
+        </div>
+      </div>
+      <div class="slider__indicators">
+        @for(slides of slideUrl; track slides; let index = $index) {
+          <div class="slider__indicators-indicator"
+          [ngClass]="{'active': index === currentIndex}"
+          (click)="goToSlide(index)"></div>
+        }
+      </div>
+    </div>
+    <div class="hero__content">
+      <div class="hero__content-title">
+        <h2>Simply Unique<span>/</span> Simply Better<span>.</span></h2>
+      </div>
+      <div class="hero__content-subtitle">
+        <p><span>3legant</span> is a gift & decorations store based in HCMC, Vietnam. Est since 2019.</p>
+      </div>
+    </div>
+  </div>
+</div>
