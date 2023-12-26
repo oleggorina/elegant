@@ -4,9 +4,11 @@
       <div class="arrivals__header-title">
         <h4>New Arrivals</h4>
       </div>
-      <div class="arrivals__header-link">
-        <app-link>More  Products -></app-link>
-      </div>
+      @if(onResize() > 992) {
+        <div class="arrivals__header-link">
+          <app-link>More  Products -></app-link>
+        </div>
+      }
     </div>
     <div class="arrivals__products">
       <div class="arrivals__products-items">
@@ -42,5 +44,10 @@
         </div>
       </div>
     </div>
+    @if(onResize() < 992) {
+      <div class="arrivals__link">
+        <app-link>More  Products -></app-link>
+      </div>
+    }
   </div>
 </div>

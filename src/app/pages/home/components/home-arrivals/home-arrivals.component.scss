@@ -42,5 +42,9 @@
         }
       }
     }
+    &__link {
+      width: max-content;
+      margin-top: calc($gap * 2);
+    }
   }
 }

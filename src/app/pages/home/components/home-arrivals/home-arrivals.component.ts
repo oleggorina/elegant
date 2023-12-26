@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener } from '@angular/core';
 import { LinkComponent } from '../../../../components/buttons/link/link.component';
 import { ProductCardComponent } from '../../../../components/cards/product-card/product-card.component';
 
@@ -11,5 +11,8 @@ import { ProductCardComponent } from '../../../../components/cards/product-card/
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeArrivalsComponent {
-
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    return window.innerWidth;
+  }
 }

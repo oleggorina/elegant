@@ -1,0 +1,55 @@
+@import '../../../../../scss/common';
+
+.banner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 530px;
+  background-color: $color-neutral-02;
+  gap: calc($gap * 3);
+  @include md {
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.5fr 0.5fr;
+    gap: calc($gap * 2);
+  }
+  &__image {
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: bottom;
+    }
+  }
+
+  &__content {
+    align-self: center;
+    display: grid;
+    gap: $gap;
+    max-width: 450px;
+    @include md {
+      padding: 0 $gap;
+    }
+    &-subtitle {
+      span  {
+        font-weight: 700;
+        color: $color-accent-blue;
+        text-transform: uppercase;
+      }
+    }
+    &-title {
+      h4 {
+        line-height: 44px;
+        letter-spacing: -0.4px;
+      }
+    }
+    &-text {
+      p {
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 32px;
+      }
+    }
+    &-link {
+      width: max-content;
+    }
+  }
+}
