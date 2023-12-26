@@ -1,0 +1,14 @@
+@import '../../../../scss/common';
+
+.link {
+  font-family: $font-main;
+  font-size: 16px;
+  font-weight: 500;
+  color: $color-primary;
+  cursor: pointer;
+  padding-bottom: 5px;
+  border-bottom: 1px solid $color-primary;
+  @include sm {
+    font-size: 14px;
+  }
+}

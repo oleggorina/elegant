@@ -1,0 +1,49 @@
+@import '../../../../../scss/common';
+
+.container {
+  @extend %container;
+  .categories {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 300px 300px;
+    grid-template-areas: "living bedroom" "living kitchen";
+    margin-top: 30px;
+    gap: $gap;
+    @include lg {
+      grid-template-columns: 1fr;
+      grid-template-rows: 380px 0.5fr 0.5fr;
+      grid-template-areas: "living" "bedroom" "kitchen";
+    }
+    &__item {
+      display: flex;
+      flex-direction: column;
+      background-color: #F3F5F7;
+      background-size: contain;
+      background-repeat: no-repeat;
+      padding: calc($gap * 2);
+      @include sm {
+        padding: $gap;
+      }
+      &:nth-child(1) {
+        grid-area: living;
+        background-image: url('../../../../../assets/images/home/categories/living.png');
+        background-position: center;
+      }
+      &:nth-child(2) {
+        grid-area: bedroom;
+        background-image: url('../../../../../assets/images/home/categories/bedroom.png');
+        background-position: right;
+        justify-content: end;
+      }
+      &:nth-child(3) {
+        grid-area: kitchen;
+        background-image: url('../../../../../assets/images/home/categories/kitchen.png');
+        background-position: right;
+        justify-content: end;
+      }
+      .link {
+        width: max-content;
+      }
+    }
+  }
+}
