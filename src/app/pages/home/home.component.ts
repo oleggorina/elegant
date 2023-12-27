@@ -1,4 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { FooterComponent } from '../../components/footer/footer.component';
+import { NewsletterComponent } from '../../components/newsletter/newsletter.component';
 import { HomeArrivalsComponent } from './components/home-arrivals/home-arrivals.component';
 import { HomeArticlesComponent } from './components/home-articles/home-articles.component';
 import { HomeBannerComponent } from './components/home-banner/home-banner.component';
@@ -9,7 +11,7 @@ import { HomeValuesComponent } from './components/home-values/home-values.compon
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [HomeHeroComponent, HomeCategoriesComponent, HomeArrivalsComponent, HomeValuesComponent, HomeBannerComponent, HomeArticlesComponent],
+  imports: [HomeHeroComponent, HomeCategoriesComponent, HomeArrivalsComponent, HomeValuesComponent, HomeBannerComponent, HomeArticlesComponent, NewsletterComponent, FooterComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
