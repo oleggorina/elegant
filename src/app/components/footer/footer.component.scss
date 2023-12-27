@@ -1,0 +1,118 @@
+@import '../../../scss/common';
+
+section {
+  position: relative;
+  .container {
+    @extend %container;
+    .footer {
+      padding-top: 80px;
+      padding-bottom: 30px;
+      display: grid;
+      gap: calc($gap * 2);
+      &__header {
+        display: flex;
+        justify-content: space-between;
+        @include md {
+          flex-direction: column;
+          gap: calc($gap * 2);
+        }
+        .logo {
+          display: flex;
+          gap: calc($gap * 1.5);
+          align-items: center;
+          @include md {
+            flex-direction: column;
+            gap: $gap;
+          }
+          &__line {
+            width: 1px;
+            height: 100%;
+            background-color: $color-neutral-04;
+            @include md {
+              width: 24px;
+              height: 1px;
+            }
+          }
+          &__descr {
+            span {
+              color: $color-neutral-03;
+              font-weight: 400;
+              line-height: 22px;
+            }
+          }
+        }
+        .menu {
+          display: flex;
+          gap: calc($gap * 2);
+          @include md {
+            flex-direction: column;
+            gap: $gap;
+            text-align: center;
+          }
+          &__link {
+            a {
+              color: $color-neutral-03;
+            }
+          }
+        }
+      }
+      &__bottom {
+        display: flex;
+        justify-content: space-between;
+        padding-top: $gap;
+        border-top: 0.5px solid $color-neutral-04;
+        @include md {
+          flex-direction: column;
+          text-align: center;
+          gap: $gap;
+        }
+        .copyright {
+          display: flex;
+          gap: $gap;
+          @include md {
+            flex-direction: column;
+            order: 2;
+          }
+          &__text {
+            font-family: $font-header;
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 20px;
+            color: $color-neutral-03;
+            @include md {
+              order: 2;
+            }
+          }
+          &__links {
+            display: flex;
+            gap: $gap;
+            @include md {
+              justify-content: center;
+            }
+            &-link {
+              a {
+                font-family: $font-header;
+                font-size: 12px;
+                font-weight: 600;
+                line-height: 20px;
+                color: $color-neutral-01;
+              }
+            }
+          }
+        }
+        .socials {
+          display: flex;
+          gap: $gap;
+          @include md {
+            justify-content: center;
+            order: 1;
+          }
+        }
+      }
+    }
+  }
+  .wrapper {
+    @extend %wrapper;
+    background-color: $color-neutral-07;
+  }
+}

@@ -76,6 +76,9 @@ strong {
   @include sm {
     font-size: 14px;
   }
+  &.white {
+    color: white;
+  }
 }
 
 a {
