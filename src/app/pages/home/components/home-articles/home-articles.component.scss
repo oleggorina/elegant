@@ -1,0 +1,23 @@
+@import '../../../../../scss/common';
+
+.container {
+  @extend %container;
+  .articles {
+    margin: calc($gap * 4) 0;
+    display: grid;
+    gap: calc($gap * 2);
+    &__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    &__items {
+      display: flex;
+      justify-content: space-between;
+      gap: $gap;
+      @include md {
+        flex-direction: column;
+      }
+    }
+  }
+}
