@@ -47,7 +47,7 @@
       </div>
      </div>
       <div class="menu__bottom-btn">
-        <div class="btn">
+        <div class="btn" (click)="openModal()">
           <app-btn-primary>Sign in</app-btn-primary>
         </div>
       </div>
@@ -80,4 +80,10 @@
     </div>
   </div>
   <div class="wrapper"></div>
+}
+
+@if (modalService.modalState$ | async) {
+  <div class="modal">
+    <app-modal></app-modal>
+  </div>
 }

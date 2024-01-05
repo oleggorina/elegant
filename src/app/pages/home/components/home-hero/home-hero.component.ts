@@ -28,7 +28,6 @@ export class HomeHeroComponent {
     const isLastSlide = this.currentIndex === this.slideUrl.length - 1;
     const newIndex = isLastSlide ? 0 : this.currentIndex + 1;
     this.currentIndex = newIndex;
-    console.log(this.currentIndex)
   }
   
   getCurrentSlideUrl(): string {

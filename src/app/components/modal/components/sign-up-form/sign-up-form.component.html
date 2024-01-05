@@ -1,0 +1,33 @@
+<div class="register">
+  <div class="register__title">
+    <div class="register__title-title">
+      <h4>Sign Up</h4>
+    </div>
+    <div class="register__title-subtitle">
+      <p>Already have an account? <span (click)="changeContent()">Sign in</span></p>
+    </div>
+  </div>
+  <div class="register__form">
+    <form class="form" [formGroup]="signUpForm">
+      <div class="form__input">
+        <input type="text" placeholder="Your name" formControlName="name">
+      </div>
+      <div class="form__input">
+        <input type="text" placeholder="Surname" formControlName="surname">
+      </div>
+      <div class="form__input">
+        <input type="text" placeholder="Email address"  formControlName="email">
+      </div>
+      <div class="form__input">
+        <input type="password" placeholder="Password" formControlName="password">
+      </div>
+      <div class="form__checkbox">
+        <input type="checkbox" formControlName="isChecked">
+        <p>I agree with <span>Privacy Policy</span> and <span>Terms of Use</span></p>
+      </div>
+      <div class="form__btn" (click)="submitForm()">
+        <app-btn-primary>Sign Up</app-btn-primary>
+      </div>
+    </form>
+  </div>
+</div>

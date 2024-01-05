@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "ecommerce-88694"
+  },
+  "targets": {
+    "ecommerce-88694": {
+      "hosting": {
+        "elegant": [
+          "ecommerce-88694"
+        ]
+      }
+    }
+  }
+}

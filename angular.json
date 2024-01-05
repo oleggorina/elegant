@@ -94,6 +94,23 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "version": 2
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "elegant:build:production",
+              "serveTarget": "elegant:serve:production"
+            },
+            "development": {
+              "buildTarget": "elegant:build:development",
+              "serveTarget": "elegant:serve:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }

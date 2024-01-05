@@ -1,0 +1,8 @@
+.home {
+  animation: appearance 0.5s forwards;
+  @keyframes appearance {
+    from {
+      opacity: 0;
+    }
+  }
+}
