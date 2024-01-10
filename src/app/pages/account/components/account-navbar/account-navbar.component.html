@@ -1,0 +1,23 @@
+<div class="navbar">
+  <div class="navbar__user">
+    <div class="navbar__user-image">
+      <img class="main" src="../../../../../assets/images/user/user.svg" alt="User image">
+      <div class="add-image">
+        <img src="../../../../../assets/images/user/addimage.svg" alt="Add image icon">
+      </div>
+    </div>
+    <div class="navbar__user-name"><span>{{name + ' ' + surname}}</span></div>
+    <div class="navbar__user-role"><span>{{role}}</span></div>
+  </div>
+  <div class="navbar__menu">
+    <a routerLink="details" routerLinkActive="active" class="navbar__menu-link">Account</a>
+    <a routerLink="address" routerLinkActive="active" class="navbar__menu-link">Address</a>
+    <a routerLink="orders" routerLinkActive="active" class="navbar__menu-link">Orders</a>
+    <a routerLink="wishlist" routerLinkActive="active" class="navbar__menu-link">Wishlist</a>
+    @if (role === 'admin') {
+      <a routerLink="product" routerLinkActive="active" class="navbar__menu-link">Product</a>
+      <a routerLink="blog" routerLinkActive="active" class="navbar__menu-link">Blog</a>
+    }
+    <a class="navbar__menu-link" (click)="logout()">Log Out</a>
+  </div>
+</div>

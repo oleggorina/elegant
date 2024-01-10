@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { initializeApp } from 'firebase/app';
 import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, User, UserCredential } from 'firebase/auth';
 import { getDoc, getFirestore } from 'firebase/firestore';
-import { BehaviorSubject, catchError, from, map, Observable, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, from, map, Observable, switchMap, throwError } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { UserInterface } from '../interface/interfaces';
 
@@ -14,11 +14,13 @@ import { UserInterface } from '../interface/interfaces';
 export class AuthService {
   currentUserSig = signal<UserInterface | undefined | null>(undefined);
   private userIdSubject: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
+  private userRoleSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
   private firebaseApp = initializeApp(environment.firebaseConfig);
   private auth = getAuth(this.firebaseApp);
   private db = getFirestore(this.firebaseApp);
   private zone = new NgZone({});
   userId$: Observable<string | null> = this.userIdSubject.asObservable();
+  userRole$: Observable<string> = this.userRoleSubject.asObservable();
 
   constructor(private router: Router, private firestore: Firestore) { 
       onAuthStateChanged(this.auth, (user: User | null) => {
@@ -26,6 +28,8 @@ export class AuthService {
           if (user) {
             const userId = user.uid;
             this.userIdSubject.next(userId);
+            this.getUserRole(userId);
+            
           } else {
             this.userIdSubject.next(null);
           }
@@ -41,7 +45,7 @@ export class AuthService {
           name: name,
           surname: surname,
           email: email,
-          role: 'user'
+          role: 'customer'
         })
       }),
       catchError((error) => {
@@ -56,7 +60,7 @@ export class AuthService {
     return from(signInWithEmailAndPassword(this.auth, email, password))
     .pipe(
       map((userCredential) => {
-        const userId = userCredential.user.uid
+        const userId = userCredential.user.uid;
         this.userIdSubject.next(userId);
         this.setToken(userCredential.user.refreshToken);
         return userCredential;
@@ -82,6 +86,17 @@ export class AuthService {
     )
   }
 
+  getUserRole(userId: string): Observable<string> {
+    const userDocRef = doc(this.firestore, 'users', userId);
+    return from(getDoc(userDocRef)).pipe(
+      map((docSnapshot) => {
+        const userRole = (docSnapshot.data() as {role: string}).role;
+        this.userRoleSubject.next(userRole);
+        return userRole
+      })
+    )
+  }
+
   logout() {
     localStorage.removeItem('token');
     this.router.navigateByUrl('home');
@@ -98,5 +113,4 @@ export class AuthService {
   isLoggedIn() {
     return this.getToken() !== null;
   }
-
 }

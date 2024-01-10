@@ -1,13 +1,14 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { UserInterface } from '../../interface/interfaces';
 import { AuthService } from '../../services/auth.service';
+import { AccountNavbarComponent } from './components/account-navbar/account-navbar.component';
 
 @Component({
   selector: 'app-account',
   standalone: true,
-  imports: [],
+  imports: [AccountNavbarComponent, RouterOutlet],
   templateUrl: './account.component.html',
   styleUrl: './account.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -28,7 +29,6 @@ export class AccountComponent implements OnInit, OnDestroy {
       if (this.userId) {
         this.userSubscription = this.authService.getUser(this.userId).subscribe(data => {
           this.user = data;
-          console.log(this.user);
           this.changeDetectorRef.detectChanges();          
         })
       }

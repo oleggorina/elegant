@@ -1,0 +1,16 @@
+@import '../../../scss/common';
+
+.container {
+  @extend %container;
+  .account {
+    margin: 80px 0;
+    &__header {
+      display: flex;
+      justify-content: center;
+    }
+    &__nav {
+      display: flex;
+      gap: 70px;
+    }
+  }
+}

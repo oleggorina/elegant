@@ -1,1 +1,20 @@
-<p (click)="logout()">Logout</p>
+<div class="container">
+  <div class="account">
+    <div class="account__header">
+      <h3>My Account</h3>
+    </div>
+    <div class="account__nav">
+      <div class="account__nav-navbar">
+        @if (user) {
+          <app-account-navbar
+          [name]="user.name"
+          [surname]="user.surname"
+          [role]="user.role"></app-account-navbar>
+        }
+      </div>
+      <div class="account__nav-router">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>
