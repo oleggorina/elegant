@@ -11,9 +11,20 @@
     <form class="form" [formGroup]="signInForm">
       <div class="form__input">
         <input type="text" placeholder="Email" formControlName="email">
+        @if(signInForm.get('email')?.hasError('required') && signInForm.get('email')?.touched) {
+          <app-validation-message>Email is required</app-validation-message>
+        } @if(signInForm.get('email')?.hasError('email')) {
+          <app-validation-message>Incorrect email</app-validation-message>
+        }
       </div>
       <div class="form__input">
         <input type="password" placeholder="Password" formControlName="password">
+        @if(signInForm.get('password')?.hasError('required') && signInForm.get('password')?.touched) {
+          <app-validation-message>Password is required</app-validation-message>
+        }
+        @if(loginErrorMessage) {
+          <app-validation-message>{{loginErrorMessage}}</app-validation-message>
+        }
       </div>
       <div class="form__checkbox">
         <div class="form__checkbox-input">

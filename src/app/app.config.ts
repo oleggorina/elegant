@@ -12,5 +12,6 @@ export const appConfig: ApplicationConfig = {
   importProvidersFrom(
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideFirestore(() => getFirestore()),
-  ), importProvidersFrom(provideFirebaseApp(() => initializeApp({"projectId":"ecommerce-88694","appId":"1:887966100426:web:819a5891c32f95cf747d33","databaseURL":"https://ecommerce-88694-default-rtdb.europe-west1.firebasedatabase.app","storageBucket":"ecommerce-88694.appspot.com","apiKey":"AIzaSyAMQuZuO9-2PJm_CxmDjuPfjzYUU-nZJM0","authDomain":"ecommerce-88694.firebaseapp.com","messagingSenderId":"887966100426"}))), importProvidersFrom(provideAuth(() => getAuth())), importProvidersFrom(provideFirestore(() => getFirestore()))]
+  ), 
+  importProvidersFrom(provideFirebaseApp(() => initializeApp({"projectId":"ecommerce-88694","appId":"1:887966100426:web:819a5891c32f95cf747d33","databaseURL":"https://ecommerce-88694-default-rtdb.europe-west1.firebasedatabase.app","storageBucket":"ecommerce-88694.appspot.com","apiKey":"AIzaSyAMQuZuO9-2PJm_CxmDjuPfjzYUU-nZJM0","authDomain":"ecommerce-88694.firebaseapp.com","messagingSenderId":"887966100426"}))), importProvidersFrom(provideAuth(() => getAuth())), importProvidersFrom(provideFirestore(() => getFirestore()))]
 };

@@ -4,11 +4,12 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { AuthService } from '../../../../services/auth.service';
 import { ModalService } from '../../../../services/modal.service';
 import { BtnPrimaryComponent } from '../../../buttons/btn-primary/btn-primary.component';
+import { ValidationMessageComponent } from '../../../validation-message/validation-message.component';
 
 @Component({
   selector: 'app-sign-up-form',
   standalone: true,
-  imports: [BtnPrimaryComponent, ReactiveFormsModule, HttpClientModule],
+  imports: [BtnPrimaryComponent, ReactiveFormsModule, HttpClientModule, ValidationMessageComponent],
   templateUrl: './sign-up-form.component.html',
   styleUrl: './sign-up-form.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

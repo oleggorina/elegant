@@ -11,15 +11,33 @@
     <form class="form" [formGroup]="signUpForm">
       <div class="form__input">
         <input type="text" placeholder="Your name" formControlName="name">
+        @if(signUpForm.get('name')?.hasError('required') && signUpForm.get('name')?.touched) {
+          <app-validation-message>Name is required</app-validation-message>
+        } @if(signUpForm.get('name')?.hasError('minlength')) {
+          <app-validation-message>Minimum 4 characters</app-validation-message>
+        }
       </div>
       <div class="form__input">
-        <input type="text" placeholder="Surname" formControlName="surname">
+        <input type="text" placeholder="Your surname" formControlName="surname">
+        @if(signUpForm.get('surname')?.hasError('required') && signUpForm.get('surname')?.touched) {
+          <app-validation-message>Surname is required</app-validation-message>
+        } @if(signUpForm.get('surname')?.hasError('minlength')) {
+          <app-validation-message>Minimum 4 characters</app-validation-message>
+        }
       </div>
       <div class="form__input">
         <input type="text" placeholder="Email address"  formControlName="email">
+        @if(signUpForm.get('email')?.hasError('required') && signUpForm.get('email')?.touched) {
+          <app-validation-message>Email is required</app-validation-message>
+        } @if(signUpForm.get('email')?.hasError('email')) {
+          <app-validation-message>Incorrect email</app-validation-message>
+        }
       </div>
       <div class="form__input">
         <input type="password" placeholder="Password" formControlName="password">
+        @if(signUpForm.get('password')?.hasError('required') && signUpForm.get('password')?.touched) {
+          <app-validation-message>Surname is required</app-validation-message>
+        }
       </div>
       <div class="form__checkbox">
         <input type="checkbox" formControlName="isChecked">

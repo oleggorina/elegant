@@ -28,8 +28,9 @@
   &__form {
     .form {
       display: grid;
-      gap: calc($gap / 2);
+      gap: calc($gap * 1.5);
       &__input {
+        position: relative;
         input {
           padding-bottom: 16px;
           outline: none;
@@ -51,6 +52,7 @@
           font-weight: 400;
           span {
             color: $color-neutral-07;
+            cursor: pointer;
           }
         }
       }
