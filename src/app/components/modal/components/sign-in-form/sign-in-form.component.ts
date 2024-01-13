@@ -1,3 +1,4 @@
+import { AsyncPipe } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -10,7 +11,7 @@ import { ValidationMessageComponent } from '../../../validation-message/validati
 @Component({
   selector: 'app-sign-in-form',
   standalone: true,
-  imports: [BtnPrimaryComponent, ReactiveFormsModule, HttpClientModule, ValidationMessageComponent],
+  imports: [AsyncPipe, BtnPrimaryComponent, ReactiveFormsModule, HttpClientModule, ValidationMessageComponent],
   templateUrl: './sign-in-form.component.html',
   styleUrl: './sign-in-form.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -43,6 +44,7 @@ export class SignInFormComponent {
         error: (e) => {
           console.log('Subscription error:', e);
           this.loginErrorMessage = e;
+          this.changeDetectionRef.detectChanges();
         },
         complete: () => console.info('complete')
         })

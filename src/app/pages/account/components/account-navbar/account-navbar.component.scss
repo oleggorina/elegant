@@ -7,6 +7,10 @@
   display: flex;
   flex-direction: column;
   gap: calc($gap * 2);
+  @include sm {
+    width: 100%;
+    padding: $gap;
+  }
   &__user {
     display: flex;
     flex-direction: column;
@@ -56,5 +60,10 @@
         font-weight: 600;
       }
     }
+  }
+  &__select {
+    display: flex;
+    justify-content: center;
+    width: 100%;
   }
 }

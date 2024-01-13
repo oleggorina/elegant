@@ -29,6 +29,9 @@ h2 {
 
 h3 {
   font-size: 54px;
+  @include sm {
+    font-size: 40px;
+  }
 }
 
 h4 {
@@ -112,6 +115,25 @@ input {
     font-weight: 400;
     line-height: 26px;
   }
+}
+
+label {
+  font-family: $font-main;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 12px;
+  text-transform: uppercase;
+  color: $color-neutral-04;
+}
+
+select {
+  font-family: $font-main;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 8px 8px;
+  width: 100%;
+  border-radius: 8px;
+  border: 2px solid $color-neutral-04;
 }
 
 .badge {

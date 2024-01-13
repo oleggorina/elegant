@@ -1,1 +1,52 @@
-<p>account-details works!</p>
+<div class="details">
+  <form class="details__form" [formGroup]="detailsForm">
+    <div class="details__form-title">
+      <span>Account Details</span>
+    </div>
+    <div class="details__form-input">
+      <label for="name">First name *</label>
+      <input id="name" type="text" placeholder="First name" formControlName="name">
+      @if(detailsForm.get('name')?.hasError('required') && detailsForm.get('name')?.touched) {
+        <app-validation-message>Name is required</app-validation-message>
+      } @if(detailsForm.get('name')?.hasError('minlength')) {
+        <app-validation-message>Minimum 4 characters</app-validation-message>
+      }
+    </div>
+    <div class="details__form-input">
+      <label for="surname">Last name *</label>
+      <input id="surname" type="text" placeholder="Last name" formControlName="surname">
+      @if(detailsForm.get('surname')?.hasError('required') && detailsForm.get('surname')?.touched) {
+        <app-validation-message>Surname is required</app-validation-message>
+      } @if(detailsForm.get('surname')?.hasError('minlength')) {
+        <app-validation-message>Minimum 4 characters</app-validation-message>
+      }
+    </div>
+    <div class="details__form-input">
+      <label for="email">Email *</label>
+      <input id="email" type="text" placeholder="Email" formControlName="email">
+      @if(detailsForm.get('email')?.hasError('required') && detailsForm.get('email')?.touched) {
+        <app-validation-message>Email is required</app-validation-message>
+      } @if(detailsForm.get('email')?.hasError('email')) {
+        <app-validation-message>Invalid email</app-validation-message>
+      }
+    </div>
+    <div class="details__form-title">
+      <span>Password</span>
+    </div>
+    <div class="details__form-input">
+      <label for="oldPassword">Old password</label>
+      <input id="oldPassword" type="password" placeholder="Old password" formControlName="oldPassword">
+    </div>
+    <div class="details__form-input">
+      <label for="newPassword">New password</label>
+      <input id="newPassword" type="password" placeholder="New password" formControlName="newPassword">
+    </div>
+    <div class="details__form-input">
+      <label for="rptPassword">Repeat password</label>
+      <input id="rptPassword" type="password" placeholder="Repeat password" formControlName="rptPassword">
+    </div>
+    <div class="details__form-btn" (click)="submitForm()">
+      <app-btn-primary>Save changes</app-btn-primary>
+    </div>
+  </form>
+</div>

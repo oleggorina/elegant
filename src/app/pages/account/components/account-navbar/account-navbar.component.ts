@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { ChangeDetectionStrategy, Component, HostListener, inject, Input } from '@angular/core';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../../../services/auth.service';
 
 @Component({
@@ -15,8 +15,22 @@ export class AccountNavbarComponent {
   @Input() surname: string = '';
   @Input() role: string = '';
   private authService = inject(AuthService);
+  private router = inject(Router)
 
-  logout() {
+  onMenuChange(event: Event): void {
+    const selectedValue = (event.target as HTMLSelectElement).value;
+    this.router.navigateByUrl(`/account/${selectedValue}`);
+    if (selectedValue === 'logout') {
+      this.logout();
+    }
+  }
+
+  @HostListener('window:resize', ['event'])
+  onResize() {
+    return window.innerWidth;
+  }
+
+  logout(): void {
     this.authService.logout();
   }
 }

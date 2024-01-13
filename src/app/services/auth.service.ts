@@ -28,8 +28,8 @@ export class AuthService {
           if (user) {
             const userId = user.uid;
             this.userIdSubject.next(userId);
-            this.getUserRole(userId);
-            
+            this.setUserRole(userId);
+            console.log(this.userRole$);
           } else {
             this.userIdSubject.next(null);
           }
@@ -86,15 +86,12 @@ export class AuthService {
     )
   }
 
-  getUserRole(userId: string): Observable<string> {
+  setUserRole(userId: string): void {
     const userDocRef = doc(this.firestore, 'users', userId);
-    return from(getDoc(userDocRef)).pipe(
-      map((docSnapshot) => {
-        const userRole = (docSnapshot.data() as {role: string}).role;
-        this.userRoleSubject.next(userRole);
-        return userRole
-      })
-    )
+    getDoc(userDocRef).then((docSnapshot) => {
+      const userRole = (docSnapshot.data() as {role: string}).role;
+      this.userRoleSubject.next(userRole)
+    })
   }
 
   logout() {
