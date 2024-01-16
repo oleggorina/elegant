@@ -1,6 +1,9 @@
-import { ChangeDetectionStrategy, Component, HostListener, inject, Input } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { UserInterface } from '../../../../interface/interfaces';
 import { AuthService } from '../../../../services/auth.service';
+import { UserService } from '../../../../services/user.service';
 
 @Component({
   selector: 'app-account-navbar',
@@ -10,12 +13,32 @@ import { AuthService } from '../../../../services/auth.service';
   styleUrl: './account-navbar.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AccountNavbarComponent {
-  @Input() name: string = '';
-  @Input() surname: string = '';
-  @Input() role: string = '';
+export class AccountNavbarComponent implements OnInit, OnDestroy {
   private authService = inject(AuthService);
+  private userService = inject(UserService);
   private router = inject(Router)
+  private changeDetectorRef = inject(ChangeDetectorRef);
+
+  user!: UserInterface;
+  userSubscription!: Subscription;
+  userId!: string | null;
+  userIdSubscription!: Subscription;
+
+  ngOnInit(): void {
+    this.userIdSubscription = this.authService.userId$.subscribe(id => {
+      this.userId = id;
+      if (this.userId) {
+        this.userSubscription = this.userService.getUser(this.userId).subscribe(user => {
+          this.user = user;
+          this.changeDetectorRef.detectChanges();
+        })
+      }
+    })
+  }
+
+  ngOnDestroy(): void {
+    
+  }
 
   onMenuChange(event: Event): void {
     const selectedValue = (event.target as HTMLSelectElement).value;

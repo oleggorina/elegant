@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { UserInterface } from '../../interface/interfaces';
 import { AuthService } from '../../services/auth.service';
+import { UserService } from '../../services/user.service';
 import { AccountNavbarComponent } from './components/account-navbar/account-navbar.component';
 
 @Component({
@@ -15,8 +16,7 @@ import { AccountNavbarComponent } from './components/account-navbar/account-navb
 })
 export class AccountComponent implements OnInit, OnDestroy {
   private authService = inject(AuthService);
-  private router = inject(Router);
-  private activatedRoute = inject(ActivatedRoute);
+  private userService = inject(UserService);
   private changeDetectorRef = inject(ChangeDetectorRef);
   userId!: string | null;
   userIdSubscription!: Subscription;
@@ -27,9 +27,9 @@ export class AccountComponent implements OnInit, OnDestroy {
     this.userIdSubscription = this.authService.userId$.subscribe(id => {
       this.userId = id;
       if (this.userId) {
-        this.userSubscription = this.authService.getUser(this.userId).subscribe(data => {
+        this.userSubscription = this.userService.getUser(this.userId).subscribe(data => {
           this.user = data;
-          this.changeDetectorRef.detectChanges();          
+          this.changeDetectorRef.detectChanges();   
         })
       }
     });

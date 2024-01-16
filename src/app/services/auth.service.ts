@@ -1,5 +1,5 @@
 import { Injectable, NgZone, signal } from '@angular/core';
-import { setDoc, doc, Firestore, collection, collectionData } from '@angular/fire/firestore';
+import { setDoc, doc, Firestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { initializeApp } from 'firebase/app';
 import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, User, UserCredential } from 'firebase/auth';
@@ -29,7 +29,6 @@ export class AuthService {
             const userId = user.uid;
             this.userIdSubject.next(userId);
             this.setUserRole(userId);
-            console.log(this.userRole$);
           } else {
             this.userIdSubject.next(null);
           }
@@ -41,11 +40,20 @@ export class AuthService {
     return from(createUserWithEmailAndPassword(this.auth, email, password))
     .pipe(
       map((userCredential) => {
-        setDoc(doc(this.db, 'users', `${userCredential.user.uid}`), {
+        setDoc(doc(this.db, 'users', userCredential.user.uid), {
+          id: userCredential.user.uid,
           name: name,
           surname: surname,
           email: email,
-          role: 'customer'
+          role: 'customer',
+          billing : {
+            card: null,
+            expDate: null
+          },
+          shipping: {
+            telephone: null,
+            address: null
+          }
         })
       }),
       catchError((error) => {
@@ -77,16 +85,7 @@ export class AuthService {
     )
   }
 
-  getUser(userId: string): Observable<UserInterface> {
-    const userDocRef = doc(this.firestore, 'users', userId);
-    return from(getDoc(userDocRef)).pipe(
-      map((docSnapshot) => {
-        return docSnapshot.data() as UserInterface;
-      })
-    )
-  }
-
-  setUserRole(userId: string): void {
+  private setUserRole(userId: string): void {
     const userDocRef = doc(this.firestore, 'users', userId);
     getDoc(userDocRef).then((docSnapshot) => {
       const userRole = (docSnapshot.data() as {role: string}).role;

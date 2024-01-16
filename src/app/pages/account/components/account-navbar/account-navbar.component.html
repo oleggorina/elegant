@@ -1,40 +1,42 @@
-<div class="navbar">
-  <div class="navbar__user">
-    <div class="navbar__user-image">
-      <img class="main" src="../../../../../assets/images/user/user.svg" alt="User image">
-      <div class="add-image">
-        <img src="../../../../../assets/images/user/addimage.svg" alt="Add image icon">
+@if (user) {
+  <div class="navbar">
+    <div class="navbar__user">
+      <div class="navbar__user-image">
+        <img class="main" src="../../../../../assets/images/user/user.svg" alt="User image">
+        <div class="add-image">
+          <img src="../../../../../assets/images/user/addimage.svg" alt="Add image icon">
+        </div>
       </div>
+      <div class="navbar__user-name"><span>{{user.name + ' ' + user.surname}}</span></div>
+      <div class="navbar__user-role"><span>{{user.role}}</span></div>
     </div>
-    <div class="navbar__user-name"><span>{{name + ' ' + surname}}</span></div>
-    <div class="navbar__user-role"><span>{{role}}</span></div>
-  </div>
-  @if (onResize() > 576) {
-    <div class="navbar__menu">
-      <a routerLink="details" routerLinkActive="active" class="navbar__menu-link">Account</a>
-      <a routerLink="address" routerLinkActive="active" class="navbar__menu-link">Address</a>
-      <a routerLink="orders" routerLinkActive="active" class="navbar__menu-link">Orders</a>
-      <a routerLink="wishlist" routerLinkActive="active" class="navbar__menu-link">Wishlist</a>
-      @if (role === 'admin') {
-        <a routerLink="product" routerLinkActive="active" class="navbar__menu-link">Product</a>
-        <a routerLink="blog" routerLinkActive="active" class="navbar__menu-link">Blog</a>
-      }
-      <a class="navbar__menu-link" (click)="logout()">Log Out</a>
-    </div>
-  }
-  @if (onResize() < 576) {
-    <div class="navbar__select">
-      <select name="menu" id="menu" (change)="onMenuChange($event)">
-        <option value="details">Account</option>
-        <option value="address">Address</option>
-        <option value="orders">Orders</option>
-        <option value="wishlist">Wishlist</option>
-        @if (role === 'admin') {
-          <option value="product">Product</option>
-          <option value="blog">Blog</option>
+    @if (onResize() > 576) {
+      <div class="navbar__menu">
+        <a routerLink="details" routerLinkActive="active" class="navbar__menu-link">Account</a>
+        <a routerLink="address" routerLinkActive="active" class="navbar__menu-link">Address</a>
+        <a routerLink="orders" routerLinkActive="active" class="navbar__menu-link">Orders</a>
+        <a routerLink="wishlist" routerLinkActive="active" class="navbar__menu-link">Wishlist</a>
+        @if (user.role === 'admin') {
+          <a routerLink="product" routerLinkActive="active" class="navbar__menu-link">Product</a>
+          <a routerLink="blog" routerLinkActive="active" class="navbar__menu-link">Blog</a>
         }
-        <option value="logout">Logout</option>
-      </select>
-    </div>
-  }
-</div>
+        <a class="navbar__menu-link" (click)="logout()">Log Out</a>
+      </div>
+    }
+    @if (onResize() < 576) {
+      <div class="navbar__select">
+        <select name="menu" id="menu" (change)="onMenuChange($event)">
+          <option value="details">Account</option>
+          <option value="address">Address</option>
+          <option value="orders">Orders</option>
+          <option value="wishlist">Wishlist</option>
+          @if (user.role === 'admin') {
+            <option value="product">Product</option>
+            <option value="blog">Blog</option>
+          }
+          <option value="logout">Logout</option>
+        </select>
+      </div>
+    }
+  </div>
+}

@@ -6,10 +6,7 @@
     <div class="account__nav">
       <div class="account__nav-navbar">
         @if (user) {
-          <app-account-navbar
-          [name]="user.name"
-          [surname]="user.surname"
-          [role]="user.role"></app-account-navbar>
+          <app-account-navbar></app-account-navbar>
         }
       </div>
       <div class="account__nav-router">

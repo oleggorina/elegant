@@ -1,0 +1,45 @@
+@import '../../../../../scss/common';
+
+.address {
+  display: grid;
+  gap: $gap;
+  &__title {
+    span {
+      font-size: 20px;
+    }
+  }
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $gap;
+    .item {
+      padding: 16px;
+      border: 1px solid $color-neutral-04;
+      border-radius: 8px;
+      &__title {
+        display: flex;
+        justify-content: space-between;
+        &-btn {
+          .btn {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            span {
+              color: $color-neutral-04;
+            }
+          }
+        }
+      }
+      &__content {
+        span {
+          font-size: 14px;
+          font-weight: 400;
+        }
+      }
+    }
+  }
+  &__form {
+
+  }
+}
