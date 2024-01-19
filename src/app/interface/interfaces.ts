@@ -10,6 +10,7 @@ export interface UserInterface {
   }
   billing: {
     card: number,
-    expDate: number
+    month: number,
+    year: number
   }
 }

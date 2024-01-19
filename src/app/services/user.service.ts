@@ -25,12 +25,13 @@ export class UserService {
     )
   }
 
-  async addBillingAddress(userId: string, card: number, expDate: number) {
+  async addBillingAddress(userId: string, card: number, month: number, year: number) {
     const userDocRef = doc(this.db, 'users', userId);
     await updateDoc(userDocRef, {
       billing : {
         card: card,
-        expDate : expDate
+        month : month,
+        year: year
       }
     })
   }

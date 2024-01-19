@@ -12,6 +12,9 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: $gap;
+    @include lg {
+      grid-template-columns: 1fr;
+    }
     .item {
       padding: 16px;
       border: 1px solid $color-neutral-04;
@@ -32,6 +35,9 @@
         }
       }
       &__content {
+        &-text {
+          display: flex;
+        }
         span {
           font-size: 14px;
           font-weight: 400;
@@ -40,6 +46,34 @@
     }
   }
   &__form {
-
+    .billing,
+    .shipping {
+      display: grid;
+      gap: $gap;
+      max-width: max-content;
+      &__row {
+        display: flex;
+        gap: $gap;
+        justify-content: space-between;
+        &-input {
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+          input {
+            padding: 5px 16px;
+            border-radius: 5px;
+            border: 1px solid #CBCBCB;
+            width: 100%;
+            position: relative;
+          }
+          select {
+            border: 1px solid #CBCBCB;
+          }
+        }
+      }
+      &__btn {
+        display: flex;
+      }
+    }
   }
 }
