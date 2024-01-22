@@ -20,7 +20,7 @@ export class AccountComponent implements OnInit, OnDestroy {
   private changeDetectorRef = inject(ChangeDetectorRef);
   userId!: string | null;
   userIdSubscription!: Subscription;
-  user!: UserInterface;
+  user!: UserInterface | null;
   userSubscription!: Subscription;
 
   ngOnInit(): void {

@@ -1,4 +1,4 @@
-@if (user) {
+@if (user$ | async; as user) {
   <div class="navbar">
     <div class="navbar__user">
       <div class="navbar__user-image">

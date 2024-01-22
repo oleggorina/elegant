@@ -14,7 +14,7 @@ export class CardNumberDirective {
     let inputValue = inputElement.value.replace(/\D/g, '');
     inputValue = inputValue.slice(0, 16);
     inputValue = inputValue.replace(/(\d{4})(?=\d)/g, '$1 ');
-    inputElement.value = inputValue.trim();
+    inputElement.value = inputValue;
   }
 
 }

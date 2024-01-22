@@ -1,6 +1,7 @@
+import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Observable, of, Subscription } from 'rxjs';
 import { UserInterface } from '../../../../interface/interfaces';
 import { AuthService } from '../../../../services/auth.service';
 import { UserService } from '../../../../services/user.service';
@@ -8,7 +9,7 @@ import { UserService } from '../../../../services/user.service';
 @Component({
   selector: 'app-account-navbar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, AsyncPipe],
   templateUrl: './account-navbar.component.html',
   styleUrl: './account-navbar.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -19,17 +20,14 @@ export class AccountNavbarComponent implements OnInit, OnDestroy {
   private router = inject(Router)
   private changeDetectorRef = inject(ChangeDetectorRef);
 
-  user!: UserInterface;
-  userSubscription!: Subscription;
-  userId!: string | null;
+  user$!: Observable<UserInterface | null>;
   userIdSubscription!: Subscription;
 
   ngOnInit(): void {
     this.userIdSubscription = this.authService.userId$.subscribe(id => {
-      this.userId = id;
-      if (this.userId) {
-        this.userSubscription = this.userService.getUser(this.userId).subscribe(user => {
-          this.user = user;
+      if (id) {
+        this.userService.getUserState().subscribe(user => {
+          this.user$ = of(user);
           this.changeDetectorRef.detectChanges();
         })
       }
@@ -37,7 +35,7 @@ export class AccountNavbarComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    
+    if (this.userIdSubscription) this.userIdSubscription.unsubscribe();
   }
 
   onMenuChange(event: Event): void {

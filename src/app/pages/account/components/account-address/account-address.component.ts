@@ -1,12 +1,10 @@
 import { AsyncPipe } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, inject, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { from, Observable, Subscription, switchMap, mergeMap, of } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { BtnPrimaryComponent } from '../../../../components/buttons/btn-primary/btn-primary.component';
 import { CardNumberDirective } from '../../../../directives/card-number.directive';
 import { UserInterface } from '../../../../interface/interfaces';
-import { cardValidator } from '../../../../interface/validators';
 import { AuthService } from '../../../../services/auth.service';
 import { UserService } from '../../../../services/user.service';
 

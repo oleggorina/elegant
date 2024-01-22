@@ -1,10 +1,11 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable, NgZone, signal } from '@angular/core';
-import { setDoc, doc, Firestore } from '@angular/fire/firestore';
+import { Firestore } from '@angular/fire/firestore';
+import { getDatabase, ref, set } from '@angular/fire/database';
 import { Router } from '@angular/router';
 import { initializeApp } from 'firebase/app';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, User, UserCredential } from 'firebase/auth';
-import { getDoc, getFirestore } from 'firebase/firestore';
-import { BehaviorSubject, catchError, from, map, Observable, switchMap, throwError } from 'rxjs';
+import { getAuth, onAuthStateChanged, User } from 'firebase/auth';
+import { BehaviorSubject, catchError, from, map, Observable, throwError } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { UserInterface } from '../interface/interfaces';
 
@@ -17,68 +18,77 @@ export class AuthService {
   private userRoleSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
   private firebaseApp = initializeApp(environment.firebaseConfig);
   private auth = getAuth(this.firebaseApp);
-  private db = getFirestore(this.firebaseApp);
+  private db = getDatabase();
   private zone = new NgZone({});
   userId$: Observable<string | null> = this.userIdSubject.asObservable();
   userRole$: Observable<string> = this.userRoleSubject.asObservable();
 
-  constructor(private router: Router, private firestore: Firestore) { 
-      onAuthStateChanged(this.auth, (user: User | null) => {
-        this.zone.run(() => {
-          if (user) {
-            const userId = user.uid;
-            this.userIdSubject.next(userId);
-            this.setUserRole(userId);
-          } else {
-            this.userIdSubject.next(null);
-          }
-        })
+  private url: string = 'https://ecommerce-88694-default-rtdb.europe-west1.firebasedatabase.app/';
+
+  constructor(private router: Router, private firestore: Firestore, private http: HttpClient) {
+    onAuthStateChanged(this.auth, (user: User | null) => {
+      this.zone.run(() => {
+        if (user) {
+          const userId = user.uid;
+          this.userIdSubject.next(userId);
+          this.setUserRole(userId);
+        } else {
+          this.userIdSubject.next(null);
+        }
       })
-    }
+    })
+  }
 
   addUser(email: string, password: string, name: string, surname: string) {
-    return from(createUserWithEmailAndPassword(this.auth, email, password))
-    .pipe(
-      map((userCredential) => {
-        setDoc(doc(this.db, 'users', userCredential.user.uid), {
-          id: userCredential.user.uid,
+    const createUserUrl = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAMQuZuO9-2PJm_CxmDjuPfjzYUU-nZJM0'
+    return this.http.post(createUserUrl, {
+      email: email,
+      password: password,
+      returnSecureToken: true
+    }).pipe(
+      map((authResponse: any) => {
+        console.log('authResponse: ', authResponse);
+        const userData = {
           name: name,
           surname: surname,
           email: email,
           role: 'customer',
-          billing : {
-            card: null,
-            expDate: null
+          billing: {
+            card: '',
+            month: '',
+            year: ''
           },
           shipping: {
-            telephone: null,
-            address: null
+            telephone: '',
+            address: ''
           }
-        })
-      }),
-      catchError((error) => {
-        const errorMessage = error.message;
-        console.log(errorMessage)
-        return errorMessage;
+        };
+        from(set(ref(this.db, `users/${authResponse.localId}`), userData))
+        .subscribe()
       })
     )
   }
 
-  login(email: string, password: string): Observable<UserCredential> {
-    return from(signInWithEmailAndPassword(this.auth, email, password))
-    .pipe(
-      map((userCredential) => {
-        const userId = userCredential.user.uid;
+  login(email: string, password: string) {
+    const loginUserUrl = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAMQuZuO9-2PJm_CxmDjuPfjzYUU-nZJM0';
+    return from(this.http.post(loginUserUrl, {
+      email: email,
+      password: password,
+      returnSecureToken: true
+    })).pipe(
+      map((userCredential: any) => {
+        const userId = userCredential.localId;
         this.userIdSubject.next(userId);
-        this.setToken(userCredential.user.refreshToken);
-        return userCredential;
+        this.setToken(userCredential.refreshToken);
+        this.setUserRole(userId);
+        return userCredential
       }),
       catchError((error) => {
         let errorMessage = 'An error occurred during login';
         if (error.code === 'auth/invalid-credential') {
           errorMessage = 'Invalid email or password';
         } else {
-          errorMessage = error.message
+          errorMessage = error.message;
         }
         return throwError(() => errorMessage);
       })
@@ -86,10 +96,10 @@ export class AuthService {
   }
 
   private setUserRole(userId: string): void {
-    const userDocRef = doc(this.firestore, 'users', userId);
-    getDoc(userDocRef).then((docSnapshot) => {
-      const userRole = (docSnapshot.data() as {role: string}).role;
-      this.userRoleSubject.next(userRole)
+    this.http.get<{role: string}>(`${this.url}/users/${userId}.json`)
+    .subscribe((user) => {
+      const userRole = user.role;
+      this.userRoleSubject.next(userRole);
     })
   }
 

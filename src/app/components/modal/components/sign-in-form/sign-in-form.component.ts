@@ -37,12 +37,10 @@ export class SignInFormComponent {
       const {email, password} = this.signInForm.value;
       this.authService.login(email, password).subscribe({
         next: (user) => {
-          console.log(user);
           this.modalService.modalIsOpen.next(false);
           this.router.navigateByUrl('account');
         },
         error: (e) => {
-          console.log('Subscription error:', e);
           this.loginErrorMessage = e;
           this.changeDetectionRef.detectChanges();
         },

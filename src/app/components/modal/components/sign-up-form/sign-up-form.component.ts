@@ -34,9 +34,23 @@ export class SignUpFormComponent implements OnInit {
     if (this.signUpForm.valid) {
       const {name, surname, email, password} = this.signUpForm.value;
       this.authService.addUser(email, password, name, surname)
-      .subscribe(() => {
-        this.modalService.modalContent.next(false);
+      .subscribe({
+        next: (res) => {
+          this.modalService.modalContent.next(false);
+        },
+        error: (error) => console.log('error: ', error),
+        complete: () => console.log('Complete')
       })
+      // .subscribe({
+      //   next: (user) => {
+      //   console.log(user);
+      //   this.modalService.modalIsOpen.next(false);
+      // },
+      // error: (e) => {
+      //   console.log('Subscription error:', e);
+      // },
+      // complete: () => console.info('User registered')
+      // })
     }
   }
 
