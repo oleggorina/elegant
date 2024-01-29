@@ -15,16 +15,17 @@ export const loginGuard: CanActivateFn = (route, state) => {
 };
 
 export const adminGuard: CanActivateFn = (route, state) => {
-  const authService = inject(AuthService);
-  const router = inject(Router);
-  return authService.userRole$.pipe(
-    map((userRole) => {
-      if (userRole === 'admin') {
-        return true;
-      } else {
-        router.navigateByUrl('account/details');
-        return false;
-      }
-    })
-  )
+  // const authService = inject(AuthService);
+  // const router = inject(Router);
+  // return authService.userRole$.pipe(
+  //   map((userRole) => {
+  //     if (userRole === 'admin') {
+  //       return true;
+  //     } else {
+  //       router.navigateByUrl('account/details');
+  //       return false;
+  //     }
+  //   })
+  // )
+  return true
 };

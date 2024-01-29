@@ -1,5 +1,6 @@
+import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { UserInterface } from '../../interface/interfaces';
 import { AuthService } from '../../services/auth.service';
@@ -9,38 +10,34 @@ import { AccountNavbarComponent } from './components/account-navbar/account-navb
 @Component({
   selector: 'app-account',
   standalone: true,
-  imports: [AccountNavbarComponent, RouterOutlet],
+  imports: [AccountNavbarComponent, RouterOutlet, AsyncPipe],
   templateUrl: './account.component.html',
   styleUrl: './account.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AccountComponent implements OnInit, OnDestroy {
-  private authService = inject(AuthService);
-  private userService = inject(UserService);
+  private activatedRoute = inject(ActivatedRoute)
   private changeDetectorRef = inject(ChangeDetectorRef);
-  userId!: string | null;
-  userIdSubscription!: Subscription;
-  user!: UserInterface | null;
-  userSubscription!: Subscription;
+  private userService = inject(UserService);
+  userData!: UserInterface;
+  userDataSubscription!: Subscription;
 
   ngOnInit(): void {
-    this.userIdSubscription = this.authService.userId$.subscribe(id => {
-      this.userId = id;
-      if (this.userId) {
-        this.userSubscription = this.userService.getUser(this.userId).subscribe(data => {
-          this.user = data;
-          this.changeDetectorRef.detectChanges();   
+    this.activatedRoute.params.subscribe((params) => {
+      const userId = params['id'];
+      if (userId) {
+        this.userDataSubscription = this.userService.getUser(userId).subscribe((data) => {
+          this.userData = data;
+          this.userService.userIdSubject.next(userId);
+          this.changeDetectorRef.detectChanges();
         })
       }
-    });
+    })
   }
 
   ngOnDestroy(): void {
-    if (this.userIdSubscription) this.userIdSubscription.unsubscribe();
-    if (this.userSubscription) this.userSubscription.unsubscribe();
+    if (this.userDataSubscription) this.userDataSubscription.unsubscribe();
   }
+
   
-  logout() {
-    this.authService.logout();
-  }
 }

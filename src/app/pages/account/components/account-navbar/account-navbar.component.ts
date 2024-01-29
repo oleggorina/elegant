@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, inject, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, inject, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { Observable, of, Subscription } from 'rxjs';
 import { UserInterface } from '../../../../interface/interfaces';
@@ -14,28 +14,18 @@ import { UserService } from '../../../../services/user.service';
   styleUrl: './account-navbar.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AccountNavbarComponent implements OnInit, OnDestroy {
+export class AccountNavbarComponent implements OnInit {
+  private router = inject(Router)
   private authService = inject(AuthService);
   private userService = inject(UserService);
-  private router = inject(Router)
-  private changeDetectorRef = inject(ChangeDetectorRef);
-
+  private changeDetectorRef = inject(ChangeDetectorRef)
   user$!: Observable<UserInterface | null>;
-  userIdSubscription!: Subscription;
 
   ngOnInit(): void {
-    this.userIdSubscription = this.authService.userId$.subscribe(id => {
-      if (id) {
-        this.userService.getUserState().subscribe(user => {
-          this.user$ = of(user);
-          this.changeDetectorRef.detectChanges();
-        })
-      }
+    this.user$ = this.userService.user$;
+    this.user$.subscribe(() => {
+      this.changeDetectorRef.detectChanges();
     })
-  }
-
-  ngOnDestroy(): void {
-    if (this.userIdSubscription) this.userIdSubscription.unsubscribe();
   }
 
   onMenuChange(event: Event): void {

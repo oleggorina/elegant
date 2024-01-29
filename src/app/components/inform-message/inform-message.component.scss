@@ -1,4 +1,13 @@
+@import '../../../scss/common';
+
 .message {
-  padding: 5px;
-  background-color: greenyellow;
+  background-color: #ffdb9b;
+  padding: 20px 40px;
+  border-radius: 6px;
+  border-left: 8px solid #ffa502;
+  transition: 0.3s ease-in;
+  @include sm {
+    padding: 10px 20px;
+    border-left: 4px solid #ffa502;
+  }
 }

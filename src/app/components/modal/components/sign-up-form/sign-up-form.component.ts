@@ -15,9 +15,9 @@ import { ValidationMessageComponent } from '../../../validation-message/validati
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SignUpFormComponent implements OnInit {
-  modalService = inject(ModalService);
-  fb = inject(FormBuilder);
-  authService = inject(AuthService);
+  private modalService = inject(ModalService);
+  private authService = inject(AuthService);
+  private fb = inject(FormBuilder);
   signUpForm!: FormGroup;
 
   ngOnInit(): void {
@@ -33,24 +33,12 @@ export class SignUpFormComponent implements OnInit {
   submitForm(): void {
     if (this.signUpForm.valid) {
       const {name, surname, email, password} = this.signUpForm.value;
-      this.authService.addUser(email, password, name, surname)
-      .subscribe({
-        next: (res) => {
+      this.authService.register(email, password, name, surname).subscribe({
+        next: () => {
           this.modalService.modalContent.next(false);
         },
-        error: (error) => console.log('error: ', error),
-        complete: () => console.log('Complete')
+        error: (err) => console.log(err)
       })
-      // .subscribe({
-      //   next: (user) => {
-      //   console.log(user);
-      //   this.modalService.modalIsOpen.next(false);
-      // },
-      // error: (e) => {
-      //   console.log('Subscription error:', e);
-      // },
-      // complete: () => console.info('User registered')
-      // })
     }
   }
 

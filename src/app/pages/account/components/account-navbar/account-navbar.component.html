@@ -11,32 +11,31 @@
       <div class="navbar__user-role"><span>{{user.role}}</span></div>
     </div>
     @if (onResize() > 576) {
-      <div class="navbar__menu">
-        <a routerLink="details" routerLinkActive="active" class="navbar__menu-link">Account</a>
-        <a routerLink="address" routerLinkActive="active" class="navbar__menu-link">Address</a>
-        <a routerLink="orders" routerLinkActive="active" class="navbar__menu-link">Orders</a>
-        <a routerLink="wishlist" routerLinkActive="active" class="navbar__menu-link">Wishlist</a>
+    <div class="navbar__menu">
+      <a routerLink="details" routerLinkActive="active" class="navbar__menu-link">Account</a>
+      <a routerLink="address" routerLinkActive="active" class="navbar__menu-link">Address</a>
+      <a routerLink="orders" routerLinkActive="active" class="navbar__menu-link">Orders</a>
+      <a routerLink="wishlist" routerLinkActive="active" class="navbar__menu-link">Wishlist</a>
+      @if (user.role === 'admin') {
+      <a routerLink="product" routerLinkActive="active" class="navbar__menu-link">Product</a>
+      <a routerLink="blog" routerLinkActive="active" class="navbar__menu-link">Blog</a>
+      }
+      <a class="navbar__menu-link" (click)="logout()">Log Out</a>
+    </div>
+    }
+    @if (onResize() < 576) { <div class="navbar__select">
+      <select name="menu" id="menu" (change)="onMenuChange($event)">
+        <option value="details">Account</option>
+        <option value="address">Address</option>
+        <option value="orders">Orders</option>
+        <option value="wishlist">Wishlist</option>
         @if (user.role === 'admin') {
-          <a routerLink="product" routerLinkActive="active" class="navbar__menu-link">Product</a>
-          <a routerLink="blog" routerLinkActive="active" class="navbar__menu-link">Blog</a>
+        <option value="product">Product</option>
+        <option value="blog">Blog</option>
         }
-        <a class="navbar__menu-link" (click)="logout()">Log Out</a>
-      </div>
-    }
-    @if (onResize() < 576) {
-      <div class="navbar__select">
-        <select name="menu" id="menu" (change)="onMenuChange($event)">
-          <option value="details">Account</option>
-          <option value="address">Address</option>
-          <option value="orders">Orders</option>
-          <option value="wishlist">Wishlist</option>
-          @if (user.role === 'admin') {
-            <option value="product">Product</option>
-            <option value="blog">Blog</option>
-          }
-          <option value="logout">Logout</option>
-        </select>
-      </div>
-    }
+        <option value="logout">Logout</option>
+      </select>
+  </div>
+  }
   </div>
 }

@@ -12,6 +12,7 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ProductComponent } from './pages/product/product.component';
 import { ShopComponent } from './pages/shop/shop.component';
+import { authResolver } from './resolvers/auth.resolver';
 
 export const routes: Routes = [
   {path:'', redirectTo: 'home', pathMatch: 'full'},
@@ -20,7 +21,7 @@ export const routes: Routes = [
   {path:'product', component: ProductComponent, title: '3legant - Product Page'},
   {path:'blog', component: BlogComponent, title: '3legant - Blog Page'},
   {path:'contact', component: ContactComponent, title: '3legant - Contact Page'},
-  {path:'account', component: AccountComponent, canActivate: [loginGuard], title: '3legant - Account Page', children: [
+  {path:'account/:id', component: AccountComponent,resolve: {data: authResolver}, canActivate: [loginGuard], title: '3legant - Account Page', children: [
     {path: '', redirectTo: 'details', pathMatch: 'full'},
     {path: 'details', component: AccountDetailsComponent},
     {path: 'address', component: AccountAddressComponent},

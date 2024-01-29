@@ -18,9 +18,7 @@ export class ModalComponent implements OnInit {
   authService = inject(AuthService);
 
   ngOnInit(): void {
-    if (this.authService.isLoggedIn()) {
-      this.modalService.modalIsOpen.next(false);
-    }
+    
   }
 
   closeModal() {

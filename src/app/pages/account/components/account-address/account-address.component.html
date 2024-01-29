@@ -120,6 +120,9 @@
           <div class="shipping__btn" (click)="addShippingAddress()">
             <app-btn-primary>Apply</app-btn-primary>
           </div>
+          @if (message) {
+            <app-inform-message>{{message}}</app-inform-message>
+          }
         </form>
       }
     </div>

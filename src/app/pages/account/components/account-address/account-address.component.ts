@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnDestro
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 import { BtnPrimaryComponent } from '../../../../components/buttons/btn-primary/btn-primary.component';
+import { InformMessageComponent } from '../../../../components/inform-message/inform-message.component';
 import { CardNumberDirective } from '../../../../directives/card-number.directive';
 import { UserInterface } from '../../../../interface/interfaces';
 import { AuthService } from '../../../../services/auth.service';
@@ -11,22 +12,21 @@ import { UserService } from '../../../../services/user.service';
 @Component({
   selector: 'app-account-address',
   standalone: true,
-  imports: [ReactiveFormsModule, BtnPrimaryComponent, AsyncPipe, CardNumberDirective],
+  imports: [ReactiveFormsModule, BtnPrimaryComponent, AsyncPipe, CardNumberDirective, InformMessageComponent],
   templateUrl: './account-address.component.html',
   styleUrl: './account-address.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AccountAddressComponent implements OnInit, OnDestroy {
+export class AccountAddressComponent implements OnInit {
   private changeDetectorRef = inject(ChangeDetectorRef)
   private userService = inject(UserService);
-  private authService = inject(AuthService);
   private formBuilder = inject(FormBuilder);
   user$!: Observable<UserInterface | null>;
-  userIdSubscription!: Subscription;
   billingForm!: FormGroup;
   shippingForm!: FormGroup;
   billingFormState: boolean = false;
   shippingFormState: boolean = false;
+  message!: string;
   
   ngOnInit(): void {
     this.billingForm = this.formBuilder.group({
@@ -38,26 +38,21 @@ export class AccountAddressComponent implements OnInit, OnDestroy {
       telephone: ['', [Validators.required]],
       address: ['', [Validators.required]],
     });
-    this.userIdSubscription = this.authService.userId$.subscribe((id) => {
-      if (id) {
-        this.user$ = this.userService.getUser(id);
-        this.changeDetectorRef.detectChanges();
-      }
+    this.user$ = this.userService.user$;
+    this.user$.subscribe(() => {
+      this.changeDetectorRef.detectChanges();
     })
-  }
-
-  ngOnDestroy(): void {
-    if (this.userIdSubscription) this.userIdSubscription.unsubscribe();
   }
 
   addBillingAddress() {
     if (this.billingForm.valid) {
       const {card, month, year} = this.billingForm.value;
-      this.user$.subscribe((user) => {
-        if (user) {
-          this.userService.addBillingAddress(user.id, card, month, year);
-          this.user$=this.userService.getUser(user.id);
+      const userId = this.userService.userIdSubject.value;
+      this.userService.addBillingAddress((userId as string), card, month, year).subscribe({
+        next: () => {
           this.billingForm.reset();
+          this.message = 'Billing address updated successfully';
+          this.changeDetectorRef.detectChanges();
         }
       })
     }
@@ -66,11 +61,12 @@ export class AccountAddressComponent implements OnInit, OnDestroy {
   addShippingAddress() {
     if (this.shippingForm.valid) {
       const {telephone, address} = this.shippingForm.value;
-      this.user$.subscribe((user) => {
-        if (user) {
-          this.userService.addShippingAddress(user.id, telephone, address);
-          this.user$=this.userService.getUser(user.id);
+      const userId = this.userService.userIdSubject.value;
+      this.userService.addShipingAddress((userId as string), telephone, address).subscribe({
+        next: () => {
           this.shippingForm.reset();
+          this.message = 'Shipping address updated successfully';
+          this.changeDetectorRef.detectChanges();
         }
       })
     }
