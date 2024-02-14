@@ -2,6 +2,7 @@ import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { AuthService } from '../../services/auth.service';
 import { ModalService } from '../../services/modal.service';
 import { UserService } from '../../services/user.service';
 import { BurgerComponent } from '../burger/burger.component';
@@ -20,7 +21,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   private changeDetectorRef = inject(ChangeDetectorRef);
   @Input() cartCount: number = 0;
   modalService = inject(ModalService);
-  userService = inject(UserService);
+  private userService = inject(UserService);
   userId!: string | null;
   userIdSubscription!: Subscription;
 

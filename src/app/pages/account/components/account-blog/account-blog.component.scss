@@ -1,0 +1,78 @@
+@import '../../../../../scss/common';
+
+.blog {
+  display: grid;
+  gap: $gap;
+  &__title {
+    span {
+      font-size: $gap;
+    }
+  }
+  &__form {
+    display: grid;
+    gap: $gap;
+    .form {
+      display: grid;
+      gap: calc($gap / 2);
+      &__row {
+        @extend %row;
+        justify-content: start;
+        @include sm {
+          flex-direction: column;
+        }
+        &-input {
+          width: 100%;
+          input,
+          textarea {
+            width: 100%;
+            border: none;
+            resize: none;
+            &:focus {
+              outline: none;
+            }
+          }
+        }
+        &-image {
+          width: 100%;
+          height: 400px;
+          background-color: lightgrey;
+          position: relative;
+          cursor: pointer;
+          &::before {
+            position: absolute;
+            content: "+";
+            top: 50%;
+            left: 50%;
+            color: grey;
+            font-weight: 700;
+            font-family: $font-header;
+            font-size: 60px;
+            transform: translate(-50%, -50%);
+          }
+          img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+          input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+            font-size: 0;
+            line-height: 0;
+          }
+        }
+      }
+    }
+    &-btn {
+      display: flex;
+    }
+  }
+}

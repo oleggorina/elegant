@@ -4,6 +4,7 @@ export interface UserInterface {
   surname: string;
   email: string;
   role: string;
+  profileImage: string;
   shipping: {
     telephone: number;
     address: string;
@@ -13,4 +14,20 @@ export interface UserInterface {
     month: number,
     year: number
   }
+}
+
+export interface BlogInterface {
+  id: string;
+  title: string;
+  mainDescr: string;
+  mainImage: string;
+  subtitle: string;
+  descr2: string;
+  image2?: string;
+  image3?: string;
+  subtitle2?: string;
+  descr3?: string;
+  image4?: string;
+  subtitle3?: string;
+  descr4?: string;
 }

@@ -17,11 +17,7 @@
       gap: calc($gap / 2);
       position: relative;
       input {
-        padding: 5px 16px;
-        border-radius: 5px;
-        border: 1px solid #CBCBCB;
-        width: 100%;
-        position: relative;
+        @extend %input;
       }
     }
     &-btn {

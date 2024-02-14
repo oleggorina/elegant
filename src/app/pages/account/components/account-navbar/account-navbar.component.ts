@@ -20,17 +20,33 @@ export class AccountNavbarComponent implements OnInit {
   private userService = inject(UserService);
   private changeDetectorRef = inject(ChangeDetectorRef)
   user$!: Observable<UserInterface | null>;
+  userId!: string | undefined;
 
   ngOnInit(): void {
     this.user$ = this.userService.user$;
-    this.user$.subscribe(() => {
+    this.user$.subscribe((user) => {
+      this.userId = user?.id;
       this.changeDetectorRef.detectChanges();
     })
   }
 
+  onFileSelected(event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+    const file = inputElement.files?.item(0);
+    if (file) {
+      const userId = this.userService.userIdSubject.value;
+      if (userId) {
+        this.userService.addUserImage(userId, file).subscribe({
+          next: (res) => console.log('User image uploaded successfully', res),
+          error: (er) => console.log(er)
+        })
+      }
+    }
+  }
+
   onMenuChange(event: Event): void {
     const selectedValue = (event.target as HTMLSelectElement).value;
-    this.router.navigateByUrl(`/account/${selectedValue}`);
+    this.router.navigateByUrl(`/account/${this.userId}/${selectedValue}`);
     if (selectedValue === 'logout') {
       this.logout();
     }

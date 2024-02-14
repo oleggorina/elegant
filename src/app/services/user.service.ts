@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { getDownloadURL, uploadBytes } from '@angular/fire/storage';
 import { initializeApp } from 'firebase/app';
 import { getAuth, sendPasswordResetEmail } from 'firebase/auth';
-import { doc, getFirestore, updateDoc } from 'firebase/firestore';
+import { getStorage, ref } from 'firebase/storage';
 import { BehaviorSubject, from, map, Observable, switchMap, tap } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { UserInterface } from '../interface/interfaces';
@@ -13,12 +14,14 @@ import { UserInterface } from '../interface/interfaces';
 export class UserService {
   private firebaseApp = initializeApp(environment.firebaseConfig);
   private auth = getAuth(this.firebaseApp);
+  private storage = getStorage(this.firebaseApp);
   private url = 'https://ecommerce-88694-default-rtdb.europe-west1.firebasedatabase.app/users';
   private userSubject = new BehaviorSubject<UserInterface | null>(null);
   userIdSubject = new BehaviorSubject<string | null>(null);
   user$: Observable<UserInterface | null> = this.userSubject.asObservable();
   
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
   getUserId(): Observable<string | null> {
     return this.userIdSubject.asObservable();
@@ -27,6 +30,18 @@ export class UserService {
   getUser(userId: string) {
     return this.http.get<UserInterface>(`${this.url}/${userId}.json`).pipe(
       tap(user => this.userSubject.next(user))
+    )
+  }
+
+  addUserImage(userId: string, file: File) {
+    const storageRef = ref(this.storage, `user-images/${userId}/${file.name}`);
+    return from(uploadBytes(storageRef, file)).pipe(
+      switchMap(() => getDownloadURL(storageRef)),
+      switchMap((downloadURL) => this.http.patch<UserInterface>(`${this.url}/${userId}.json`, {
+        profileImage: downloadURL
+      })),
+      switchMap(() => this.getUser(userId)),
+      tap(updatedUser => this.userSubject.next(updatedUser))
     )
   }
 

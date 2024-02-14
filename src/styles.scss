@@ -100,7 +100,8 @@ button {
   background-color: transparent;
 }
 
-input {
+input,
+textarea {
   font-family: $font-main;
   font-size: 16px;
   color: $color-neutral-04;

@@ -2,8 +2,9 @@
   <div class="navbar">
     <div class="navbar__user">
       <div class="navbar__user-image">
-        <img class="main" src="../../../../../assets/images/user/user.svg" alt="User image">
+        <img class="main" src="{{user.profileImage}}" alt="User image">
         <div class="add-image">
+          <input type="file" (change)="onFileSelected($event)">
           <img src="../../../../../assets/images/user/addimage.svg" alt="Add image icon">
         </div>
       </div>
@@ -23,7 +24,8 @@
       <a class="navbar__menu-link" (click)="logout()">Log Out</a>
     </div>
     }
-    @if (onResize() < 576) { <div class="navbar__select">
+    @if (onResize() < 576) { 
+      <div class="navbar__select">
       <select name="menu" id="menu" (change)="onMenuChange($event)">
         <option value="details">Account</option>
         <option value="address">Address</option>

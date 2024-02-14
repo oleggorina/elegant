@@ -1,1 +1,81 @@
-<p>account-blog works!</p>
+<div class="blog">
+  <div class="blog__title">
+    <span>Add new article</span>
+  </div>
+  <div class="blog__form">
+    <form class="form" [formGroup]="articleForm">
+      <div class="form__row">
+        <div class="form__row-input">
+          <input type="text" placeholder="Article title" formControlName="title">
+        </div>
+      </div>
+      <div class="form__row">
+        <div class="form__row-image">
+          @if (mainImage) {
+            <img src="{{mainImage}}" alt="">
+          }
+          <input type="file" (input)="onSelectFile($event, 1)" accept="image/*" formControlName="mainImage" #mainImageInput>
+        </div>
+      </div>
+      <div class="form__row">
+        <div class="form__row-input">
+          <textarea name="" id="" rows="5" placeholder="Article description" formControlName="mainDescr"></textarea>
+        </div>
+      </div>
+      <div class="form__row">
+        <div class="form__row-input">
+          <input type="text" placeholder="Article subtitle" formControlName="subtitle">
+        </div>
+      </div>
+      <div class="form__row">
+        <div class="form__row-input">
+          <textarea name="" id="" rows="5" placeholder="Article description" formControlName="descr2"></textarea>
+        </div>
+      </div>
+      <div class="form__row">
+        <div class="form__row-image">
+          @if (image2) {
+            <img src="{{image2}}" alt="">
+          }
+          <input type="file" (input)="onSelectFile($event, 2)" accept="image/*" formControlName="image2" #image2Input>
+        </div>
+        <div class="form__row-image">
+          @if (image3) {
+            <img src="{{image3}}" alt="">
+          }
+          <input type="file" (input)="onSelectFile($event, 3)" accept="image/*" formControlName="image3" #image3Input>
+        </div>
+      </div>
+      <div class="form__row">
+        <div class="form__row-input">
+          <input type="text" placeholder="Article subtitle" formControlName="subtitle2">
+        </div>
+      </div>
+      <div class="form__row">
+        <div class="form__row-input">
+          <textarea name="" id="" rows="5" placeholder="Article description" formControlName="descr3"></textarea>
+        </div>
+      </div>
+      <div class="form__row">
+        <div class="form__row-image">
+          @if (image4) {
+            <img src="{{image4}}" alt="">
+          }
+          <input type="file" (input)="onSelectFile($event, 4)" accept="image/*" formControlName="image4" #image4Input>
+        </div>
+        <div class="form__row-input">
+          <input type="text" placeholder="Article subtitle" formControlName="subtitle3">
+          <textarea name="" id="" rows="5" placeholder="Article description" formControlName="descr4"></textarea>
+        </div>
+      </div>
+    </form>
+    <div class="blog__form-btn" (click)="addArticle()">
+      <app-btn-primary>Add article</app-btn-primary>
+    </div>
+    @if (message) {
+      <div class="blog__form-message">
+        <app-inform-message>{{message}}</app-inform-message>
+      </div>
+    }
+  </div>
+</div>

@@ -52,19 +52,13 @@
       gap: $gap;
       max-width: max-content;
       &__row {
-        display: flex;
-        gap: $gap;
-        justify-content: space-between;
+        @extend %row;
         &-input {
           display: flex;
           flex-direction: column;
           gap: 5px;
           input {
-            padding: 5px 16px;
-            border-radius: 5px;
-            border: 1px solid #CBCBCB;
-            width: 100%;
-            position: relative;
+            @extend %input;
           }
           select {
             border: 1px solid #CBCBCB;

@@ -13,3 +13,17 @@
   height: 100%;
   z-index: -1;
 }
+
+%input {
+  padding: 5px 16px;
+  border-radius: 5px;
+  border: 1px solid #CBCBCB;
+  width: 100%;
+  position: relative;
+}
+
+%row {
+  display: flex;
+  gap: $gap;
+  justify-content: space-between;
+}
