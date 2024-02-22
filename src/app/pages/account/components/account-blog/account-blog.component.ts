@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
@@ -8,7 +9,7 @@ import { BlogService } from '../../../../services/blog.service';
 @Component({
   selector: 'app-account-blog',
   standalone: true,
-  imports: [BtnPrimaryComponent, InformMessageComponent, ReactiveFormsModule],
+  imports: [BtnPrimaryComponent, InformMessageComponent, ReactiveFormsModule, DatePipe],
   templateUrl: './account-blog.component.html',
   styleUrl: './account-blog.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

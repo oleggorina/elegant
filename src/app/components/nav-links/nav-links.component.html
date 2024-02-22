@@ -1,0 +1,17 @@
+<div class="links">
+  @for (link of links; track link; let last = $last) {
+    <ng-container>
+      @if (!last) {
+        <div class="links__link" (click)="navigateTo(link.routerLink)" routerLinkActive="active">{{link.link}}</div>
+      }
+      @if (last) {
+        <div class="links__link active">{{link.link}}</div>
+      }
+      @if (!last) {
+        <div class="links__link">
+          <img src="../../../assets/images/icons/link_arrow.png" alt="Link arrow">
+        </div>
+      }
+    </ng-container>
+  }
+</div>

@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="details">
+    <div class="details__links">
+      <app-nav-links [links]="[
+      {link: 'Home', routerLink: 'home'},
+      {link: 'Blog', routerLink: 'blog'},
+      {link: articleData.title, routerLink: ''}]"></app-nav-links>
+    </div>
+    <div class="details__article">
+      <div class="details__article-title">
+        <h3>{{articleData.title}}</h3>
+      </div>
+      <div class="details__article-date">
+        <img src="../../../../../assets/images/icons/calendar.png" alt="Calendar icon">
+        <span>{{articleData.createdAt}}</span>
+      </div>
+      <div class="details__article-mainImage">
+        <img src="{{articleData.mainImage}}" alt="Article image">
+      </div>
+      <div class="details__article-descr">
+        <p>{{articleData.mainDescr}}</p>
+      </div>
+      <div class="details__article-subtitle">
+        <h6>{{articleData.subtitle}}</h6>
+      </div>
+      <div class="details__article-descr">
+        <p>{{articleData.descr2}}</p>
+      </div>
+      <div class="details__article-images">
+        <div class="image">
+          <img src="{{articleData.image2}}" alt="Article image">
+        </div>
+        <div class="image">
+          <img src="{{articleData.image3}}" alt="Article image">
+        </div>
+      </div>
+      <div class="details__article-subtitle">
+        <h6>{{articleData.subtitle2}}</h6>
+      </div>
+      <div class="details__article-descr">
+        <p>{{articleData.descr3}}</p>
+      </div>
+      <div class="details__article-footer">
+        <div class="image">
+          <img src="{{articleData.image4}}" alt="Article image">
+        </div>
+        <div class="content">
+          <h6>{{articleData.subtitle3}}</h6>
+          <p>{{articleData.descr4}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-newsletter></app-newsletter>

@@ -1,0 +1,17 @@
+@import '../../../scss/common';
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+
+  &__link {
+    cursor: pointer;
+    font-family: $font-main;
+
+    &.active {
+      font-weight: 700;
+    }
+  }
+}

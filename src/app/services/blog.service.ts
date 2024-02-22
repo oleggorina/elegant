@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { getDownloadURL, ref, uploadBytes, uploadBytesResumable } from '@angular/fire/storage';
@@ -15,14 +16,14 @@ export class BlogService {
   private storage = getStorage(this.firebaseApp);
   private url: string = 'https://ecommerce-88694-default-rtdb.europe-west1.firebasedatabase.app/articles';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private datePipe: DatePipe) { }
 
-  getArticles() {
-    this.http.get<BlogInterface[]>(`${this.url}/.json`);
+  getArticles(): Observable<BlogInterface[]> {
+    return this.http.get<BlogInterface[]>(`${this.url}.json`);
   }
 
-  getArticle(id: string) {
-    this.http.get<BlogInterface>(`${this.url}/${id}.json`);
+  getArticle(id: string): Observable<BlogInterface> {
+    return this.http.get<BlogInterface>(`${this.url}/${id}.json`);
   }
 
   addArticle(title: string, mainDescr: string, subtitle: string, descr2: string,
@@ -31,6 +32,7 @@ export class BlogService {
     if (!mainImage || !image2 || !image3 || !image4) {
       throw new Error('One or more files are undefined.');
     }
+    const currentDate = this.datePipe.transform(new Date(), 'MMMM dd, yyyy')
     const uploadFileAndGetUrl = (file: File): Observable<string> => {
       const storageRef = ref(this.storage, `blog-images/${file.name}`);
       return from(uploadBytes(storageRef, file)).pipe(
@@ -57,7 +59,8 @@ export class BlogService {
           mainImage: mainImageURL,
           image2: image2URL,
           image3: image3URL,
-          image4: image4URL
+          image4: image4URL,
+          createdAt: currentDate
         }).pipe(
           switchMap((response) => {
             return this.http.patch<BlogInterface>(`${this.url}/${response.name}.json`, {

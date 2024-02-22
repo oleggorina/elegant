@@ -1,19 +1,14 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, NgZone, signal } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Firestore } from '@angular/fire/firestore';
 import { getDatabase, ref, set } from '@angular/fire/database';
 import { Router } from '@angular/router';
-import { initializeApp } from 'firebase/app';
-import { AuthCredential, EmailAuthProvider, getAuth, onAuthStateChanged, signInWithCredential, signInWithCustomToken, User } from 'firebase/auth';
-import { BehaviorSubject, catchError, from, map, Observable, throwError, tap } from 'rxjs';
-import { environment } from '../../environments/environment';
-import { UserInterface } from '../interface/interfaces';
+import { catchError, from, map, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private firebaseApp = initializeApp(environment.firebaseConfig);
   private db = getDatabase();
 
   constructor(private firestore: Firestore, private http: HttpClient, private router: Router) { 

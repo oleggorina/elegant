@@ -1,0 +1,94 @@
+@import '../../../../../scss/common';
+
+.container {
+  @extend %container;
+  .articles {
+    display: grid;
+    gap: calc($gap * 2);
+    &__filter {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .sortBy {
+        select {
+          border: none;
+        }
+      }
+      .grid {
+        display: flex;
+        gap: 5px;
+        &__item {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 40px;
+          height: 40px;
+          cursor: pointer;
+          padding: 5px;
+          border: 1px solid $color-neutral-03;
+          &.active {
+            background-color: #F3F5F7;
+          }
+        }
+      }
+    }
+    &__items {
+      gap: $gap;
+      &.articles-grid-3x3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        @include lg {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        @include md {
+          grid-template-columns: 1fr;
+        }
+      }
+      &.articles-grid-2x2 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        @include lg {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        @include md {
+          grid-template-columns: 1fr;
+        }
+      }
+      &.articles-flex-1x1H {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+      &-item {
+        cursor: pointer;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 325px max-content;
+        gap: $gap;
+        .image {
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+        .content {
+          &__title {
+            h6 {
+              font-size: 20px;
+            }
+          }
+          &__date {
+            span {
+              font-size: 12px;
+              color: $color-neutral-04;
+            }
+          }
+        }
+      }
+    }
+    &__btn {
+      display: flex;
+      justify-content: center;
+    }
+  }
+}

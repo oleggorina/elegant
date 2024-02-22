@@ -29,8 +29,10 @@ h2 {
 
 h3 {
   font-size: 54px;
+  line-height: 58px;
   @include sm {
-    font-size: 40px;
+    font-size: 28px;
+    line-height: 34px;
   }
 }
 
@@ -50,12 +52,13 @@ h5 {
 
 h6 {
   font-size: 28px;
+  line-height: 34px;
 }
 
 p, span {
   font-family: $font-main;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 28px;
   letter-spacing: -0.4px;
   @include sm {

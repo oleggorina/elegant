@@ -8,11 +8,13 @@ import { AccountOrdersComponent } from './pages/account/components/account-order
 import { AccountProductComponent } from './pages/account/components/account-product/account-product.component';
 import { AccountWishlistComponent } from './pages/account/components/account-wishlist/account-wishlist.component';
 import { BlogComponent } from './pages/blog/blog.component';
+import { ArticleDetailsComponent } from './pages/blog/components/article-details/article-details.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ProductComponent } from './pages/product/product.component';
 import { ShopComponent } from './pages/shop/shop.component';
 import { authResolver } from './resolvers/auth.resolver';
+import { blogResolver } from './resolvers/blog.resolver';
 
 export const routes: Routes = [
   {path:'', redirectTo: 'home', pathMatch: 'full'},
@@ -20,6 +22,7 @@ export const routes: Routes = [
   {path:'shop', component: ShopComponent, title: '3legant - Shop Page'},
   {path:'product', component: ProductComponent, title: '3legant - Product Page'},
   {path:'blog', component: BlogComponent, title: '3legant - Blog Page'},
+  {path:'article-details/:id', component: ArticleDetailsComponent, resolve: {data: blogResolver}},
   {path:'contact', component: ContactComponent, title: '3legant - Contact Page'},
   {path:'account/:id', component: AccountComponent,resolve: {data: authResolver}, canActivate: [loginGuard], title: '3legant - Account Page', children: [
     {path: '', redirectTo: 'details', pathMatch: 'full'},

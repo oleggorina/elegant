@@ -30,4 +30,5 @@ export interface BlogInterface {
   image4?: string;
   subtitle3?: string;
   descr4?: string;
+  createdAt: string;
 }

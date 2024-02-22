@@ -1,0 +1,12 @@
+@import '../../../../scss/common';
+
+.load  {
+  font-family: $font-main;
+  font-size: 16px;
+  font-weight: 400;
+  color: $color-neutral-07;
+  padding: 6px 20px;
+  border-radius: 80px;
+  border: 1px solid $color-neutral-07;
+  cursor: pointer;
+}
