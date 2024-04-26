@@ -1,0 +1,23 @@
+@import '../../../../scss/common';
+
+.wishlist {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $color-neutral-01;
+  box-shadow: 0 8px 16 #0F0F0F;
+  border-radius: 50%;
+  cursor: pointer;
+  &__image {
+    width: 100%;
+    height: 100%;
+    background-image: url("../../../../assets/images/icons/whishlist.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    &.added {
+      background-image: url("../../../../assets/images/icons/whishlistfilled.png");
+    }
+  }
+}

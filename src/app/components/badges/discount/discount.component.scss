@@ -1,0 +1,13 @@
+@import '../../../../scss/common';
+
+.discount {
+  padding: 4px 14px;
+  background-color: $color-accent-green;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  span {
+    font-weight: 700;
+    color: white;
+  }
+}

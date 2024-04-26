@@ -1,1 +1,80 @@
-<p>account-product works!</p>
+<div class="product">
+  <div class="product__title">
+    <span>Add new product</span>
+  </div>
+  <div class="product__form">
+    <form class="form" [formGroup]="productForm">
+      <div class="form__row">
+        <div class="form__row-input">
+          <span>Product images</span>
+          <div class="add-image">
+            @for (image of productImages; track image) {
+              <div class="add-image__image">
+                <app-image [image]="image" [alt]="'Product image'" (removed)="removeImage(image, productImages, productFileImages)"></app-image>
+              </div>
+            }
+            <div class="add-image__btn">
+              <app-add-image (fileSelected)="addImage($event, productImages, productFileImages)"></app-add-image>
+            <!-- <input type="file" multiple (input)="addImage($event, productImages, productFileImages)"> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form__row">
+        <div class="form__row-input">
+          <span>Product colors</span>
+          <div class="add-image">
+            @for (image of productColorImages; track image) {
+              <div class="add-image__image">
+                <app-image [image]="image" [alt]="'Color image'" (removed)="removeImage(image, productColorImages, productColorFileImages)"></app-image>
+              </div>
+            }
+            <div class="add-image__btn">
+              <app-add-image (fileSelected)="addImage($event, productColorImages, productColorFileImages)"></app-add-image>
+              <!-- <input type="file" multiple (input)="addImage($event, productColorImages, productColorFileImages)"> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form__row">
+        <div class="form__row-input">
+          <input type="text" placeholder="Title" formControlName="title">
+        </div>
+      </div>
+      <div class="form__row">
+        <div class="form__row-input">
+          <textarea rows="5" placeholder="Description" formControlName="description"></textarea>
+        </div>
+      </div>
+      <div class="form__row">
+        <div class="form__row-input">
+          <input type="number" placeholder="Price" formControlName="price">
+        </div>
+        <div class="form__row-input">
+          <input type="number" placeholder="Discount" formControlName="discount">
+        </div>
+      </div>
+      <div class="form__row">
+        <div class="form__row-input">
+          <textarea rows="5" placeholder="Characteristics" formControlName="characteristics"></textarea>
+        </div>
+      </div>
+      <div class="form__row">
+        <div class="form__row-input">
+          <input type="text" placeholder="Category" formControlName="category">
+        </div>
+        <div class="form__row-input">
+          <input type="text" placeholder="SKU" formControlName="sku">
+        </div>
+      </div>
+      <div class="form__btn" (click)="addProduct()">
+        <app-btn-primary>Add product</app-btn-primary>
+      </div>
+      @if (message) {
+        <div class="form__message">
+          <app-inform-message>{{message}}</app-inform-message>
+        </div>
+      }
+    </form>
+  </div>
+</div>

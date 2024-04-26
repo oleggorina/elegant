@@ -3,21 +3,27 @@
     <div class="articles__filter">
       <div class="sortBy">
         <select [(ngModel)]="selectedOption" (change)="applyFilter()">
-          <option value="" disabled selected hidden>Sort by</option>
+          <option value="" selected hidden>Sort by</option>
           <option value="all">All</option>
           <option value="date">Date</option>
         </select>
       </div>
       <div class="grid">
-        <div class="grid__item" [class.active]="activeFilter === 'grid3x3'" (click)="setActiveFilter('grid3x3'); changeGridLayout('grid3x3')">
-          <img src="../../../../../assets/images/filters/grid3x3.png" alt="Grid image">
-        </div>
-        <div class="grid__item" [class.active]="activeFilter === 'gird2x2'" (click)="setActiveFilter('gird2x2'); changeGridLayout('grid2x2')">
-          <img src="../../../../../assets/images/filters/grid2x2.png" alt="Grid image">
-        </div>
-        <div class="grid__item" [class.active]="activeFilter === 'grid-1x1H'" (click)="setActiveFilter('grid-1x1H'); changeGridLayout('grid1x1H')">
-          <img src="../../../../../assets/images/filters/grid1x1_horizontal.png" alt="Grid image">
-        </div>
+        <app-btn-grid
+        [active]="activeFilter === 'grid3x3'"
+        [imageSrc]="'../../../../../assets/images/filters/grid3x3.png'"
+        [altText]="'Grid image'"
+        (btnClick)="setActiveFilter('grid3x3'); changeGridLayout('grid3x3')"></app-btn-grid>
+        <app-btn-grid
+        [active]="activeFilter === 'grid2x2'"
+        [imageSrc]="'../../../../../assets/images/filters/grid2x2.png'"
+        [altText]="'Grid image'"
+        (btnClick)="setActiveFilter('grid2x2'); changeGridLayout('grid2x2')"></app-btn-grid>
+        <app-btn-grid
+        [active]="activeFilter === 'grid-1x1H'"
+        [imageSrc]="'../../../../../assets/images/filters/grid1x1_horizontal.png'"
+        [altText]="'Grid image'"
+        (btnClick)="setActiveFilter('grid-1x1H'); changeGridLayout('grid-1x1H')"></app-btn-grid>
       </div>
     </div>
     @if (articlesData) {

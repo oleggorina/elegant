@@ -1,10 +1,10 @@
 import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { getDownloadURL, ref, uploadBytes, uploadBytesResumable } from '@angular/fire/storage';
+import { getDownloadURL, ref, uploadBytes } from '@angular/fire/storage';
 import { initializeApp } from 'firebase/app';
 import { getStorage } from 'firebase/storage';
-import { forkJoin, from, map, Observable, switchMap } from 'rxjs';
+import { forkJoin, from, Observable, switchMap } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { BlogInterface } from '../interface/interfaces';
 
@@ -33,6 +33,7 @@ export class BlogService {
       throw new Error('One or more files are undefined.');
     }
     const currentDate = this.datePipe.transform(new Date(), 'MMMM dd, yyyy')
+    
     const uploadFileAndGetUrl = (file: File): Observable<string> => {
       const storageRef = ref(this.storage, `blog-images/${file.name}`);
       return from(uploadBytes(storageRef, file)).pipe(

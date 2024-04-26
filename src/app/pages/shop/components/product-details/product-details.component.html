@@ -1,0 +1,109 @@
+<div class="container">
+  <div class="details">
+    <div class="details__links">
+      <app-nav-links [links]="[
+      {link: 'Home', routerLink: 'home'},
+      {link: 'Shop', routerLink: 'shop'},
+      {link: productData.title, routerLink: ''}]"></app-nav-links>
+    </div>
+    <div class="details__product">
+      <div class="details__product-images">
+        <div class="main-image">
+          <div class="main-image__controls">
+            <app-btn-arrow (click)="prev()"></app-btn-arrow>
+            <app-btn-arrow [sideClass]="'right'" (click)="next()"></app-btn-arrow>
+          </div>
+          <div class="main-image__content">
+            <div class="main-image__content-new">
+              <app-new-product></app-new-product>
+            </div>
+            @if (productData.discount > 0) {
+              <div class="main-image__content-discount">
+                <app-discount [discount]="productData.discount"></app-discount>
+              </div>
+            }
+          </div>
+          <div class="main-image__img">
+            @for (slide of productData.images; track slide; let index = $index) {
+              <img src="{{slide.url}}" alt="Product image" [class.active]="carouselService.currentIndex === index">
+            }
+            <!-- <img src="{{productData.images[0].url}}" alt="Product image"> -->
+          </div>
+        </div>
+        <div class="secondary-images">
+          @for (image of productData.images.slice(1); track image) {
+          <div class="secondary-images__img">
+            <img src="{{image.url}}" alt="Product image">
+          </div>
+          }
+        </div>
+      </div>
+      <div class="details__product-content">
+        <div class="title">
+          <h4>{{productData.title}}</h4>
+        </div>
+        <div class="subtitle">
+          <p>{{productData.description}}</p>
+        </div>
+        <div class="price">
+          <div class="price__new"><h6>{{calculateNewPrice() | currency}}</h6></div>
+          @if (productData.discount > 0) {
+          <div class="price__old"><span>{{productData.price | currency}}</span></div>
+          }
+        </div>
+        <div class="characteristics">
+          <p>{{productData.characteristics}}</p>
+        </div>
+        <div class="colors">
+          <div class="colors__title">
+            <span>Choose Color ></span>
+          </div>
+          @if (selectedColor) {
+          <div class="colors__name">
+            <span>{{selectedColor}}</span>
+          </div>
+          }
+          <div class="colors__items">
+            @for (color of productData.colors; track color) {
+            <div class="colors__items-item" [class.active]="isSelectedColor(color.name)">
+              <label for="{{color.name}}">
+                <input id="{{color.name}}" type="radio" name="color" [value]="color.name" (change)="onColorSelected(color.name)">
+                <img [src]="color.url" alt="Product color image">
+              </label>
+            </div>
+            }
+          </div>
+        </div>
+        <div class="buttons">
+          <div class="buttons__group">
+            <div class="buttons__group-counter">
+              <app-counter (countChange)="onCountChange($event)"></app-counter>
+            </div>
+            <div class="buttons__group-wishlist">
+              <app-btn-light>
+                <app-wishlist></app-wishlist>
+                Wishlist
+              </app-btn-light>
+            </div>
+          </div>
+          <div class="buttons__cart">
+            <app-btn-primary>Add to Cart</app-btn-primary>
+          </div>
+        </div>
+        <div class="category">
+          <div class="category__item">
+            <span>SKU</span>
+            <span>{{productData.sku}}</span>
+          </div>
+          <div class="category__item">
+            <span>CATEGORY</span>
+            <span>{{productData.category}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="details__newsletter">
+      <app-newsletter></app-newsletter>
+    </div>
+  </div>
+</div>

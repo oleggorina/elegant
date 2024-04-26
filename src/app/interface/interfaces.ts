@@ -32,3 +32,16 @@ export interface BlogInterface {
   descr4?: string;
   createdAt: string;
 }
+
+export interface ProductInterface {
+  id: string;
+  title: string;
+  description: string;
+  price: number;
+  discount: number;
+  characteristics: string;
+  sku: string;
+  category: string;
+  images: {url: string}[];
+  colors: {name: string, url: string}[];
+}

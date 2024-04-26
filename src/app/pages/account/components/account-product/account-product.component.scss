@@ -1,0 +1,62 @@
+@import '../../../../../scss/common';
+
+.product {
+  display: grid;
+  gap: calc($gap * 2);
+  &__title {
+    span {
+      font-size: $gap;
+    }
+  }
+
+  &__form {
+    width: 100%;
+
+    .form {
+      display: grid;
+      gap: $gap;
+
+      &__row {
+        @extend %row;
+        &-input {
+          display: flex;
+          align-items: center;
+          gap: $gap;
+          width: 100%;
+          @include sm {
+            flex-direction: column;
+            align-items: flex-start;
+          }
+          .add-image {
+            display: flex;
+            gap: calc($gap / 2);
+            flex-wrap: wrap;
+            &__image,
+            &__btn {
+              width: 72px;
+              height: 72px;
+              img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+              }
+            }
+          }
+          input,
+          textarea {
+            width: 100%;
+            border: none;
+            resize: none;
+
+            &:focus {
+              outline: none;
+            }
+          }
+        }
+      }
+      &__btn {
+        display: flex;
+      }
+    }
+  }
+}

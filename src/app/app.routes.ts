@@ -11,20 +11,22 @@ import { BlogComponent } from './pages/blog/blog.component';
 import { ArticleDetailsComponent } from './pages/blog/components/article-details/article-details.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { HomeComponent } from './pages/home/home.component';
-import { ProductComponent } from './pages/product/product.component';
+import { ProductDetailsComponent } from './pages/shop/components/product-details/product-details.component';
 import { ShopComponent } from './pages/shop/shop.component';
 import { authResolver } from './resolvers/auth.resolver';
 import { blogResolver } from './resolvers/blog.resolver';
+import { productResolver } from './resolvers/product.resolver';
 
 export const routes: Routes = [
   {path:'', redirectTo: 'home', pathMatch: 'full'},
   {path:'home', component: HomeComponent, title: '3legant - Home Page'},
   {path:'shop', component: ShopComponent, title: '3legant - Shop Page'},
-  {path:'product', component: ProductComponent, title: '3legant - Product Page'},
+  // {path:'product', component: ProductComponent, title: '3legant - Product Page'},
+  {path:'product-details/:id', component: ProductDetailsComponent, resolve: {data: productResolver}, title: '3legant - Product Details Page'},
   {path:'blog', component: BlogComponent, title: '3legant - Blog Page'},
   {path:'article-details/:id', component: ArticleDetailsComponent, resolve: {data: blogResolver}},
   {path:'contact', component: ContactComponent, title: '3legant - Contact Page'},
-  {path:'account/:id', component: AccountComponent,resolve: {data: authResolver}, canActivate: [loginGuard], title: '3legant - Account Page', children: [
+  {path:'account/:id', component: AccountComponent, resolve: {data: authResolver}, canActivate: [loginGuard], title: '3legant - Account Page', children: [
     {path: '', redirectTo: 'details', pathMatch: 'full'},
     {path: 'details', component: AccountDetailsComponent},
     {path: 'address', component: AccountAddressComponent},

@@ -1,0 +1,16 @@
+@import '../../../../scss/common';
+
+.grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  padding: 5px;
+  border: 1px solid $color-neutral-03;
+
+  &.active {
+    background-color: #F3F5F7;
+  }
+}

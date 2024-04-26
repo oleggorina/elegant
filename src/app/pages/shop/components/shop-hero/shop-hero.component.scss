@@ -1,0 +1,20 @@
+@import '../../../../../scss/common';
+
+.container {
+  @extend %container;
+  .hero {
+    display: flex;
+    background-image: url('../../../../../assets/images/shop/hero.webp');
+    background-repeat: no-repeat;
+    background-size: cover;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: $gap;
+    padding: $gap;
+    height: 392px;
+    @include sm {
+      text-align: center;
+    }
+  }
+}

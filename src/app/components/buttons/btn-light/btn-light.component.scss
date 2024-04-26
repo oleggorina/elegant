@@ -1,0 +1,15 @@
+@import '../../../../scss/common';
+
+.light {
+  width: 100%;
+  font-family: $font-main;
+  font-weight: 600;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 10px $gap;
+}

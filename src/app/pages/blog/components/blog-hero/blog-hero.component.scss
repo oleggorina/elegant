@@ -4,7 +4,7 @@
   @extend %container;
   .hero {
     height: 392px;
-    background-image: url('../../../../../assets/images/blog/blog\ \(1\).webp');
+    background-image: url('../../../../../assets/images/blog/hero.webp');
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
@@ -12,6 +12,10 @@
     align-items: center;
     flex-direction: column;
     gap: $gap;
+    padding: $gap;
+    @include sm {
+      text-align: center;
+    }
     &__links {
       display: flex;
       gap: 10px;

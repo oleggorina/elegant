@@ -2,12 +2,8 @@
 
 .card {
   display: grid;
-  grid-template-columns: 262px;
   grid-template-rows: 350px 72px;
   gap: 12px;
-  @include sm {
-    grid-template-columns: 231px;
-  }
   &:hover {
     .card {
       &__image {
@@ -15,55 +11,84 @@
           display: block;
           animation: btnAppearance 0.3s ease-in;
         }
+        &-content {
+          .right {
+            display: block;
+            animation: btnAppearance 0.3s ease-in;
+          }
+        }
       }
     }
   }
   &__image {
+    position: relative;
     padding: $gap;
-    background-image: url('../../../../assets/images/card/test.png');
-    background-size: cover;
-    background-position: center;
+    background-color: #F3F5F7;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    &-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      img  {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
     &-content {
-      .right {
+      z-index: 1;
+      display: flex;
+      justify-content: space-between;
+      .left {
         width: 70px;
         display: grid;
         gap: calc($gap / 2);
-        .new {
-          padding: 4px 14px;
-          background-color: white;
-          border-radius: 4px;
-          span {
-            font-weight: 700;
-          }
-        }
-        .discount {
-          padding: 4px 14px;
-          background-color: $color-accent-green;
-          border-radius: 4px;
-          span {
-            font-weight: 700;
-            color: white;
-          }
-        }
+      }
+      .right {
+        display: none;
       }
     }
     &-btn {
+      z-index: 2;
       display: none;
-      transition: all 0.3s ease-in;
+    }
+  }
+  &__content {
+    cursor: pointer;
+    .title {
+      strong {
+        font-size: 16px;
+      }
+    }
+    .price {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      &__new {
+        strong {
+          font-size: 16px;
+        }
+      }
+      &__old {
+        span {
+          text-decoration: line-through;
+          font-size: 14px;
+        }
+      }
     }
   }
 }
 
 @keyframes btnAppearance {
   from {
-    transform: translateY(20px);
     opacity: 0;
   }
   to {
-    transform: translateY(0);
     opacity: 1;
   }
 }

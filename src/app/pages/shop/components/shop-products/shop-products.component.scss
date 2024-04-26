@@ -1,0 +1,84 @@
+@import '../../../../../scss/common';
+
+.container {
+  @extend %container;
+  .products {
+    margin-top: calc($gap * 3);
+    margin-bottom: calc($gap * 3);
+    display: grid;
+    gap: calc($gap * 2);
+    &__filter {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      @include md {
+        flex-direction: column;
+        gap: $gap;
+      }
+      .filter {
+        display: flex;
+        gap: $gap;
+        width: 100%;
+        @include md {
+          flex-direction: column;
+        }
+      }
+      .sort {
+        display: flex;
+        gap: $gap;
+        align-items: center;
+        justify-content: end;
+        width: 100%;
+        @include md {
+          justify-content: space-between;
+        }
+        &__by {
+          select {
+            border: none;
+          }
+        }
+        &__items {
+          display: flex;
+          gap: 5px;
+          align-items: center;
+          @include md {
+            display: none;
+          }
+        }
+      }
+    }
+    &__items {
+      display: grid;
+      gap: calc($gap * 2);
+      @include md {
+        gap: $gap;
+      }
+      &.products-grid-4x4 {
+        grid-template-columns: repeat(4, 1fr);
+        @include lg {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        @include md {
+          grid-template-columns: 1fr;
+        }
+      }
+      &.products-grid-3x3 {
+        grid-template-columns: repeat(3, 1fr);
+        @include lg {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        @include md {
+          grid-template-columns: 1fr;
+        }
+      }
+      &.products-grid-2x2 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    &__btn {
+      display: flex;
+      justify-content: center;
+    }
+  }
+}

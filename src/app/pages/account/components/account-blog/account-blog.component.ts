@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
+import { AddImageComponent } from '../../../../components/buttons/add-image/add-image.component';
 import { BtnPrimaryComponent } from '../../../../components/buttons/btn-primary/btn-primary.component';
 import { InformMessageComponent } from '../../../../components/inform-message/inform-message.component';
 import { BlogService } from '../../../../services/blog.service';
@@ -9,7 +10,7 @@ import { BlogService } from '../../../../services/blog.service';
 @Component({
   selector: 'app-account-blog',
   standalone: true,
-  imports: [BtnPrimaryComponent, InformMessageComponent, ReactiveFormsModule, DatePipe],
+  imports: [BtnPrimaryComponent, InformMessageComponent, ReactiveFormsModule, DatePipe, AddImageComponent],
   templateUrl: './account-blog.component.html',
   styleUrl: './account-blog.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -17,7 +18,7 @@ import { BlogService } from '../../../../services/blog.service';
 export class AccountBlogComponent implements OnInit {
   private changeDetectorRef = inject(ChangeDetectorRef);
   private fb = inject(FormBuilder);
-  private blogService = inject(BlogService)
+  private blogService = inject(BlogService);
   @ViewChild('mainImageInput') mainImageInput!: ElementRef<HTMLInputElement>;
   @ViewChild('image2Input') image2Input!: ElementRef<HTMLInputElement>;
   @ViewChild('image3Input') image3Input!: ElementRef<HTMLInputElement>;

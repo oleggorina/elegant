@@ -3,14 +3,16 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnDestro
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { BtnGridComponent } from '../../../../components/buttons/btn-grid/btn-grid.component';
 import { BtnLoadComponent } from '../../../../components/buttons/btn-load/btn-load.component';
 import { BlogInterface } from '../../../../interface/interfaces';
 import { BlogService } from '../../../../services/blog.service';
+import { SharedService } from '../../../../services/shared.service';
 
 @Component({
   selector: 'app-blog-articles',
   standalone: true,
-  imports: [BtnLoadComponent, RouterLink, NgClass, FormsModule],
+  imports: [BtnLoadComponent, RouterLink, NgClass, FormsModule, BtnGridComponent],
   templateUrl: './blog-articles.component.html',
   styleUrl: './blog-articles.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -18,6 +20,7 @@ import { BlogService } from '../../../../services/blog.service';
 export class BlogArticlesComponent implements OnInit, OnDestroy {
   private blogService = inject(BlogService);
   private changeDetectorRef = inject(ChangeDetectorRef);
+  private sharedService = inject(SharedService);
   articlesData!: BlogInterface[];
   articlesDataSubscription!: Subscription;
   filteredArticles!: BlogInterface[];
@@ -49,6 +52,7 @@ export class BlogArticlesComponent implements OnInit, OnDestroy {
     this.blogService.getArticles().subscribe(data => {
       const newArticles = Object.values(data).slice(startIndex, startIndex + this.articlesPerPage);
       this.articlesData = this.articlesData.concat(newArticles);
+      this.applyFilter();
       this.changeDetectorRef.detectChanges();
     })
   }
@@ -68,11 +72,11 @@ export class BlogArticlesComponent implements OnInit, OnDestroy {
   }
 
   setActiveFilter(filter: string): void {
-    this.activeFilter = filter === this.activeFilter ? '' : filter;
+    this.activeFilter = this.sharedService.setActiveFilter(filter, this.activeFilter);
   }
 
   changeGridLayout(layout: string): void {
-    this.gridLayout = layout;
+    this.gridLayout = this.sharedService.changeGridLayout(layout);
   }
 
   ngOnDestroy(): void {
