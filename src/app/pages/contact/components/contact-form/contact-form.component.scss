@@ -1,0 +1,101 @@
+@import '../../../../../scss/common';
+
+.form {
+  display: grid;
+  gap: calc($gap * 2);
+  margin: calc($gap * 2) 0 0 0;
+  &__title {
+    text-align: center;
+  }
+  &__contacts {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $gap;
+    @include md {
+      grid-template-columns: 1fr;
+    }
+    &-item {
+      padding: 16px 32px;
+      background-color: $color-neutral-02;
+      text-align: center;
+      .title {
+        span {
+          font-weight: bold;
+          color: $color-neutral-04;
+        }
+      }
+      .text {
+        p {
+          font-weight: 600;
+        }
+      }
+    }
+  }
+  &__form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $gap;
+    @include md {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 1fr;
+    }
+    .contact-form {
+      display: grid;
+      gap: $gap;
+      .row {
+        display: flex;
+        flex-direction: column;
+        gap: calc($gap / 2);
+        input,
+        textarea {
+          @extend %input;
+          resize: none;
+        }
+      }
+      .btn {
+        display: flex;
+        @include md {
+          justify-content: center;
+        }
+      }
+    }
+    .map {
+      @include md {
+        order: -1;
+      }
+      iframe {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+  &__values {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    &-item {
+      margin: 16px 0;
+      padding: 48px 32px;
+      display: grid;
+      gap: $gap;
+      .icon {
+        width: 48px;
+        height: 48px;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+    &-wrapper {
+      position: absolute;
+      background-color: $color-neutral-02;
+      width: 100%;
+      height: auto;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      bottom: 0;
+    }
+  }
+}

@@ -1,0 +1,32 @@
+<div class="hero">
+  <div class="hero__links">
+    <app-nav-links [links]="[
+    {link: 'Home', routerLink: 'home'},
+    {link: 'Contact Us', routerLink: ''}]"></app-nav-links>
+  </div>
+  <div class="hero__text">
+    <div class="hero__text-title">
+      <h3>We believe in sustainable decor. We’re passionate about life at home.</h3>
+    </div>
+    <div class="hero__text-descr">
+      <p>Our features timeless furniture, with natural fabrics, curved lines, plenty of mirrors and classic design, which can be incorporated into any decor project. The pieces enchant for their sobriety, to last for generations, faithful to the shapes of each period, with a touch of the present</p>
+    </div>
+  </div>
+  <div class="hero__content">
+    <div class="hero__content-image">
+      <img src="../../../../../assets/images/contact/aboutus.png" alt="About Us image">
+    </div>
+    <div class="hero__content-text">
+      <div class="title">
+        <h4>About Us</h4>
+      </div>
+      <div class="text">
+        <p>3legant is a gift & decorations store based in HCMC, Vietnam. Est since 2019. 
+          Our customer service is always prepared to support you 24/7</p>
+      </div>
+      <div class="link" routerLink="/shop">
+        <app-link>Shop Now -></app-link>
+      </div>
+    </div>
+  </div>
+</div>

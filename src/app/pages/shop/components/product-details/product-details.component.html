@@ -27,7 +27,6 @@
             @for (slide of productData.images; track slide; let index = $index) {
               <img src="{{slide.url}}" alt="Product image" [class.active]="carouselService.currentIndex === index">
             }
-            <!-- <img src="{{productData.images[0].url}}" alt="Product image"> -->
           </div>
         </div>
         <div class="secondary-images">

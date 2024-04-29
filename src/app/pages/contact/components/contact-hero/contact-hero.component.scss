@@ -1,0 +1,40 @@
+@import '../../../../../scss/common';
+
+.hero {
+  display: grid;
+  gap: calc($gap * 2);
+  &__text {
+    max-width: 834px;
+    display: grid;
+    gap: $gap;
+  }
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: $color-neutral-02;
+    gap: calc($gap * 3);
+    @include lg {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+    &-image {
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    &-text {
+      align-self: center;
+      max-width: 452px;
+      display: grid;
+      gap: $gap;
+      @include lg {
+        padding: calc($gap * 3) $gap;
+      }
+      .link {
+        display: flex;
+      }
+    }
+  }
+}
