@@ -85,7 +85,7 @@
               </app-btn-light>
             </div>
           </div>
-          <div class="buttons__cart">
+          <div class="buttons__cart" (click)="addToCart(productData, selectedColor, productCount)">
             <app-btn-primary>Add to Cart</app-btn-primary>
           </div>
         </div>

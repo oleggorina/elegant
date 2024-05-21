@@ -1,18 +1,14 @@
 @import '../../../../scss/common';
 
 .counter {
-  width: 130px;
+  width: 100%;
   display: flex;
-  padding: 12px 16px;
+  padding: 6px 8px;
   background-color: #F5F5F5;
   font-family: $font-main;
   justify-content: space-between;
   align-items: center;
   border-radius: 6px;
-  @include md {
-    padding: 8px;
-    width: 80px;
-  }
   &__control {
     font-weight: 500;
     font-size: 25px;

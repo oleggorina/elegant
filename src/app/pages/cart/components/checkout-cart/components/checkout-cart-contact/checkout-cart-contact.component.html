@@ -1,0 +1,27 @@
+<form class="contact" [formGroup]="contactForm">
+  <div class="contact__title">
+    <h6>Contact Information</h6>
+  </div>
+  <div class="contact__row">
+    <div class="contact__row-col">
+      <label for="name">First Name</label>
+      <input id="name" type="text" placeholder="First name" formControlName="name">
+    </div>
+    <div class="contact__row-col">
+      <label for="surname">Last Name</label>
+      <input id="surname" type="text" placeholder="Last name" formControlName="surname">
+    </div>
+  </div>
+  <div class="contact__row">
+    <div class="contact__row-col">
+      <label for="phonenumber">Phone Number</label>
+      <input id="phonenumber" type="text" placeholder="Phone number" formControlName="phonenumber">
+    </div>
+  </div>
+  <div class="contact__row">
+    <div class="contact__row-col">
+      <label for="email">Email Adress</label>
+      <input id="email" type="text" placeholder="Your Email" formControlName="email">
+    </div>
+  </div>
+</form>

@@ -1,0 +1,21 @@
+<form class="payment" [formGroup]="paymentForm">
+  <div class="payment__title">
+    <h6>Payment</h6>
+  </div>
+  <div class="payment__row">
+    <div class="payment__row-col">
+      <label for="card">Card Number</label>
+      <input id="card" type="text" appCardNumber placeholder="1234 1234 1234 1234" formControlName="card">
+    </div>
+  </div>
+  <div class="payment__row">
+    <div class="payment__row-col">
+      <label for="expiration">Expiration Date</label>
+      <input id="expiration" type="text" placeholder="MM/YY" formControlName="expiration">
+    </div>
+    <div class="payment__row-col">
+      <label for="cvc">Cvc</label>
+      <input id="cvc" type="number" placeholder="CVC code" formControlName="cvc">
+    </div>
+  </div>
+</form>

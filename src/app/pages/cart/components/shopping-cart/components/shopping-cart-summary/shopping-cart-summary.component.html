@@ -1,0 +1,39 @@
+<div class="summary">
+  <div class="summary__title">
+    <span>Cart summary</span>
+  </div>
+  <div class="summary__inputs">
+    <div class="summary__inputs-form">
+      <form class="form">
+        @for (delivery of deliveryOptions; track delivery) {
+          <div class="form__input" [ngClass]="{'active': selectedDeliveryOption === delivery.value}">
+            <input type="radio" name="delivery" id="{{delivery.value}}" [value]="delivery.value" [(ngModel)]="selectedDeliveryOption">
+            <label for="{{delivery.value}}">
+              <span>{{delivery.label}}</span>
+              <span>{{delivery.cost | currency}}</span>
+            </label>
+          </div>
+        }
+      </form>
+    </div>
+  </div>
+  <div class="summary__subtotal">
+    <div class="summary__subtotal-text">
+      <span>Subtotal</span>
+    </div>
+    <div class="summary__subtotal-price">
+      <span>{{cartSubtotal$ | async | currency}}</span>
+    </div>
+  </div>
+  <div class="summary__total">
+    <div class="summary__total-text">
+      <span>Total</span>
+    </div>
+    <div class="summary__total-price">
+      <span>{{calculateTotalPrice() | currency}}</span>
+    </div>
+  </div>
+  <div class="summary__btn" (click)="goToCheckoutCart()">
+    <app-btn-primary>Checkout</app-btn-primary>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<div class="shopping">
+  <div class="shopping__products">
+    <div class="shopping__products-title">
+      <div class="title">
+        <span>Product</span>
+      </div>
+      <div class="title">
+        <span>Quantity</span>
+      </div>
+      <div class="title">
+        <span>Price</span>
+      </div>
+      <div class="title">
+        <span>Subtotal</span>
+      </div>
+    </div>
+    <div class="shopping__products-items">
+      @for (product of cartItems; track product) {
+        <app-shopping-cart-product [product]="product" (countChange)="updateProductCount($event, product)"></app-shopping-cart-product>
+      }
+    </div>
+  </div>
+  <div class="shopping__summary">
+    <app-shopping-cart-summary></app-shopping-cart-summary>
+  </div>
+  <div class="shopping__coupon">
+    <app-shopping-cart-coupon></app-shopping-cart-coupon>
+  </div>
+</div>

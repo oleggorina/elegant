@@ -1,0 +1,74 @@
+@import '../../../../../../../scss/common';
+
+.summary {
+  display: grid;
+  padding: 16px 24px;
+  border-radius: 4px;
+  border: 1px solid $color-neutral-07;
+  gap: $gap;
+  &__products {
+    display: grid;
+    gap: $gap;
+    &-item {
+      display: grid;
+      grid-template-columns: 80px 100px auto;
+      grid-template-rows: 100px;
+      gap: $gap;
+      .image {
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+      .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        &__title {
+          span {
+            font-weight: 600;
+          }
+        }
+      }
+      .price {
+        display: flex;
+        justify-content: flex-end;
+        span {
+          font-weight: 600;
+        }
+      }
+    }
+  }
+  &__coupon {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: calc($gap /2);
+    &-input {
+      input {
+        @extend %input;
+      }
+    }
+  }
+  &__totals {
+    display: grid;
+    gap: $gap;
+    &-shipping,
+    &-subtotal,
+    &-total {
+      display: flex;
+      justify-content: space-between;
+      span {
+        &:nth-child(2) {
+          text-transform: capitalize;
+          font-weight: 600;
+        }
+      }
+    }
+    &-total {
+      span {
+        font-size: 20px;
+      }
+    }
+  }
+}

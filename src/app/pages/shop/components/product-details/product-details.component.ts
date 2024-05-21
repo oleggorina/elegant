@@ -13,6 +13,7 @@ import { NavLinksComponent } from '../../../../components/nav-links/nav-links.co
 import { NewsletterComponent } from '../../../../components/newsletter/newsletter.component';
 import { ProductInterface } from '../../../../interface/interfaces';
 import { CarouselService } from '../../../../services/carousel.service';
+import { CartService } from '../../../../services/cart.service';
 
 @Component({
   selector: 'app-product-details',
@@ -23,6 +24,7 @@ import { CarouselService } from '../../../../services/carousel.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductDetailsComponent implements OnInit, OnDestroy {
+  private cartService = inject(CartService);
   private activatedRoute = inject(ActivatedRoute);
   private changeDetectorRef = inject(ChangeDetectorRef);
   carouselService = inject(CarouselService)
@@ -30,17 +32,24 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   productSubscription!: Subscription;
   selectedColor!: string;
   productCount: number = 1;
-  // currentIndex: number = this.carouselService.currentIndex;
 
   ngOnInit(): void {
     this.productSubscription = this.activatedRoute.data.subscribe(data => {
       this.productData = data['data'];
       this.changeDetectorRef.detectChanges();
-    })    
+    })
+    console.log(this.productData.discount);
+    
   }
 
   ngOnDestroy(): void {
     if(this.productSubscription) this.productSubscription.unsubscribe();
+  }
+
+  addToCart(product: ProductInterface, color: string, count: number): void {
+    const {title, price, id, discount} = product;
+    const image = product.images.length > 0 ? product.images[0].url : '';
+    this.cartService.addToCart({id, image, title, color, price, discount, count});
   }
 
   prev(): void {

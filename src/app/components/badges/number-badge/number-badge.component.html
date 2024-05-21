@@ -1,1 +1,3 @@
-<p>number-badge works!</p>
+<div class="badge" [ngClass]="{'active': state === 'active', 'inactive': state === 'inactive'}">
+  <ng-content></ng-content>
+</div>

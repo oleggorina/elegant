@@ -2,6 +2,7 @@ import { CurrencyPipe, NgStyle } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, Input, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ProductInterface } from '../../../interface/interfaces';
+// import { CartService } from '../../../services/cart.service';
 import { WishlistService } from '../../../services/wishlist.service';
 import { DiscountComponent } from '../../badges/discount/discount.component';
 import { NewProductComponent } from '../../badges/new-product/new-product.component';
@@ -18,6 +19,7 @@ import { WishlistComponent } from '../../buttons/wishlist/wishlist.component';
 })
 export class ProductCardComponent implements OnInit {
   private wishlistService = inject(WishlistService);
+  // private cartService = inject(CartService);
   @Input() product!: ProductInterface;
   isInWishlist!: boolean;
   appProductPrice: any;
@@ -33,6 +35,12 @@ export class ProductCardComponent implements OnInit {
       this.addToWishlist();
     }
   }
+
+  // addToCart(product: ProductInterface, color: string, count: number): void {
+  //   const {title, price, id} = product;
+  //   const image = product.images.length > 0 ? product.images[0].url : '';
+  //   this.cartService.addToCart({id, image, title, color, price, count});
+  // }
 
   addToWishlist(): void {
     this.wishlistService.addToWishlist(this.product);

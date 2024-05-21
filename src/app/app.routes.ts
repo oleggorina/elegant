@@ -9,6 +9,10 @@ import { AccountProductComponent } from './pages/account/components/account-prod
 import { AccountWishlistComponent } from './pages/account/components/account-wishlist/account-wishlist.component';
 import { BlogComponent } from './pages/blog/blog.component';
 import { ArticleDetailsComponent } from './pages/blog/components/article-details/article-details.component';
+import { CartComponent } from './pages/cart/cart.component';
+import { CheckoutCartComponent } from './pages/cart/components/checkout-cart/checkout-cart.component';
+import { OrderCompleteComponent } from './pages/cart/components/order-complete/order-complete.component';
+import { ShoppingCartComponent } from './pages/cart/components/shopping-cart/shopping-cart.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ProductDetailsComponent } from './pages/shop/components/product-details/product-details.component';
@@ -21,11 +25,16 @@ export const routes: Routes = [
   {path:'', redirectTo: 'home', pathMatch: 'full'},
   {path:'home', component: HomeComponent, title: '3legant - Home Page'},
   {path:'shop', component: ShopComponent, title: '3legant - Shop Page'},
-  // {path:'product', component: ProductComponent, title: '3legant - Product Page'},
   {path:'product-details/:id', component: ProductDetailsComponent, resolve: {data: productResolver}, title: '3legant - Product Details Page'},
   {path:'blog', component: BlogComponent, title: '3legant - Blog Page'},
   {path:'article-details/:id', component: ArticleDetailsComponent, resolve: {data: blogResolver}},
   {path:'contact', component: ContactComponent, title: '3legant - Contact Page'},
+  {path: 'cart', component: CartComponent, title: '3legant - Shopping Cart', children: [
+    {path: '', redirectTo: 'shopping-cart', pathMatch: 'full'},
+    {path: 'shopping-cart', component: ShoppingCartComponent},
+    {path: 'checkout-cart', component: CheckoutCartComponent, title: '3legant - Checkout Details'},
+    {path: 'order-complete', component: OrderCompleteComponent, title: '3legant - Order Complete'}
+  ]},
   {path:'account/:id', component: AccountComponent, resolve: {data: authResolver}, canActivate: [loginGuard], title: '3legant - Account Page', children: [
     {path: '', redirectTo: 'details', pathMatch: 'full'},
     {path: 'details', component: AccountDetailsComponent},

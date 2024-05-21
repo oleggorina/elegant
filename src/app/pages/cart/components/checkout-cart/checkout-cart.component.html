@@ -1,0 +1,19 @@
+<div class="checkout">
+  <div class="checkout__form">
+    <div class="checkout__form-item">
+      <app-checkout-cart-contact></app-checkout-cart-contact>
+    </div>
+    <div class="checkout__form-item">
+      <app-checkout-cart-shipping></app-checkout-cart-shipping>
+    </div>
+    <div class="checkout__form-item">
+      <app-checkout-cart-payment></app-checkout-cart-payment>
+    </div>
+    <div class="checkout__form-btn" (click)="submitOrder()">
+      <app-btn-primary>Place Order</app-btn-primary>
+    </div>
+  </div>
+  <div class="checkout__summary">
+    <app-checkout-cart-summary></app-checkout-cart-summary>
+  </div>
+</div>

@@ -139,17 +139,3 @@ select {
   border-radius: 8px;
   border: 2px solid $color-neutral-04;
 }
-
-.badge {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  height: 20px;
-  background-color: $color-neutral-07;
-  border-radius: 50%;
-  color: $color-neutral-01;
-  font-family: $font-main;
-  font-size: 12px;
-  font-weight: 700;
-}

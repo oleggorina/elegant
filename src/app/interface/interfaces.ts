@@ -45,3 +45,34 @@ export interface ProductInterface {
   images: {url: string}[];
   colors: {name: string, url: string}[];
 }
+
+export interface ProductCartInterface {
+  id: string;
+  title: string;
+  color: string;
+  image: string;
+  price: number;
+  discount: number;
+  count: number;
+}
+
+export interface OrderInfo {
+  contact: {
+    name: string;
+    surname: string;
+    phonenumber: string;
+    email: string;
+  };
+  delivery: {
+    address: string;
+    city: string;
+    country: string;
+    state: string;
+    zip: string;
+  };
+  payment: {
+    cardNumber: string;
+    expiryDate: string;
+    cvc: string;
+  }
+}

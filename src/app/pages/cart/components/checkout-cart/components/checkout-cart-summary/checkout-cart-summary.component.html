@@ -1,0 +1,50 @@
+<div class="summary">
+  <div class="summary__title">
+    <h6>Order summary</h6>
+  </div>
+  <div class="summary__products">
+    @for (item of cartItems; track item) {
+      <div class="summary__products-item">
+        <div class="image">
+          <img src="{{item.image}}" alt="Product image">
+        </div>
+        <div class="content">
+          <div class="content__title">
+            <span>{{item.title}}</span>
+          </div>
+          <div class="content__color">
+            <span>Color: {{item.color}}</span>
+          </div>
+          <div class="content__counter">
+            <app-counter [count]="item.count" (countChange)="updateProductCount($event, item)"></app-counter>
+          </div>
+        </div>
+        <div class="price">
+          <span>{{item.price | currency}}</span>
+        </div>
+      </div>
+    }
+  </div>
+  <div class="summary__coupon">
+    <div class="summary__coupon-input">
+      <input type="text" placeholder="Coupon">
+    </div>
+    <div class="summary__coupon-btn">
+      <app-btn-primary>Apply</app-btn-primary>
+    </div>
+  </div>
+  <div class="summary__totals">
+    <div class="summary__totals-shipping">
+      <span>Shipping</span>
+      <span>{{cartShipping$ | async}}</span>
+    </div>
+    <div class="summary__totals-subtotal">
+      <span>Subtotal</span>
+      <span>{{cartSubtotal$ | async | currency}}</span>
+    </div>
+    <div class="summary__totals-total">
+      <span>Total</span>
+      <span>{{cartTotal$ | async | currency}}</span>
+    </div>
+  </div>
+</div>

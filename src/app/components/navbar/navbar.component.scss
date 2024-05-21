@@ -31,6 +31,10 @@
         gap: 5px;
         align-items: center;
         cursor: pointer;
+        .badge {
+          width: 20px;
+          height: 20px;
+        }
       }
     }
   }

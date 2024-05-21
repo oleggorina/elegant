@@ -1,0 +1,58 @@
+@import '../../../../../scss/common';
+
+.shopping {
+  display: grid;
+  grid-template-columns: 1fr 0.6fr;
+  grid-template-rows: 1fr max-content;
+  gap: calc($gap * 3);
+  @include lg {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: $gap;
+  }
+  &__products {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: max-content 1fr;
+    @include lg {
+      order: 1;
+    }
+    &-title {
+      border-bottom: 1px solid black;
+      padding-bottom: $gap;
+      display: grid;
+      grid-template-columns: 310px repeat(3, 1fr);
+      @include lg {
+        grid-template-columns: max-content;
+      }
+      .title {
+        &:nth-child(2),
+        &:nth-child(3),
+        &:nth-child(4) {
+          justify-self: center;
+          @include lg {
+            display: none;
+          }
+        }
+        span {
+          font-weight: 600;
+        }
+      }
+    }
+    &-items {
+      display: flex;
+      flex-direction: column;
+      
+    }
+  }
+  &__summary {
+    @include lg {
+      order: 3;
+    }
+  }
+  &__coupon {
+    @include lg {
+      order: 2;
+    }
+  }
+}

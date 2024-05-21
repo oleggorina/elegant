@@ -1,0 +1,56 @@
+@import '../../../../../../../scss/common';
+
+.coupon {
+  max-width: 424px;
+  display: grid;
+  gap: calc($gap / 2);
+  @include lg-min {
+    margin-bottom: calc($gap * 4);
+  }
+  &__title {
+    span {
+      font-family: $font-header;
+      font-size: 20px;
+      font-weight: 500;
+    }
+  }
+
+  &__subtitle {
+    p {
+      color: $color-neutral-04;
+    }
+  }
+
+  &__input {
+    position: relative;
+    input {
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      padding: 12px 67px 12px 48px;
+      border: 1px solid $color-neutral-04;
+    }
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translate(50%, 50%);
+      width: 24px;
+      height: 24px;
+      object-fit: cover;
+    }
+    .btn {
+      position: absolute;
+      top: 0;
+      right: 0;
+      transform: translate(-50%, 0);
+      line-height: 46px;
+      cursor: pointer;
+      font-family: $font-main;
+      font-size: 16px;
+      font-weight: 500;
+      color: $color-neutral-07;
+    }
+  }
+}

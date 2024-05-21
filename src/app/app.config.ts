@@ -1,7 +1,7 @@
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app'
 import { provideFirestore, getFirestore } from '@angular/fire/firestore'
-import { provideRouter } from '@angular/router';
+import { provideRouter, withInMemoryScrolling } from '@angular/router';
 import { environment } from '../environments/environment';
 
 import { routes } from './app.routes';
@@ -13,7 +13,12 @@ import { DatePipe } from '@angular/common';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-  provideRouter(routes),
+  provideRouter(
+    routes,
+    withInMemoryScrolling({
+      scrollPositionRestoration: 'enabled'
+    })
+    ),
   importProvidersFrom(
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideFirestore(() => getFirestore()),

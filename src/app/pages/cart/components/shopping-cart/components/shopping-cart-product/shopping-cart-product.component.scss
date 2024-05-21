@@ -1,0 +1,113 @@
+@import '../../../../../../../scss/common';
+
+.product {
+  display: grid;
+  grid-template-columns: 310px repeat(3, 1fr);
+  padding: $gap 0;
+  border-bottom: 1px solid $color-neutral-03;
+  @include lg {
+    grid-template-columns: 1fr max-content;
+  }
+  &__details {
+    display: flex;
+    gap: $gap;
+    @include sm {
+      gap: calc($gap / 2);
+    }
+    &-image {
+      width: 80px;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        @include sm {
+          object-fit: cover;
+        }
+      }
+    }
+    &-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: calc($gap / 2);
+      .title {
+        span {
+          font-size: 14px;
+          font-weight: 600;
+          line-height: 22px;
+        }
+      }
+      .color {
+        text-transform: capitalize;
+        span {
+          font-size: 12px;
+          line-height: 20px;
+          color: $color-neutral-04;
+        }
+      }
+      .remove {
+        display: flex;
+        gap: 5px;
+        cursor: pointer;
+        @include lg {
+          display: none;
+        }
+        span {
+          color: $color-neutral-04;
+          font-size: 14px;
+          font-weight: 600;
+          line-height: 22px;
+        }
+      }
+      .count {
+        display: none;
+        @include lg {
+          display: block;
+        }
+      }
+    }
+  }
+  &__count {
+    align-self: center;
+    width: 80px;
+    justify-self: center;
+    @include lg {
+      display: none;
+    }
+  }
+  &__price {
+    align-self: center;
+    justify-self: center;
+    @include lg {
+      display: none;
+    }
+    span {
+      font-size: 18px;
+      line-height: 30px;
+    }
+  }
+  &__subtotal {
+    align-self: center;
+    justify-self: center;
+    @include lg {
+      align-self: flex-start;
+      justify-self: flex-end;
+    }
+    span {
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 30px;
+      @include sm {
+        font-size: 14px;
+      }
+    }
+    &-remove {
+      display: none;
+      text-align: center;
+      margin-top: calc($gap / 2);
+      @include lg {
+        display: block;
+      }
+    }
+  }
+}

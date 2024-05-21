@@ -146,6 +146,12 @@
             display: flex;
             gap: calc($gap / 2);
             align-items: center;
+            &-counter {
+              width: 130px;
+              @include md {
+                width: 80px;
+              }
+            }
             &-wishlist {
               width: 100%;
             }
