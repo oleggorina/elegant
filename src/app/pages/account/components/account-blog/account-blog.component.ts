@@ -1,16 +1,16 @@
-import { DatePipe } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Title } from '@angular/platform-browser';
 import { AddImageComponent } from '../../../../components/buttons/add-image/add-image.component';
 import { BtnPrimaryComponent } from '../../../../components/buttons/btn-primary/btn-primary.component';
 import { InformMessageComponent } from '../../../../components/inform-message/inform-message.component';
 import { BlogService } from '../../../../services/blog.service';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-account-blog',
   standalone: true,
-  imports: [BtnPrimaryComponent, InformMessageComponent, ReactiveFormsModule, DatePipe, AddImageComponent],
+  imports: [BtnPrimaryComponent, InformMessageComponent, ReactiveFormsModule, DatePipe, AddImageComponent, MatProgressSpinnerModule],
   templateUrl: './account-blog.component.html',
   styleUrl: './account-blog.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

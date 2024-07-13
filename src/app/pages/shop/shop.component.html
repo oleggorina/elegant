@@ -1,2 +1,14 @@
-<app-shop-hero></app-shop-hero>
-<app-shop-products></app-shop-products>
+@defer () {
+<div class="shop">
+    <app-shop-hero></app-shop-hero>
+    <app-shop-products></app-shop-products>
+</div>
+} @loading {
+<div class="spinner">
+    <mat-spinner></mat-spinner>
+</div>
+} @placeholder (minimum 500ms) {
+<div class="spinner">
+    <mat-spinner></mat-spinner>
+</div>
+}

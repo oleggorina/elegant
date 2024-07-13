@@ -1,16 +1,16 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, inject, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AddImageComponent } from '../../../../components/buttons/add-image/add-image.component';
 import { BtnPrimaryComponent } from '../../../../components/buttons/btn-primary/btn-primary.component';
 import { ImageComponent } from '../../../../components/image/image.component';
 import { InformMessageComponent } from '../../../../components/inform-message/inform-message.component';
 import { ProductService } from '../../../../services/product.service';
-import { SharedService } from '../../../../services/shared.service';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-account-product',
   standalone: true,
-  imports: [AddImageComponent, ImageComponent, BtnPrimaryComponent, ReactiveFormsModule, InformMessageComponent],
+  imports: [MatProgressSpinnerModule, AddImageComponent, ImageComponent, BtnPrimaryComponent, ReactiveFormsModule, InformMessageComponent],
   templateUrl: './account-product.component.html',
   styleUrl: './account-product.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

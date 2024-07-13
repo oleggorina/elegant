@@ -3,4 +3,10 @@
 .blog {
   display: grid;
   gap: $gap;
+  animation: appearance 1s forwards;
+  @keyframes appearance {
+    from {
+      opacity: 0;
+    }
+  }
 }

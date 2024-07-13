@@ -1,5 +1,5 @@
 import { AsyncPipe, CurrencyPipe } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BtnPrimaryComponent } from '../../../../../../components/buttons/btn-primary/btn-primary.component';
 import { CounterComponent } from '../../../../../../components/buttons/counter/counter.component';
@@ -21,6 +21,7 @@ export class CheckoutCartSummaryComponent implements OnInit {
   cartSubtotal$!: Observable<number>;
   cartTotal$!: Observable<number>;
   cartShipping$!: Observable<string>;
+  cartTotal!: number;
 
   ngOnInit(): void {
     this.cartService.cartItems$.subscribe(cartItems => {
@@ -35,5 +36,9 @@ export class CheckoutCartSummaryComponent implements OnInit {
   updateProductCount(count: number, product: ProductCartInterface): void {
     product.count = count;
     this.cartService.updateCartItemCount(product.id, count);
+  }
+
+  getPriceWithDiscount(product: ProductCartInterface): number {
+    return this.cartService.getPriceWithDiscount(product);
   }
 }

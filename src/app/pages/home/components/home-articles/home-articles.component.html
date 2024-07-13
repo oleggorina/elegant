@@ -4,20 +4,16 @@
       <div class="articles__header-title">
         <h4>Articles</h4>
       </div>
-      <div class="articles__header-link">
+      <div class="articles__header-link" routerLink="/blog">
         <app-link>More Articles -></app-link>
       </div>
     </div>
     <div class="articles__items">
-      <div class="articles__items-item">
-        <app-article-card></app-article-card>
-      </div>
-      <div class="articles__items-item">
-        <app-article-card></app-article-card>
-      </div>
-      <div class="articles__items-item">
-        <app-article-card></app-article-card>
-      </div>
+      @for (article of articleData; track article) {
+        <div class="articles__items-item">
+          <app-article-card [article]="article"></app-article-card>
+        </div>
+      }
     </div>
   </div>
 </div>

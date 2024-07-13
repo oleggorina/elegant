@@ -1,0 +1,35 @@
+@if (onResize() > 1200) {
+    <div class="order">
+        <div class="order__data">
+            <span>{{order.id}}</span>
+        </div>
+        <div class="order__data">
+            <span>{{order.date | date}}</span>
+        </div>
+        <div class="order__data">
+            <span>{{order.delivery}}</span>
+        </div>
+        <div class="order__data">
+            {{order.cost | currency}}
+        </div>
+    </div>
+} @else {
+    <div class="order">
+        <div class="order__data">
+            <span>Order ID</span>
+            <span>{{order.id}}</span>
+        </div>
+        <div class="order__data">
+            <span>Date</span>
+            <span>{{order.date | date}}</span>
+        </div>
+        <div class="order__data">
+            <span>Delivery</span>
+            <span>{{order.delivery}}</span>
+        </div>
+        <div class="order__data">
+            <span>Delivery</span>
+            <span>{{order.cost | currency}}</span>
+        </div>
+    </div>
+}

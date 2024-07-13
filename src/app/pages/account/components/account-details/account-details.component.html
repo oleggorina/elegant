@@ -1,39 +1,49 @@
-<div class="details">
-  <form class="details__form" [formGroup]="detailsForm">
-    <div class="details__form-title">
-      <span>Account Details</span>
-    </div>
-    <div class="details__form-input">
-      <label for="name">First name *</label>
-      <input id="name" type="text" placeholder="First name" formControlName="name">
-      @if(detailsForm.get('name')?.hasError('required') && detailsForm.get('name')?.touched) {
-        <app-validation-message>Name is required</app-validation-message>
-      } @if(detailsForm.get('name')?.hasError('minlength')) {
-        <app-validation-message>Minimum 4 characters</app-validation-message>
-      }
-    </div>
-    <div class="details__form-input">
-      <label for="surname">Last name *</label>
-      <input id="surname" type="text" placeholder="Last name" formControlName="surname">
-      @if(detailsForm.get('surname')?.hasError('required') && detailsForm.get('surname')?.touched) {
-        <app-validation-message>Surname is required</app-validation-message>
-      } @if(detailsForm.get('surname')?.hasError('minlength')) {
-        <app-validation-message>Minimum 4 characters</app-validation-message>
-      }
-    </div>
-    <div class="details__form-btn" (click)="submitForm()">
-      <app-btn-primary>Save changes</app-btn-primary>
-    </div>
-    <div class="details__form-title">
-      <span>Password</span>
-    </div>
-    <div class="details__form-btn" (click)="resetPassword()">
-      <app-btn-primary>Reset password</app-btn-primary>
-    </div>
-      @if (message) {
-        <div class="details__form-msg">
-          <app-inform-message>{{message}}</app-inform-message>
-        </div>
-      }
-  </form>
-</div>
+@defer () {
+  <div class="details">
+    <form class="details__form" [formGroup]="detailsForm">
+      <div class="details__form-title">
+        <span>Account Details</span>
+      </div>
+      <div class="details__form-input">
+        <label for="name">First name *</label>
+        <input id="name" type="text" placeholder="First name" formControlName="name">
+        @if(detailsForm.get('name')?.hasError('required') && detailsForm.get('name')?.touched) {
+          <app-validation-message>Name is required</app-validation-message>
+        } @if(detailsForm.get('name')?.hasError('minlength')) {
+          <app-validation-message>Minimum 4 characters</app-validation-message>
+        }
+      </div>
+      <div class="details__form-input">
+        <label for="surname">Last name *</label>
+        <input id="surname" type="text" placeholder="Last name" formControlName="surname">
+        @if(detailsForm.get('surname')?.hasError('required') && detailsForm.get('surname')?.touched) {
+          <app-validation-message>Surname is required</app-validation-message>
+        } @if(detailsForm.get('surname')?.hasError('minlength')) {
+          <app-validation-message>Minimum 4 characters</app-validation-message>
+        }
+      </div>
+      <div class="details__form-btn" (click)="submitForm()">
+        <app-btn-primary>Save changes</app-btn-primary>
+      </div>
+      <div class="details__form-title">
+        <span>Password</span>
+      </div>
+      <div class="details__form-btn" (click)="resetPassword()">
+        <app-btn-primary>Reset password</app-btn-primary>
+      </div>
+        @if (message) {
+          <div class="details__form-msg">
+            <app-inform-message>{{message}}</app-inform-message>
+          </div>
+        }
+    </form>
+  </div>
+} @loading {
+  <div class="spinner">
+    <mat-spinner></mat-spinner>
+  </div>
+  } @placeholder (minimum 500ms) {
+  <div class="spinner">
+    <mat-spinner></mat-spinner>
+  </div>
+  }

@@ -1,0 +1,27 @@
+@import '../../../../../scss/common';
+
+.orders {
+    display: grid;
+    gap: calc($gap * 2);
+    animation: appearance 1s forwards;
+    @keyframes appearance {
+        from {
+        opacity: 0;
+        }
+    }
+    &__items {
+        &-header {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            padding-bottom: 5px;
+            border-bottom: 1px solid $color-neutral-03;
+            .title {
+                justify-self: center;
+                &:first-child {
+                    justify-self: flex-start;
+                }
+                color: $color-neutral-04;
+            }
+        }
+    }
+}

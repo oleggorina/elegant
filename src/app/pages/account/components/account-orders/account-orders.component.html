@@ -1,1 +1,30 @@
-<p>account-orders works!</p>
+@defer () {
+    <div class="orders">
+        <div class="orders__title">
+            <h6>Orders History</h6>
+        </div>
+        <div class="orders__items">
+            @if (onResize() > 1200) {
+                <div class="orders__items-header">
+                    <div class="title"><span>Order ID</span></div>
+                    <div class="title"><span>Date</span></div>
+                    <div class="title"><span>Delivery</span></div>
+                    <div class="title"><span>Price</span></div>
+                </div>
+            }
+            <div class="orders__items-items">
+                @for (order of orders; track order) {
+                    <app-order-item [order]="order"></app-order-item>
+                }
+            </div>
+        </div>
+    </div>
+} @loading {
+    <div class="spinner">
+        <mat-spinner></mat-spinner>
+    </div>
+} @placeholder (minimum 500ms) {
+    <div class="spinner">
+        <mat-spinner></mat-spinner>
+    </div>
+}

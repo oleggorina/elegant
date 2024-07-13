@@ -1,11 +1,11 @@
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { BtnArrowComponent } from '../../../../components/controls/btn-arrow/btn-arrow.component';
 
 @Component({
   selector: 'app-home-hero',
   standalone: true,
-  imports: [BtnArrowComponent, CommonModule],
+  imports: [BtnArrowComponent, CommonModule, NgOptimizedImage],
   templateUrl: './home-hero.component.html',
   styleUrl: './home-hero.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

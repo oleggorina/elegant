@@ -15,7 +15,7 @@ import { ShoppingCartSummaryComponent } from './components/shopping-cart-summary
 })
 export class ShoppingCartComponent implements OnInit {
   private cartService = inject(CartService);
-  cartItems: ProductCartInterface[] = [];
+  cartItems!: ProductCartInterface[];
 
   ngOnInit(): void {
     this.cartService.cartItems$.subscribe(cartItems => {

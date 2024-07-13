@@ -1,5 +1,16 @@
-<div class="blog">
-  <app-blog-hero></app-blog-hero>
-  <app-blog-articles></app-blog-articles>
-  <app-newsletter></app-newsletter>
-</div>
+
+@defer () {
+  <div class="blog">
+    <app-blog-hero></app-blog-hero>
+    <app-blog-articles></app-blog-articles>
+    <app-newsletter></app-newsletter>
+  </div>
+} @loading {
+  <div class="spinner">
+    <mat-spinner></mat-spinner>
+  </div>
+  } @placeholder (minimum 500ms) {
+  <div class="spinner">
+    <mat-spinner></mat-spinner>
+  </div>
+  }

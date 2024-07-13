@@ -1,36 +1,36 @@
 @if (product) {
-  <div class="product">
-    <div class="product__details">
-      <div class="product__details-image">
-        <img src="{{product.image}}" alt="Product Image">
+<div class="product">
+  <div class="product__details">
+    <div class="product__details-image">
+      <img src="{{product.image}}" alt="Product Image">
+    </div>
+    <div class="product__details-content">
+      <div class="title">
+        <span>{{product.title}}</span>
       </div>
-      <div class="product__details-content">
-        <div class="title">
-          <span>{{product.title}}</span>
-        </div>
-        <div class="color">
-          <span>Color: {{product.color}}</span>
-        </div>
-        <div class="remove" (click)="removeFromCart(product.id, product.color)">
-          <span>X</span>
-          <span>Remove</span>
-        </div>
-        <div class="count">
-          <app-counter [count]="product.count" (countChange)="onCountChange($event)"></app-counter>
-        </div>
+      <div class="color">
+        <span>Color: {{product.color}}</span>
       </div>
-    </div>
-    <div class="product__count">
-      <app-counter [count]="product.count" (countChange)="onCountChange($event)"></app-counter>
-    </div>
-    <div class="product__price">
-      <span>{{getPriceWithDiscount(product) | currency}}</span>
-    </div>
-    <div class="product__subtotal">
-      <span>{{getSubtotalPrice(product) | currency}}</span>
-      <div class="product__subtotal-remove" (click)="removeFromCart(product.id, product.color)">
-        <img src="../../../../../../../assets/images/icons/remove.png" alt="Remove icon">
+      <div class="remove" (click)="removeFromCart(product.id, product.color)">
+        <span>X</span>
+        <span>Remove</span>
+      </div>
+      <div class="count">
+        <app-counter [count]="product.count" (countChange)="onCountChange($event)"></app-counter>
       </div>
     </div>
   </div>
+  <div class="product__count">
+    <app-counter [count]="product.count" (countChange)="onCountChange($event)"></app-counter>
+  </div>
+  <div class="product__price">
+    <span>{{getPriceWithDiscount(product) | currency}}</span>
+  </div>
+  <div class="product__subtotal">
+    <span>{{getSubtotalPrice(product) | currency}}</span>
+    <div class="product__subtotal-remove" (click)="removeFromCart(product.id, product.color)">
+      <img src="../../../../../../../assets/images/icons/remove.png" alt="Remove icon">
+    </div>
+  </div>
+</div>
 }

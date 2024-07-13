@@ -1,13 +1,15 @@
-<div class="card">
-  <div class="card__image">
-    <img src="../../../../assets/images/home/articles__temp/article1.png" alt="">
-  </div>
-  <div class="card__content">
-    <div class="card__content-title">
-      <strong>7 ways to decor your home</strong>
+@if (article) {
+  <div class="card">
+    <div class="card__image">
+      <img [src]="article.mainImage" alt="Article image">
     </div>
-    <div class="card__content-link">
-      <app-link>Read More -></app-link>
+    <div class="card__content">
+      <div class="card__content-title">
+        <strong>{{article.title}}</strong>
+      </div>
+      <div class="card__content-link" (click)="goToArticle(article.id)">
+        <app-link>Read More -></app-link>
+      </div>
     </div>
   </div>
-</div>
+}

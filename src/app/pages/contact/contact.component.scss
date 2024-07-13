@@ -1,5 +1,13 @@
 @import '../../../scss/common';
 
-.container {
-  @extend %container;
+.contact {
+  animation: appearance 1s forwards;
+  @keyframes appearance {
+    from {
+      opacity: 0;
+    }
+  }
+  .container {
+    @extend %container;
+  }
 }

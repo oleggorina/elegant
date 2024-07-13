@@ -1,7 +1,7 @@
 import { AsyncPipe } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, inject, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
-import { Observable, of, Subscription } from 'rxjs';
+import { Observable, } from 'rxjs';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, inject, OnInit } from '@angular/core';
 import { UserInterface } from '../../../../interface/interfaces';
 import { AuthService } from '../../../../services/auth.service';
 import { UserService } from '../../../../services/user.service';
@@ -34,19 +34,23 @@ export class AccountNavbarComponent implements OnInit {
     const inputElement = event.target as HTMLInputElement;
     const file = inputElement.files?.item(0);
     if (file) {
-      const userId = this.userService.userIdSubject.value;
-      if (userId) {
-        this.userService.addUserImage(userId, file).subscribe({
-          next: (res) => console.log('User image uploaded successfully', res),
-          error: (er) => console.log(er)
-        })
-      }
+      this.userService.getUserId().subscribe({
+        next: (userId) => {
+          if (userId) {
+            this.userService.addUserImage(userId, file).subscribe({
+              next: (res) => console.log('User image uploaded successfully', res),
+              error: (er) => console.log(er)
+            })
+          }
+        }
+      })
     }
   }
 
   onMenuChange(event: Event): void {
     const selectedValue = (event.target as HTMLSelectElement).value;
     this.router.navigateByUrl(`/account/${this.userId}/${selectedValue}`);
+    this.router.navigateByUrl(`/account/${selectedValue}`);
     if (selectedValue === 'logout') {
       this.logout();
     }

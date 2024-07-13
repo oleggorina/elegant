@@ -7,11 +7,13 @@ import { HomeBannerComponent } from './components/home-banner/home-banner.compon
 import { HomeCategoriesComponent } from './components/home-categories/home-categories.component';
 import { HomeHeroComponent } from './components/home-hero/home-hero.component';
 import { HomeValuesComponent } from './components/home-values/home-values.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { AccountOrdersComponent } from '../account/components/account-orders/account-orders.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [HomeHeroComponent, HomeCategoriesComponent, HomeArrivalsComponent, HomeValuesComponent, HomeBannerComponent, HomeArticlesComponent, NewsletterComponent, FooterComponent],
+  imports: [HomeHeroComponent, HomeCategoriesComponent, HomeArrivalsComponent, HomeValuesComponent, HomeBannerComponent, HomeArticlesComponent, NewsletterComponent, FooterComponent, MatProgressSpinnerModule, AccountOrdersComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

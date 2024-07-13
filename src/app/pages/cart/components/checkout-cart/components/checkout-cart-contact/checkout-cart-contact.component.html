@@ -4,24 +4,48 @@
   </div>
   <div class="contact__row">
     <div class="contact__row-col">
-      <label for="name">First Name</label>
-      <input id="name" type="text" placeholder="First name" formControlName="name">
+      <label for="name">Last Name</label>
+      <div class="input">
+        <input id="name" type="text" placeholder="First name" formControlName="name">
+        @if(contactForm.get('name')?.hasError('required') && contactForm.get('name')?.touched) {
+        <app-validation-message>Name is required</app-validation-message>
+        } @if(contactForm.get('name')?.hasError('minlength')) {
+          <app-validation-message>Minimmum 4 characters</app-validation-message>
+        }
+      </div>
     </div>
     <div class="contact__row-col">
       <label for="surname">Last Name</label>
-      <input id="surname" type="text" placeholder="Last name" formControlName="surname">
+      <div class="input">
+        <input id="surname" type="text" placeholder="Last name" formControlName="surname">
+        @if(contactForm.get('surname')?.hasError('required') && contactForm.get('surname')?.touched) {
+          <app-validation-message>Surname is required</app-validation-message>
+          } @if(contactForm.get('surname')?.hasError('minlength')) {
+            <app-validation-message>Minimmum 4 characters</app-validation-message>
+          }
+      </div>
     </div>
   </div>
   <div class="contact__row">
     <div class="contact__row-col">
       <label for="phonenumber">Phone Number</label>
-      <input id="phonenumber" type="text" placeholder="Phone number" formControlName="phonenumber">
+      <div class="input">
+        <input id="phonenumber" type="text" placeholder="Phone number" formControlName="phonenumber">
+        @if(contactForm.get('phonenumber')?.hasError('required') && contactForm.get('phonenumber')?.touched) {
+          <app-validation-message>Phone is required</app-validation-message>
+          }
+      </div>
     </div>
   </div>
   <div class="contact__row">
     <div class="contact__row-col">
       <label for="email">Email Adress</label>
-      <input id="email" type="text" placeholder="Your Email" formControlName="email">
+      <div class="input">
+        <input id="email" type="text" placeholder="Your Email" formControlName="email">
+        @if(contactForm.get('email')?.hasError('required') && contactForm.get('email')?.touched) {
+          <app-validation-message>Email is required</app-validation-message>
+          }
+      </div>
     </div>
   </div>
 </form>

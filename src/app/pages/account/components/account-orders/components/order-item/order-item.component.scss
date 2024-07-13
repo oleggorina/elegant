@@ -1,0 +1,26 @@
+@import '../../../../../../../scss/common';
+
+.order {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: $gap 0;
+    border-bottom: 1px solid $color-neutral-03;
+    @include xl {
+        grid-template-columns: 1fr;
+        gap: $gap;
+    }
+    &__data {
+        justify-self: center;
+        align-self: center;
+        text-transform: capitalize;
+        display: flex;
+        @include xl {
+            justify-self: flex-start;
+            width: 100%;
+            justify-content: space-between;
+        }
+        &:first-child {
+            justify-self: flex-start;
+        }
+    }
+}

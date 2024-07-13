@@ -11,4 +11,12 @@
       }
     }
   }
+<<<<<<< HEAD
 }
+=======
+<<<<<<< HEAD
+}
+=======
+}
+>>>>>>> ecc1c97 (Update cart, wishlist, orders components, optimized routes, small code refactoring)
+>>>>>>> c881331 (Updated cart, wishlist, orders components. Optimized routes and small code refactoring)

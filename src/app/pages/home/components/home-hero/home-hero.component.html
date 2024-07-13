@@ -3,7 +3,7 @@
     <div class="slider">
       <div class="slider__slides">
         @for (slide of slideUrl; track slide; let index = $index) {
-          <img src="{{slide}}" alt="Slide image{{index}}"
+          <img [ngSrc]="slide" fill priority alt="Slide image{{index}}"
           [ngClass]="{'active': currentIndex === index}">
         }
       </div>

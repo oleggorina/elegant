@@ -139,3 +139,14 @@ select {
   border-radius: 8px;
   border: 2px solid $color-neutral-04;
 }
+
+.spinner {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  z-index: 999;
+}

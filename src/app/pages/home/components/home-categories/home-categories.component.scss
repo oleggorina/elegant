@@ -26,18 +26,18 @@
       }
       &:nth-child(1) {
         grid-area: living;
-        background-image: url('../../../../../assets/images/home/categories/living.png');
+        background-image: url('../../../../../assets/images/home/categories/living.webp');
         background-position: center;
       }
       &:nth-child(2) {
         grid-area: bedroom;
-        background-image: url('../../../../../assets/images/home/categories/bedroom.png');
+        background-image: url('../../../../../assets/images/home/categories/bedroom.webp');
         background-position: right;
         justify-content: end;
       }
       &:nth-child(3) {
         grid-area: kitchen;
-        background-image: url('../../../../../assets/images/home/categories/kitchen.png');
+        background-image: url('../../../../../assets/images/home/categories/kitchen.webp');
         background-position: right;
         justify-content: end;
       }

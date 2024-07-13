@@ -1,0 +1,72 @@
+@import '../../../../../scss/common';
+
+.wishlist {
+    animation: appearance 1s forwards;
+    @keyframes appearance {
+        from {
+        opacity: 0;
+        }
+    }
+    &__products {
+        table {
+            width: 100%;
+            height: 100%;
+            border-spacing: $gap;
+
+            .title {
+                border-bottom: 1px solid $color-neutral-03;
+            }
+
+            .product {
+                @include sm {
+                    display: flex;
+                    flex-direction: column;
+                    gap: calc($gap / 2);
+                }
+                &__content {
+                    display: flex;
+                    align-items: center;
+                    gap: calc($gap / 2);
+
+                    &-remove {
+                        color: $color-neutral-04;
+                        font-size: 14px;
+                        font-weight: 600;
+                        line-height: 22px;
+                    }
+
+                    &-image {
+                        width: 60px;
+
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                        }
+                    }
+
+                    &-title {
+                        @include sm {
+                            display: flex;
+                            flex-direction: column;
+                        }
+
+                        span {
+                            font-weight: 600;
+                        }
+                    }
+                }
+            }
+
+            .price,
+            .action {
+                text-align: center;
+            }
+
+            .action {
+                display: flex;
+                justify-content: center;
+            }
+        }
+    }
+}

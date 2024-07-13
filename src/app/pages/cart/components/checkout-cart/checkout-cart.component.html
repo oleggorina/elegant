@@ -9,9 +9,12 @@
     <div class="checkout__form-item">
       <app-checkout-cart-payment></app-checkout-cart-payment>
     </div>
-    <div class="checkout__form-btn" (click)="submitOrder()">
-      <app-btn-primary>Place Order</app-btn-primary>
-    </div>
+  </div>
+  <div class="checkout__submit" (click)="submitOrder()">
+    <app-btn-primary>Place Order</app-btn-primary>
+    @if(errorMessage) {
+    <app-validation-message>{{errorMessage}}</app-validation-message>
+    }
   </div>
   <div class="checkout__summary">
     <app-checkout-cart-summary></app-checkout-cart-summary>

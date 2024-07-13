@@ -2,18 +2,30 @@
 
 .container {
   @extend %container;
+
   .hero {
     display: grid;
     gap: $gap;
+    width: 100%;
+    height: calc(100vh - 75px);
+    @include sm {
+      height: calc(100vh - 65px);
+    }
+
     .slider {
       position: relative;
       width: 100%;
-      height: 550px;
+      height: 600px;
+      @include sm {
+        height: 305px;
+      }
+
       &__slides {
         position: relative;
         width: 100%;
         height: 100%;
         z-index: -1;
+
         img {
           position: absolute;
           top: 0;
@@ -24,11 +36,13 @@
           object-fit: cover;
           object-position: bottom center;
           transition: opacity 0.5s ease-in-out;
+
           &.active {
             opacity: 1;
           }
         }
       }
+
       &__controls {
         position: absolute;
         top: 0;
@@ -39,10 +53,12 @@
         align-items: center;
         justify-content: space-between;
         padding: 0 $gap;
+
         @include sm {
           padding: 0 calc($gap / 2);
         }
       }
+
       &__indicators {
         position: absolute;
         bottom: 0;
@@ -52,9 +68,11 @@
         display: flex;
         gap: $gap;
         z-index: 1;
+
         @include sm {
           padding-bottom: calc($gap / 2);
         }
+
         &-indicator {
           width: 8px;
           height: 8px;
@@ -62,6 +80,7 @@
           border-radius: 50%;
           transition: all 0.3s ease-in;
           cursor: pointer;
+
           &.active {
             width: 30px;
             border-radius: 4px;
@@ -69,34 +88,43 @@
         }
       }
     }
+
     &__content {
       display: grid;
       grid-template-columns: 1fr 1fr;
+
       @include sm {
         grid-template-columns: 1fr;
         gap: $gap;
       }
+
       &-title {
         justify-self: center;
         align-self: center;
+
         span {
           font-size: 72px;
           color: $color-neutral-04;
+
           @include xl {
             font-size: 62px;
           }
-          @include sm  {
+
+          @include sm {
             font-size: 40px;
           }
         }
       }
+
       &-subtitle {
         justify-self: center;
         align-self: center;
         max-width: 420px;
+
         span {
           color: $color-primary;
         }
+
         p {
           color: $color-neutral-04;
         }

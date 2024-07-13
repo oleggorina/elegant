@@ -4,11 +4,12 @@ import { NumberBadgeComponent } from '../../components/badges/number-badge/numbe
 import { CheckoutCartComponent } from './components/checkout-cart/checkout-cart.component';
 import { OrderCompleteComponent } from './components/order-complete/order-complete.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [NumberBadgeComponent, RouterLink, RouterLinkActive, RouterOutlet],
+  imports: [NumberBadgeComponent, RouterLink, RouterLinkActive, RouterOutlet, MatProgressSpinnerModule],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

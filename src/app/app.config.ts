@@ -10,24 +10,23 @@ import { provideHttpClient } from '@angular/common/http';
 import { getDatabase, provideDatabase } from '@angular/fire/database';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import { DatePipe } from '@angular/common';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-  provideRouter(
-    routes,
-    withInMemoryScrolling({
-      scrollPositionRestoration: 'enabled'
-    })
+    provideRouter(
+      routes,
+      withInMemoryScrolling({
+        scrollPositionRestoration: 'enabled'
+      })
     ),
-  importProvidersFrom(
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideFirestore(() => getFirestore()),
-  ),
-  DatePipe,
-  provideHttpClient(), 
-  importProvidersFrom(provideFirebaseApp(() => initializeApp({"projectId":"ecommerce-88694","appId":"1:887966100426:web:819a5891c32f95cf747d33","databaseURL":"https://ecommerce-88694-default-rtdb.europe-west1.firebasedatabase.app","storageBucket":"ecommerce-88694.appspot.com","apiKey":"AIzaSyAMQuZuO9-2PJm_CxmDjuPfjzYUU-nZJM0","authDomain":"ecommerce-88694.firebaseapp.com","messagingSenderId":"887966100426"}))),
-  importProvidersFrom(provideAuth(() => getAuth())), 
-  importProvidersFrom(provideDatabase(() => getDatabase())), 
-  importProvidersFrom(provideStorage(() => getStorage()))
-]
+    provideAuth(() => getAuth()),
+    provideDatabase(() => getDatabase()),
+    provideStorage(() => getStorage()),
+    DatePipe,
+    provideHttpClient(),
+    provideAnimationsAsync(), provideAnimationsAsync()
+  ]
 };

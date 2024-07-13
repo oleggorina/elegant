@@ -1,18 +1,18 @@
 import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import { BtnPrimaryComponent } from '../../../../components/buttons/btn-primary/btn-primary.component';
 import { InformMessageComponent } from '../../../../components/inform-message/inform-message.component';
 import { CardNumberDirective } from '../../../../directives/card-number.directive';
 import { UserInterface } from '../../../../interface/interfaces';
-import { AuthService } from '../../../../services/auth.service';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { UserService } from '../../../../services/user.service';
 
 @Component({
   selector: 'app-account-address',
   standalone: true,
-  imports: [ReactiveFormsModule, BtnPrimaryComponent, AsyncPipe, CardNumberDirective, InformMessageComponent],
+  imports: [ReactiveFormsModule, BtnPrimaryComponent, AsyncPipe, CardNumberDirective, InformMessageComponent, MatProgressSpinnerModule],
   templateUrl: './account-address.component.html',
   styleUrl: './account-address.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -47,13 +47,16 @@ export class AccountAddressComponent implements OnInit {
   addBillingAddress() {
     if (this.billingForm.valid) {
       const {card, month, year} = this.billingForm.value;
-      const userId = this.userService.userIdSubject.value;
-      this.userService.addBillingAddress((userId as string), card, month, year).subscribe({
-        next: () => {
-          this.billingForm.reset();
-          this.message = 'Billing address updated successfully';
-          this.changeDetectorRef.detectChanges();
-        }
+      this.userService.getUserId().subscribe({
+        next: (userId) => {
+          this.userService.addBillingAddress((userId as string), card, month, year).subscribe({
+            next: () => {
+              this.billingForm.reset();
+              this.message = 'Billing address updated successfully';
+              this.changeDetectorRef.detectChanges();
+            }
+          })
+      }
       })
     }
   }
@@ -61,12 +64,16 @@ export class AccountAddressComponent implements OnInit {
   addShippingAddress() {
     if (this.shippingForm.valid) {
       const {telephone, address} = this.shippingForm.value;
-      const userId = this.userService.userIdSubject.value;
-      this.userService.addShipingAddress((userId as string), telephone, address).subscribe({
-        next: () => {
-          this.shippingForm.reset();
-          this.message = 'Shipping address updated successfully';
-          this.changeDetectorRef.detectChanges();
+      this.userService.getUserId().subscribe({
+        next: (userId) => {
+          this.userService.addShipingAddress((userId as string), telephone, address).subscribe({
+            next: () => {
+              this.shippingForm.reset();
+              this.message = 'Shipping address updated successfully';
+              this.changeDetectorRef.detectChanges();
+            },
+            error: (error) => console.log(error)            
+          })
         }
       })
     }

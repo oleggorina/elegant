@@ -20,7 +20,7 @@
           </div>
         </div>
         <div class="price">
-          <span>{{item.price | currency}}</span>
+          <span>{{getPriceWithDiscount(item) | currency}}</span>
         </div>
       </div>
     }
@@ -45,6 +45,7 @@
     <div class="summary__totals-total">
       <span>Total</span>
       <span>{{cartTotal$ | async | currency}}</span>
+      <!-- <span>{{deliveryCost$ | async | currency}}</span> -->
     </div>
   </div>
 </div>

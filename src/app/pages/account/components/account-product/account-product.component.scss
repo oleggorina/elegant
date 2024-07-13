@@ -3,6 +3,12 @@
 .product {
   display: grid;
   gap: calc($gap * 2);
+  animation: appearance 1s forwards;
+  @keyframes appearance {
+    from {
+      opacity: 0;
+    }
+  }
   &__title {
     span {
       font-size: $gap;

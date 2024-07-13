@@ -1,1 +1,45 @@
-<p>order-complete works!</p>
+<div class="wrapper">
+    <div class="complete">
+        <div class="complete__header">
+            <div class="complete__header-subtitle">
+                <span>Thank you! 🎉</span>
+            </div>
+            <div class="complete__header-title">
+                <h4>Your order has been recieved</h4>
+            </div>
+        </div>
+        <div class="complete__products">
+            @if (order) {
+            @for (product of order.products; track product) {
+            <div class="complete__products-item">
+                <div class="image">
+                    <img src="{{product.image}}" alt="Product image">
+                    <div class="image__badge">
+                        <app-number-badge [state]="'active'">{{product.count}}</app-number-badge>
+                    </div>
+                </div>
+            </div>
+            }
+            }
+        </div>
+        @if (order) {
+        <div class="complete__content">
+            <div class="complete__content-item">
+                <span>Order Id:</span>
+                <span>{{order.id}}</span>
+            </div>
+            <div class="complete__content-item">
+                <span>Date:</span>
+                <span>{{order.date | date}}</span>
+            </div>
+            <div class="complete__content-item">
+                <span>Total:</span>
+                <span>{{order.cost | currency}}</span>
+            </div>
+        </div>
+        }
+        <div class="complete__btn" (click)="allOrders()">
+            <app-btn-primary>Purchase history</app-btn-primary>
+        </div>
+    </div>
+</div>

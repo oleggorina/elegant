@@ -6,13 +6,14 @@
     <div class="summary__inputs-form">
       <form class="form">
         @for (delivery of deliveryOptions; track delivery) {
-          <div class="form__input" [ngClass]="{'active': selectedDeliveryOption === delivery.value}">
-            <input type="radio" name="delivery" id="{{delivery.value}}" [value]="delivery.value" [(ngModel)]="selectedDeliveryOption">
-            <label for="{{delivery.value}}">
-              <span>{{delivery.label}}</span>
-              <span>{{delivery.cost | currency}}</span>
-            </label>
-          </div>
+        <div class="form__input" [ngClass]="{'active': selectedDeliveryOption === delivery.value}">
+          <input type="radio" name="delivery" id="{{delivery.value}}" [value]="delivery.value"
+            [(ngModel)]="selectedDeliveryOption">
+          <label for="{{delivery.value}}">
+            <span>{{delivery.label}}</span>
+            <span>{{delivery.cost | currency}}</span>
+          </label>
+        </div>
         }
       </form>
     </div>

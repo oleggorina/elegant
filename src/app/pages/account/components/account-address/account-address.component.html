@@ -1,130 +1,142 @@
-<div class="address">
-  <div class="address__title">
-    <span>Address</span>
-  </div>
-  <div class="address__content">
-    @if (user$ | async; as user) {
-      <div class="item">
-        <div class="item__title">
-          <div class="item__title-title">
-            <span>Billing Address</span>
-          </div>
-          <div class="item__title-btn">
-            <div class="btn" (click)="toggleBillingForm()">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
-                <path d="M2 14.5H14M9.18961 4.04114C9.18961 4.04114 9.18961 5.13089 10.2794 6.22064C11.3691 7.31039 12.4589 7.31039 12.4589 7.31039M4.87975 12.492L7.16823 12.1651C7.49833 12.118 7.80424 11.965 8.04003 11.7292L13.5486 6.22064C14.1505 5.61879 14.1505 4.64299 13.5486 4.04114L12.4589 2.95139C11.857 2.34954 10.8812 2.34954 10.2794 2.95139L4.77078 8.45997C4.53499 8.69576 4.38203 9.00167 4.33488 9.33177L4.00795 11.6202C3.9353 12.1288 4.3712 12.5647 4.87975 12.492Z" stroke="#6C7275" stroke-width="1.5" stroke-linecap="round"/>
-              </svg>
-              <span>Edit</span>
-            </div>
-          </div>
-        </div>
-        <div class="item__content">
-          <div class="item__content-text">
-            <span>{{user.name + ' ' + user.surname}}</span>
-          </div>
-          <div class="item__content-text">
-            <span>Card: {{user.billing.card}}</span>
-          </div>
-          <div class="item__content-text">
-            <span>Expiration: {{user.billing.month + '/' + user.billing.year}}</span>
-          </div>
-        </div>
+<div class="page">
+  @defer () {
+    <div class="address">
+      <div class="address__title">
+        <span>Address</span>
       </div>
-      <div class="item">
-        <div class="item__title">
-          <div class="item__title-title">
-            <span>Shipping Address</span>
-          </div>
-          <div class="item__title-btn">
-            <div class="btn" (click)="toggleShippingForm()">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
-                <path d="M2 14.5H14M9.18961 4.04114C9.18961 4.04114 9.18961 5.13089 10.2794 6.22064C11.3691 7.31039 12.4589 7.31039 12.4589 7.31039M4.87975 12.492L7.16823 12.1651C7.49833 12.118 7.80424 11.965 8.04003 11.7292L13.5486 6.22064C14.1505 5.61879 14.1505 4.64299 13.5486 4.04114L12.4589 2.95139C11.857 2.34954 10.8812 2.34954 10.2794 2.95139L4.77078 8.45997C4.53499 8.69576 4.38203 9.00167 4.33488 9.33177L4.00795 11.6202C3.9353 12.1288 4.3712 12.5647 4.87975 12.492Z" stroke="#6C7275" stroke-width="1.5" stroke-linecap="round"/>
-              </svg>
-              <span>Edit</span>
+      <div class="address__content">
+        @if (user$ | async; as user) {
+          <div class="item">
+            <div class="item__title">
+              <div class="item__title-title">
+                <span>Billing Address</span>
+              </div>
+              <div class="item__title-btn">
+                <div class="btn" (click)="toggleBillingForm()">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
+                    <path d="M2 14.5H14M9.18961 4.04114C9.18961 4.04114 9.18961 5.13089 10.2794 6.22064C11.3691 7.31039 12.4589 7.31039 12.4589 7.31039M4.87975 12.492L7.16823 12.1651C7.49833 12.118 7.80424 11.965 8.04003 11.7292L13.5486 6.22064C14.1505 5.61879 14.1505 4.64299 13.5486 4.04114L12.4589 2.95139C11.857 2.34954 10.8812 2.34954 10.2794 2.95139L4.77078 8.45997C4.53499 8.69576 4.38203 9.00167 4.33488 9.33177L4.00795 11.6202C3.9353 12.1288 4.3712 12.5647 4.87975 12.492Z" stroke="#6C7275" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                  <span>Edit</span>
+                </div>
+              </div>
+            </div>
+            <div class="item__content">
+              <div class="item__content-text">
+                <span>{{user.name + ' ' + user.surname}}</span>
+              </div>
+              <div class="item__content-text">
+                <span>Card: {{user.billing.card}}</span>
+              </div>
+              <div class="item__content-text">
+                <span>Expiration: {{user.billing.month + '/' + user.billing.year}}</span>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="item__content">
-          <div class="item__content-text">
-            <span>{{user.name + ' ' + user.surname}}</span>
+          <div class="item">
+            <div class="item__title">
+              <div class="item__title-title">
+                <span>Shipping Address</span>
+              </div>
+              <div class="item__title-btn">
+                <div class="btn" (click)="toggleShippingForm()">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
+                    <path d="M2 14.5H14M9.18961 4.04114C9.18961 4.04114 9.18961 5.13089 10.2794 6.22064C11.3691 7.31039 12.4589 7.31039 12.4589 7.31039M4.87975 12.492L7.16823 12.1651C7.49833 12.118 7.80424 11.965 8.04003 11.7292L13.5486 6.22064C14.1505 5.61879 14.1505 4.64299 13.5486 4.04114L12.4589 2.95139C11.857 2.34954 10.8812 2.34954 10.2794 2.95139L4.77078 8.45997C4.53499 8.69576 4.38203 9.00167 4.33488 9.33177L4.00795 11.6202C3.9353 12.1288 4.3712 12.5647 4.87975 12.492Z" stroke="#6C7275" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                  <span>Edit</span>
+                </div>
+              </div>
+            </div>
+            <div class="item__content">
+              <div class="item__content-text">
+                <span>{{user.name + ' ' + user.surname}}</span>
+              </div>
+              <div class="item__content-text">
+                <span>{{user.shipping.telephone}}</span>
+              </div>
+              <div class="item__content-text">
+                <span>{{user.shipping.address}}</span>
+              </div>
+            </div>
           </div>
-          <div class="item__content-text">
-            <span>{{user.shipping.telephone}}</span>
-          </div>
-          <div class="item__content-text">
-            <span>{{user.shipping.address}}</span>
-          </div>
-        </div>
+        }
       </div>
-    }
-  </div>
-  @if (billingFormState || shippingFormState) {
-    <div class="address__form">
-      @if (billingFormState) {
-        <form class="billing" [formGroup]="billingForm">
-          <div class="billing__row">
-            <div class="billing__row-input">
-              <label for="card">Card number</label>
-              <input id="card" type="text" appCardNumber formControlName="card">
-            </div>
-          </div>
-          <div class="billing__row">
-            <div class="billing__row-input">
-              <label for="month">Expiration mm</label>
-              <select name="month" id="month" formControlName="month">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-              </select>
-            </div>
-            <div class="billing__row-input">
-              <label for="year">Expiration yy</label>
-              <select name="year" id="year" formControlName="year">
-                <option value="24">24</option>
-                <option value="25">25</option>
-                <option value="26">26</option>
-                <option value="27">27</option>
-                <option value="28">28</option>
-                <option value="29">29</option>
-              </select>
-            </div>
-          </div>
-          <div class="billing__btn" (click)="addBillingAddress()">
-            <app-btn-primary>Apply</app-btn-primary>
-          </div>
-        </form>
-      }
-      @if (shippingFormState) {
-        <form class="shipping" [formGroup]="shippingForm">
-          <div class="shipping__row">
-            <div class="shipping__row-input">
-              <label for="telephone">Telephone</label>
-              <input type="number" id="telephone" formControlName="telephone">
-            </div>
-          </div>
-          <div class="shipping__row">
-            <div class="shipping__row-input">
-              <label for="address">Address</label>
-              <input type="text" id="address" formControlName="address">
-            </div>
-          </div>
-          <div class="shipping__btn" (click)="addShippingAddress()">
-            <app-btn-primary>Apply</app-btn-primary>
-          </div>
-          @if (message) {
-            <app-inform-message>{{message}}</app-inform-message>
+      @if (billingFormState || shippingFormState) {
+        <div class="address__form">
+          @if (billingFormState) {
+            <form class="billing" [formGroup]="billingForm">
+              <div class="billing__row">
+                <div class="billing__row-input">
+                  <label for="card">Card number</label>
+                  <input id="card" type="text" appCardNumber formControlName="card">
+                </div>
+              </div>
+              <div class="billing__row">
+                <div class="billing__row-input">
+                  <label for="month">Expiration mm</label>
+                  <select name="month" id="month" formControlName="month">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                  </select>
+                </div>
+                <div class="billing__row-input">
+                  <label for="year">Expiration yy</label>
+                  <select name="year" id="year" formControlName="year">
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                    <option value="26">26</option>
+                    <option value="27">27</option>
+                    <option value="28">28</option>
+                    <option value="29">29</option>
+                  </select>
+                </div>
+              </div>
+              <div class="billing__btn" (click)="addBillingAddress()">
+                <app-btn-primary>Apply</app-btn-primary>
+              </div>
+            </form>
           }
-        </form>
+          @if (shippingFormState) {
+            <form class="shipping" [formGroup]="shippingForm">
+              <div class="shipping__row">
+                <div class="shipping__row-input">
+                  <label for="telephone">Telephone</label>
+                  <input type="number" id="telephone" formControlName="telephone">
+                </div>
+              </div>
+              <div class="shipping__row">
+                <div class="shipping__row-input">
+                  <label for="address">Address</label>
+                  <input type="text" id="address" formControlName="address">
+                </div>
+              </div>
+              <div class="shipping__btn" (click)="addShippingAddress()">
+                <app-btn-primary>Apply</app-btn-primary>
+              </div>
+              @if (message) {
+                <app-inform-message>{{message}}</app-inform-message>
+              }
+            </form>
+          }
+        </div>
       }
     </div>
-  }
+  } @loading {
+    <div class="spinner">
+      <mat-spinner></mat-spinner>
+    </div>
+    } @placeholder (minimum 500ms) {
+    <div class="spinner">
+      <mat-spinner></mat-spinner>
+    </div>
+    }
 </div>

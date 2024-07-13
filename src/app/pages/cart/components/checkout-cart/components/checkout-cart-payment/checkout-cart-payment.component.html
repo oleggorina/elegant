@@ -5,17 +5,29 @@
   <div class="payment__row">
     <div class="payment__row-col">
       <label for="card">Card Number</label>
-      <input id="card" type="text" appCardNumber placeholder="1234 1234 1234 1234" formControlName="card">
+      <div class="input">
+        <input id="card" type="text" appCardNumber placeholder="1234 1234 1234 1234" formControlName="card">
+        @if(paymentForm.get('card')?.hasError('required') && paymentForm.get('card')?.touched) {
+          <app-validation-message>Card number is required</app-validation-message>
+        }
+      </div>
     </div>
   </div>
   <div class="payment__row">
     <div class="payment__row-col">
       <label for="expiration">Expiration Date</label>
-      <input id="expiration" type="text" placeholder="MM/YY" formControlName="expiration">
+      <div class="input">
+        <input id="expiration" type="text" placeholder="MM/YY" formControlName="expiration">
+      </div>
     </div>
     <div class="payment__row-col">
       <label for="cvc">Cvc</label>
-      <input id="cvc" type="number" placeholder="CVC code" formControlName="cvc">
+      <div class="input">
+        <input id="cvc" type="number" placeholder="CVC code" formControlName="cvc">
+        @if(paymentForm.get('cvc')?.hasError('required') && paymentForm.get('cvc')?.touched) {
+          <app-validation-message>CVC is required</app-validation-message>
+        }
+      </div>
     </div>
   </div>
 </form>

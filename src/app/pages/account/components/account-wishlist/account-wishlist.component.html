@@ -1,1 +1,56 @@
-<p>account-wishlist works!</p>
+@defer () {
+<div class="wishlist">
+    <div class="wishlist__title">
+        <h6>Your Wishlist</h6>
+    </div>
+    <div class="wishlist__products">
+        <table>
+            <thead>
+                <tr class="title">
+                    <th>Product</th>
+                    @if (onResize() > 576) {
+                    <th>Price</th>
+                    <th>Action</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @for (item of (wishlistProducts$ | async); track item) {
+                <tr>
+                    <td class="product">
+                        <div class="product__content">
+                            <div class="product__content-remove" (click)="removeProduct(item)">X</div>
+                            <div class="product__content-image">
+                                <img [src]="item.images[0].url" alt="Product image">
+                            </div>
+                            <div class="product__content-title">
+                                <span class="title">{{item.title}}</span>
+                                @if (onResize() < 576) { <span>{{item.price | currency}}</span>
+                                    }
+                            </div>
+                        </div>
+                        @if (onResize() < 576) { <app-btn-primary (click)="goToProduct(item.id)">Go to
+                            product</app-btn-primary>
+                            }
+                    </td>
+                    @if (onResize() > 576) {
+                    <td class="price">{{item.price | currency}}</td>
+                    <td class="action">
+                        <app-btn-primary (click)="goToProduct(item.id)">Go to product</app-btn-primary>
+                    </td>
+                    }
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+} @loading {
+<div class="spinner">
+    <mat-spinner></mat-spinner>
+</div>
+} @placeholder (minimum 500ms) {
+<div class="spinner">
+    <mat-spinner></mat-spinner>
+</div>
+}

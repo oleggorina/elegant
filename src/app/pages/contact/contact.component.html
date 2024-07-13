@@ -1,6 +1,17 @@
-<div class="contact">  
+@defer () {
+<div class="contact">
   <div class="container">
     <app-contact-hero></app-contact-hero>
     <app-contact-form></app-contact-form>
+  </div>
+  <app-contact-values></app-contact-values>
 </div>
-<app-contact-values></app-contact-values>
+} @loading {
+  <div class="spinner">
+    <mat-spinner></mat-spinner>
+  </div>
+} @placeholder (minimum 500ms) {
+  <div class="spinner">
+    <mat-spinner></mat-spinner>
+  </div>
+}

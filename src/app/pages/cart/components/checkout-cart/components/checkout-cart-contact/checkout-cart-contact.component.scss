@@ -3,17 +3,39 @@
 .contact {
   display: grid;
   gap: $gap;
+
   &__title {
     h6 {
       font-size: 20px;
     }
   }
+
   &__row {
     @extend %row;
+
     &-col {
       width: 100%;
+
       input {
         @extend %input;
+        width: 100%;
+        height: 100%;
+
+        &-col {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          gap: calc($gap / 2);
+
+          .input {
+            position: relative;
+
+            input {
+              @extend %input;
+            }
+          }
+        }
       }
     }
   }

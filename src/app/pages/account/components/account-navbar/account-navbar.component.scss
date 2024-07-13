@@ -7,6 +7,12 @@
   display: flex;
   flex-direction: column;
   gap: calc($gap * 2);
+  animation: appearance 1s forwards;
+  @keyframes appearance {
+    from {
+      opacity: 0;
+    }
+  }
   @include sm {
     width: 100%;
     padding: $gap;

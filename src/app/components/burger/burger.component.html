@@ -1,89 +1,99 @@
 <div class="burger" (click)="toggleMenu()">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-    <path d="M7 8H17M7 12H17M7 16H17" stroke="#141718" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M7 8H17M7 12H17M7 16H17" stroke="#141718" stroke-width="1.5" stroke-linecap="round" />
   </svg>
 </div>
 
 @if (isMenuOpen) {
-  <div class="menu">
-    <div class="menu__top">
-      <div class="menu__top-logo">
-        <div class="logo"><app-logo></app-logo></div>
-        <div class="exit" (click)="toggleMenu()">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M5.29289 5.29289C5.68342 4.90237 6.31658 4.90237 6.70711 5.29289L12 10.5858L17.2929 5.29289C17.6834 4.90237 18.3166 4.90237 18.7071 5.29289C19.0976 5.68342 19.0976 6.31658 18.7071 6.70711L13.4142 12L18.7071 17.2929C19.0976 17.6834 19.0976 18.3166 18.7071 18.7071C18.3166 19.0976 17.6834 19.0976 17.2929 18.7071L12 13.4142L6.70711 18.7071C6.31658 19.0976 5.68342 19.0976 5.29289 18.7071C4.90237 18.3166 4.90237 17.6834 5.29289 17.2929L10.5858 12L5.29289 6.70711C4.90237 6.31658 4.90237 5.68342 5.29289 5.29289Z" fill="#6C7275"/>
-          </svg>
-        </div>
-      </div>
-      <div class="menu__top-search"></div>
-      <div class="menu__top-menu">
-        <a routerLink="/home" routerLinkActive="active" class="link" (click)="toggleMenu()">Home</a>
-        <a routerLink="/shop" routerLinkActive="active" class="link" (click)="toggleMenu()">Shop</a>
-        <a routerLink="/product" routerLinkActive="active" class="link" (click)="toggleMenu()">Product</a>
-        <a routerLink="/blog" routerLinkActive="active" class="link" (click)="toggleMenu()">Blog</a>
-        <a routerLink="/contact" routerLinkActive="active" class="link" (click)="toggleMenu()">Contact Us</a>
+<div class="menu">
+  <div class="menu__top">
+    <div class="menu__top-logo">
+      <div class="logo"><app-logo></app-logo></div>
+      <div class="exit" (click)="toggleMenu()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M5.29289 5.29289C5.68342 4.90237 6.31658 4.90237 6.70711 5.29289L12 10.5858L17.2929 5.29289C17.6834 4.90237 18.3166 4.90237 18.7071 5.29289C19.0976 5.68342 19.0976 6.31658 18.7071 6.70711L13.4142 12L18.7071 17.2929C19.0976 17.6834 19.0976 18.3166 18.7071 18.7071C18.3166 19.0976 17.6834 19.0976 17.2929 18.7071L12 13.4142L6.70711 18.7071C6.31658 19.0976 5.68342 19.0976 5.29289 18.7071C4.90237 18.3166 4.90237 17.6834 5.29289 17.2929L10.5858 12L5.29289 6.70711C4.90237 6.31658 4.90237 5.68342 5.29289 5.29289Z"
+            fill="#6C7275" />
+        </svg>
       </div>
     </div>
-    <div class="menu__bottom">
-     <div class="menu__bottom-menu">
-      <div class="item">
+    <div class="menu__top-search"></div>
+    <div class="menu__top-menu">
+      <a routerLink="/home" routerLinkActive="active" class="link" (click)="toggleMenu()">Home</a>
+      <a routerLink="/shop" routerLinkActive="active" class="link" (click)="toggleMenu()">Shop</a>
+      <a routerLink="/product" routerLinkActive="active" class="link" (click)="toggleMenu()">Product</a>
+      <a routerLink="/blog" routerLinkActive="active" class="link" (click)="toggleMenu()">Blog</a>
+      <a routerLink="/contact" routerLinkActive="active" class="link" (click)="toggleMenu()">Contact Us</a>
+    </div>
+  </div>
+  <div class="menu__bottom">
+    <div class="menu__bottom-menu">
+      <div class="item" routerLink="/cart">
         <div class="item__title">Cart</div>
         <div class="item__icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M9 6L9 7C9 8.65685 10.3431 10 12 10C13.6569 10 15 8.65685 15 7V6" stroke="#141718" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M15.6116 3H8.3886C6.43325 3 4.76449 4.41365 4.44303 6.3424L2.77636 16.3424C2.37001 18.7805 4.25018 21 6.72194 21H17.2783C19.75 21 21.6302 18.7805 21.2238 16.3424L19.5572 6.3424C19.2357 4.41365 17.5669 3 15.6116 3Z" stroke="#141718" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M9 6L9 7C9 8.65685 10.3431 10 12 10C13.6569 10 15 8.65685 15 7V6" stroke="#141718"
+              stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path
+              d="M15.6116 3H8.3886C6.43325 3 4.76449 4.41365 4.44303 6.3424L2.77636 16.3424C2.37001 18.7805 4.25018 21 6.72194 21H17.2783C19.75 21 21.6302 18.7805 21.2238 16.3424L19.5572 6.3424C19.2357 4.41365 17.5669 3 15.6116 3Z"
+              stroke="#141718" stroke-width="1.5" stroke-linejoin="round" />
           </svg>
-          <div class="badge">{{cartCount}}</div>
+          <div class="badge">{{ cartCount }}</div>
         </div>
       </div>
-      <div class="item">
+      <div class="item" routerLink="/account/wishlist">
         <div class="item__title">Wishlist</div>
         <div class="item__icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M12.6924 7.58373C12.3055 7.95505 11.6945 7.95505 11.3076 7.58373L10.6152 6.91927C9.80477 6.14154 8.70994 5.66667 7.5 5.66667C5.01472 5.66667 3 7.68139 3 10.1667C3 12.5493 4.28979 14.5167 6.15176 16.1332C8.01532 17.7511 10.2434 18.8241 11.5746 19.3717C11.853 19.4862 12.147 19.4862 12.4254 19.3717C13.7566 18.8241 15.9847 17.7511 17.8482 16.1332C19.7102 14.5167 21 12.5493 21 10.1667C21 7.68139 18.9853 5.66667 16.5 5.66667C15.2901 5.66667 14.1952 6.14154 13.3848 6.91927L12.6924 7.58373ZM12 5.47624C10.8321 4.35548 9.24649 3.66667 7.5 3.66667C3.91015 3.66667 1 6.57682 1 10.1667C1 16.5349 7.97034 20.0517 10.8138 21.2214C11.5796 21.5364 12.4204 21.5364 13.1862 21.2214C16.0297 20.0517 23 16.5349 23 10.1667C23 6.57682 20.0899 3.66667 16.5 3.66667C14.7535 3.66667 13.1679 4.35548 12 5.47624Z" fill="#141718"/>
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M12.6924 7.58373C12.3055 7.95505 11.6945 7.95505 11.3076 7.58373L10.6152 6.91927C9.80477 6.14154 8.70994 5.66667 7.5 5.66667C5.01472 5.66667 3 7.68139 3 10.1667C3 12.5493 4.28979 14.5167 6.15176 16.1332C8.01532 17.7511 10.2434 18.8241 11.5746 19.3717C11.853 19.4862 12.147 19.4862 12.4254 19.3717C13.7566 18.8241 15.9847 17.7511 17.8482 16.1332C19.7102 14.5167 21 12.5493 21 10.1667C21 7.68139 18.9853 5.66667 16.5 5.66667C15.2901 5.66667 14.1952 6.14154 13.3848 6.91927L12.6924 7.58373ZM12 5.47624C10.8321 4.35548 9.24649 3.66667 7.5 3.66667C3.91015 3.66667 1 6.57682 1 10.1667C1 16.5349 7.97034 20.0517 10.8138 21.2214C11.5796 21.5364 12.4204 21.5364 13.1862 21.2214C16.0297 20.0517 23 16.5349 23 10.1667C23 6.57682 20.0899 3.66667 16.5 3.66667C14.7535 3.66667 13.1679 4.35548 12 5.47624Z"
+              fill="#141718" />
           </svg>
-          <div class="badge">{{wishListCount}}</div>
-        </div>
-      </div>
-     </div>
-      <div class="menu__bottom-btn">
-        <div class="btn" (click)="openModal()">
-          <app-btn-primary>Sign in</app-btn-primary>
-        </div>
-      </div>
-      <div class="menu__bottom-socials">
-        <div class="social">
-          <a href="https://instagram.com" target="_blank">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <rect x="2" y="2" width="20" height="20" rx="4" stroke="#141718" stroke-width="1.5"/>
-              <circle cx="18" cy="6" r="1" fill="#141718"/>
-              <circle cx="12" cy="12" r="5" stroke="#141718" stroke-width="1.5"/>
-            </svg>
-          </a>
-        </div>
-        <div class="social">
-          <a href="https://facebook.com" target="_blank">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M18 3H15C12.2386 3 10 5.23858 10 8V10H6V14H10V21H14V14H18V10H14V8C14 7.44772 14.4477 7 15 7H18V3Z" stroke="#141718" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-        </div>
-        <div class="social">
-          <a href="https://youtube.com" target="_blank">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <rect x="2" y="3" width="20" height="18" rx="4" stroke="#141718" stroke-width="1.5"/>
-              <path d="M10.4472 8.72361L15.2111 11.1056C15.9482 11.4741 15.9482 12.5259 15.2111 12.8944L10.4472 15.2764C9.78231 15.6088 9 15.1253 9 14.382V9.61803C9 8.87465 9.78231 8.39116 10.4472 8.72361Z" stroke="#141718" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-          </a>
+          <div class="badge">{{ wishListCount }}</div>
         </div>
       </div>
     </div>
+    <div class="menu__bottom-btn">
+      <div class="btn" (click)="openModal()">
+        <app-btn-primary>Sign in</app-btn-primary>
+      </div>
+    </div>
+    <div class="menu__bottom-socials">
+      <div class="social">
+        <a href="https://instagram.com" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <rect x="2" y="2" width="20" height="20" rx="4" stroke="#141718" stroke-width="1.5" />
+            <circle cx="18" cy="6" r="1" fill="#141718" />
+            <circle cx="12" cy="12" r="5" stroke="#141718" stroke-width="1.5" />
+          </svg>
+        </a>
+      </div>
+      <div class="social">
+        <a href="https://facebook.com" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M18 3H15C12.2386 3 10 5.23858 10 8V10H6V14H10V21H14V14H18V10H14V8C14 7.44772 14.4477 7 15 7H18V3Z"
+              stroke="#141718" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </a>
+      </div>
+      <div class="social">
+        <a href="https://youtube.com" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <rect x="2" y="3" width="20" height="18" rx="4" stroke="#141718" stroke-width="1.5" />
+            <path
+              d="M10.4472 8.72361L15.2111 11.1056C15.9482 11.4741 15.9482 12.5259 15.2111 12.8944L10.4472 15.2764C9.78231 15.6088 9 15.1253 9 14.382V9.61803C9 8.87465 9.78231 8.39116 10.4472 8.72361Z"
+              stroke="#141718" stroke-width="1.5" stroke-linecap="round" />
+          </svg>
+        </a>
+      </div>
+    </div>
   </div>
-  <div class="wrapper"></div>
+</div>
 }
 
 @if (modalService.modalState$ | async) {
-  <div class="modal">
-    <app-modal></app-modal>
-  </div>
+<div class="modal">
+  <app-modal></app-modal>
+</div>
 }

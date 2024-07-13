@@ -5,29 +5,54 @@
   <div class="delivery__row">
     <div class="delivery__row-col">
       <label for="address">Street Address</label>
-      <input id="address" type="text" placeholder="Street Address" formControlName="address">
+      <div class="input">
+        <input id="address" type="text" placeholder="Street Address" formControlName="address">
+        @if(deliveryForm.get('address')?.hasError('required') && deliveryForm.get('address')?.touched) {
+        <app-validation-message>Address is required</app-validation-message>
+        }
+      </div>
     </div>
   </div>
   <div class="delivery__row">
     <div class="delivery__row-col">
       <label for="country">Country</label>
-      <input id="country" type="text" placeholder="Country" formControlName="country">
+      <div class="input">
+        <input id="country" type="text" placeholder="Country" formControlName="country">
+        @if(deliveryForm.get('country')?.hasError('required') && deliveryForm.get('country')?.touched) {
+        <app-validation-message>Country is required</app-validation-message>
+        }
+      </div>
     </div>
   </div>
   <div class="delivery__row">
     <div class="delivery__row-col">
       <label for="city">City</label>
-      <input id="city" type="text" placeholder="City" formControlName="city">
+      <div class="input">
+        <input id="city" type="text" placeholder="City" formControlName="city">
+        @if(deliveryForm.get('city')?.hasError('required') && deliveryForm.get('city')?.touched) {
+        <app-validation-message>City is required</app-validation-message>
+        }
+      </div>
     </div>
   </div>
   <div class="delivery__row">
     <div class="delivery__row-col">
-      <label for="state">State</label>
-      <input id="state" type="text" placeholder="State" formControlName="state">
+      <label for="zip">State</label>
+      <div class="input">
+        <input id="state" type="text" placeholder="State" formControlName="state">
+        @if(deliveryForm.get('state')?.hasError('required') && deliveryForm.get('state')?.touched) {
+        <app-validation-message>State is required</app-validation-message>
+        }
+      </div>
     </div>
     <div class="delivery__row-col">
       <label for="zip">Zip code</label>
-      <input id="zip" type="text" placeholder="Zip Code" formControlName="zip">
+      <div class="input">
+        <input id="zip" type="text" placeholder="Zip Code" formControlName="zip">
+        @if(deliveryForm.get('zip')?.hasError('required') && deliveryForm.get('zip')?.touched) {
+        <app-validation-message>Zip code is required</app-validation-message>
+        }
+      </div>
     </div>
   </div>
 </form>

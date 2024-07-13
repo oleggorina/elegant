@@ -1,6 +1,6 @@
 import { AsyncPipe } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, Input, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../../services/auth.service';
@@ -9,7 +9,6 @@ import { UserService } from '../../../../services/user.service';
 import { BtnPrimaryComponent } from '../../../buttons/btn-primary/btn-primary.component';
 import { InformMessageComponent } from '../../../inform-message/inform-message.component';
 import { ValidationMessageComponent } from '../../../validation-message/validation-message.component';
-import { SignUpFormComponent } from '../sign-up-form/sign-up-form.component';
 
 @Component({
   selector: 'app-sign-in-form',
@@ -24,6 +23,7 @@ export class SignInFormComponent implements OnInit {
   private fb = inject(FormBuilder);
   private authService = inject(AuthService);
   private router = inject(Router);
+  private userService = inject(UserService);
   signInForm!: FormGroup;
   loginErrorMessage: string | null = null;
 
@@ -42,11 +42,10 @@ export class SignInFormComponent implements OnInit {
         next: (response: any) => {
           this.authService.setToken(response.idToken);
           this.modalService.modalIsOpen.next(false);
-          this.router.navigate(['/account', response.localId]);
+          this.userService.setUserId(response.localId);
         },
         error: (error) => {
           console.log(error);
-          
         }
       })
     }

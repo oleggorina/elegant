@@ -12,6 +12,7 @@
     gap: calc($gap * 2);
   }
   &__image {
+    position: relative;
     img {
       width: 100%;
       height: 100%;

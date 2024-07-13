@@ -1,30 +1,40 @@
-<div class="container">
-  <div class="cart">
-    <div class="cart__title">
-      <h3>Cart</h3>
+@defer () {
+  <div class="container">
+    <div class="cart">
+      <div class="cart__title">
+        <h3>Cart</h3>
+      </div>
+      <div class="cart__links">
+        <div class="cart__links-link" routerLink="shopping-cart" routerLinkActive="active">
+          <div class="badge">
+            <app-number-badge [state]="isLinkActive('shopping-cart') ? 'active' : 'inactive'">1</app-number-badge>
+          </div>
+          <div class="text">Shopping cart</div>
+        </div>
+        <div class="cart__links-link">
+          <div class="badge">
+            <app-number-badge [state]="isLinkActive('checkout-cart') ? 'active' : 'inactive'">2</app-number-badge>
+          </div>
+          <div class="text">Checkout details</div>
+        </div>
+        <div class="cart__links-link">
+          <div class="badge">
+            <app-number-badge [state]="isLinkActive('order-complete') ? 'active' : 'inactive'">3</app-number-badge>
+          </div>
+          <div class="text">Order complete</div>
+        </div>
+      </div>
     </div>
-    <div class="cart__links">
-      <div class="cart__links-link" routerLink="shopping-cart" routerLinkActive="active">
-        <div class="badge">
-          <app-number-badge [state]="isLinkActive('shopping-cart') ? 'active' : 'inactive'">1</app-number-badge>
-        </div>
-        <div class="text">Shopping cart</div>
-      </div>
-      <div class="cart__links-link" routerLink="checkout-cart" routerLinkActive="active">
-        <div class="badge">
-          <app-number-badge [state]="isLinkActive('checkout-cart') ? 'active' : 'inactive'">2</app-number-badge>
-        </div>
-        <div class="text">Checkout details</div>
-      </div>
-      <div class="cart__links-link" routerLink="order-complete" routerLinkActive="active">
-        <div class="badge">
-          <app-number-badge [state]="isLinkActive('order-complete') ? 'active' : 'inactive'">3</app-number-badge>
-        </div>
-        <div class="text">Order complete</div>
-      </div>
+    <div class="route">
+      <router-outlet></router-outlet>
     </div>
   </div>
-  <div class="route">
-    <router-outlet></router-outlet>
+} @loading {
+  <div class="spinner">
+    <mat-spinner></mat-spinner>
   </div>
-</div>
+  } @placeholder (minimum 500ms) {
+  <div class="spinner">
+    <mat-spinner></mat-spinner>
+  </div>
+  }

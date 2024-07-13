@@ -16,6 +16,7 @@
     }
     &__products {
       margin-top: calc($gap * 2);
+      width: 100%px;
       height: 485px;
       position: relative;
       &-items {
@@ -39,6 +40,10 @@
         }
         &::-webkit-scrollbar-button {
           display: none;
+        }
+        .item {
+          flex: 0 0 262px;
+          height: 100%;
         }
       }
     }

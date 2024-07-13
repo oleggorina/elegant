@@ -8,12 +8,12 @@ export interface UserInterface {
   shipping: {
     telephone: number;
     address: string;
-  }
+  };
   billing: {
-    card: number,
-    month: number,
-    year: number
-  }
+    card: number;
+    month: number;
+    year: number;
+  };
 }
 
 export interface BlogInterface {
@@ -42,8 +42,8 @@ export interface ProductInterface {
   characteristics: string;
   sku: string;
   category: string;
-  images: {url: string}[];
-  colors: {name: string, url: string}[];
+  images: { url: string }[];
+  colors: { name: string; url: string }[];
 }
 
 export interface ProductCartInterface {
@@ -56,7 +56,7 @@ export interface ProductCartInterface {
   count: number;
 }
 
-export interface OrderInfo {
+export interface OrderInfoInterface {
   contact: {
     name: string;
     surname: string;
@@ -74,5 +74,13 @@ export interface OrderInfo {
     cardNumber: string;
     expiryDate: string;
     cvc: string;
-  }
+  };
+}
+
+export interface OrderInterface {
+  id: string;
+  cost: number;
+  date: string;
+  delivery: string;
+  products: ProductCartInterface[];
 }

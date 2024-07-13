@@ -14,11 +14,18 @@
         <span>Subtotal</span>
       </div>
     </div>
+    @if(cartItems) {
     <div class="shopping__products-items">
-      @for (product of cartItems; track product) {
-        <app-shopping-cart-product [product]="product" (countChange)="updateProductCount($event, product)"></app-shopping-cart-product>
+      @for(product of cartItems; track product) {
+      <app-shopping-cart-product [product]="product"
+        (countChange)="updateProductCount($event, product)"></app-shopping-cart-product>
       }
     </div>
+    } @else {
+    <div class="shopping__products-noProduct">
+      <h6>No products in shopping cart.</h6>
+    </div>
+    }
   </div>
   <div class="shopping__summary">
     <app-shopping-cart-summary></app-shopping-cart-summary>
